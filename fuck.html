@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var v = 0
+
+
+function ls(){
+
+    var d = new Date()
+    //converting dic (object) into string, (localstorage only store strings not object)
+    var date = d.toString()
+
+    var message = {date:`hello how are you user${v}`,
+                date: "user2",
+                date: "user3"};
+    var m = objtostring(message)
+
+    var dic = {
+        "Batman": [{'channel_1': {'date_time':'hey, how are you...i was looking for you!!!!!!!'}},{'channel_2':{'date_time':'have you reached?? if so then atleast send me a text. please! '}}]
+        };
+    //converting dic (object) into string, (localstorage only store strings not object)
+    var str_dic = objtostring(dic)
+
+        
+	if(typeof(storage)!= undefined){
+        v += 1
+        localStorage.setItem(`users`,str_dic);
+        console.log(localStorage)
+        console.log("----------------------------")
+        localStorage.setItem(`foo`,stringtoobj('{"key","value"}'));
+        console.log(localStorage.getItem('foo'))
+
+
+    }
+    else{
+    	console.log("sorry not supported")
+    };
+};
+
+
+
+
+//function to convert object into string so that we could use it ot store into ht localstorage
+function objtostring(obj){
+    
+    let serialize = JSON.stringify(obj)
+    return serialize
+}
+
+
+//function to reverse the string back to obj
+
+function stringtoobj(obj){
+    let deserialize = JSON.parse(obj)
+    return deserialize
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+
+<p><button onclick="ls()" type="button">Click me!</button></p>
+</body>
+</html>

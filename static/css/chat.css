@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main {
+    width: 1200px;
+    width: 100%;
+    height: 89%;
+    margin: 15px;
+    padding: 0;
+    border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 61%;
+    transform: translate(-50%,-50%);
+}
+
+.head {
+    width: 100%;
+    height: 68px;
+    padding: 20px;
+    background-color: solid white;
+    border-bottom: 2px solid black;
+}
+
+.head-h3{
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+
+.body{
+    width: 100%;
+    height: inherit;
+    padding: 10px ;
+    overflow-y: auto;
+    /* background-color: white; */
+    background-color: #080E33;
+    background-image: url(../images/image5.jpg);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btm {
+    width: 100%;
+    height: 62px;
+    background-color: rgb(242, 242, 242);
+    padding: 0px 75px;
+}
+
+#input {
+    width: 90%;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-left: -42px;
+}
+
+.label{
+    color: rgb(0,0,0);
+    border-bottom: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.295);
+}
+
+.user1{
+    max-width: 90%;
+    padding: 15px;
+    float: left;
+    margin: 10px;
+    display: table;
+    clear: both;
+    background-color: #f8f9fab0;
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.user2{
+    max-width: 90%;
+    padding: 15px;
+    float: right;
+    margin: 10px;
+    display: table;
+    clear: both;
+    background-color: #005a83e6;
+    color: rgb(255,255,255);
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
+

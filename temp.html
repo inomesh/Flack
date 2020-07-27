@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var a = [];
+        obj = {}
+
+        dict = {
+            //first element
+             //user       //channel_name 
+            "Batman": [
+                        { 
+                        "Channel_First": {
+                                "Date_time - 1":"Messages - 1",
+                                "Date_time - 02":"Messages - 02"
+        
+                        }  
+                        },
+        
+                        { 
+                            "Channel_Second": {
+                                    "Date_time - 2":"Messages - 2"
+                            }  
+                        },
+        
+                        { 
+                            "Channel_third": {
+                                    "Date_time - 3":"Messages - 3"
+                            }  
+                        }, 
+                    
+                        ],
+        
+            //second element in object
+            "Deadpool": [
+                            { 
+                            "Channel_First": {
+                                    "Date_time - 1":"Messages - 1"
+                            }  
+                            },
+            
+                            { 
+                                "Channel_Second": {
+                                        "Date_time - 2":"Messages - 2"
+                                }  
+                            },
+            
+                            { 
+                                "Channel_third": {
+                                        "Date_time - 3":"Messages - 3"
+                                }  
+                            }, 
+                        
+                            ],
+            
+        
+            //third element in object
+            "Wonder_Women": [
+                { 
+                "Channel_First": {
+                        "Date_time - 1":"Messages - 1"
+                }  
+                },
+        
+                { 
+                    "Channel_Second": {
+                            "Date_time - 2":"Messages - 2"
+                    }  
+                },
+        
+                { 
+                    "Channel_third": {
+                            "Date_time - 3":"Messages - 3"
+                    }  
+                }, 
+            
+                ]
+        
+        
+        
+            
+        };
+        
+        localStorage.setItem('users',JSON.stringify(dict))
+
+        function fy(){
+            let c = document.querySelector('#channel').value
+            // a.push(c)
+            obj[Date.now()] = c
+            //localStorage.setItem(`channels_List`,`${a}`)
+            localStorage.setItem(`try`,`${JSON.stringify(obj)}`)
+
+            dict.Batman[0].Channel_First[`${Date.now()}`] = `${c}`
+            localStorage.setItem('users',JSON.stringify(dict))
+            sessionStorage.setItem('username','password')
+        };
+    </script>
+</head>
+<body>
+    <h1>Practice</h1>
+    <input type="text" id="channel" required/>
+    <button onclick="fy()">Submit</button>
+</body>
+</html>

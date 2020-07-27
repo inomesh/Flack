@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    All Channels
+{% endblock %}
+
+
+
+{% block body %}
+
+    <div class="row container-fluid">
+
+        <!-- <div class="col-2">
+
+            <div class="card">
+                <div class="card-header">
+                    channel
+                </div>
+                <div class="card-body">
+                    this is a discription.
+
+                </div>
+            </div>
+
+        </div> -->
+
+    </div>
+
+{% endblock %}
+
+<!-- FOOTER STARTS -->
+{% block footer %}
+<footer>
+
+    <div class="align-text-bottom fixed-bottom text-muted text-center border-top my-2 pt-4 font-weight-bold">
+        <p>Copyright ©2020, All rights reserved.</p>
+    </div>
+    
+</footer>
+{% endblock %}
+<!-- FOOTER ENDS -->
+
+
+{% block script %}
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded',()=>{
+
+        var channel = JSON.parse(localStorage.getItem('channelList'))
+        channel.forEach(element => {
+
+            //Tag creation
+           var div = document.createElement('div')
+           div.classList    =  'col-2' 
+
+           var div2 = document.createElement('div')
+           div2.classList = 'card-deck border border-light'
+
+           var div3 = document.createElement('div')
+           div3.classList = 'card-body'
+
+           var div4 = document.createElement('div')
+           div4.classList = 'card-title font-weight-bold'
+
+           var div5 = document.createElement('div')
+           div5.classList = 'card-text'
+
+           //adding values
+
+           div4.innerHTML = `#${element}`
+           div5.innerHTML = 'this is a discription.'
+           
+           //appending
+           //col-body
+           div3.append(div4)
+           div3.append(div5)
+
+           //card 
+           div2.appendChild(div3)
+
+           //coard main
+           div.append(div2)
+           //row
+           document.querySelector('.row').append(div) 
+
+        });
+
+    });
+
+</script>
+{% endblock %}

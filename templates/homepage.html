@@ -1,0 +1,201 @@
+{% extends 'layout.html' %} 
+
+{%block link%}
+<link rel="stylesheet" href="../static/css/homepage.css">
+{%endblock%}
+
+{% block title%}
+    Flack homepage
+{%endblock%}
+
+
+{% block body %}
+
+<!-- nav block starts -->
+{% block nav %}
+{% endblock %}
+<!-- nav block ends -->
+
+
+<!-- body block starts -->
+<section class="container mx-auto">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="float-left align-bottom">
+                <small class="font-weight-bold">Work from home</small>
+                <h1 class="font-weight-bolder">Flack brings the team together, wherever<br/> you are</h1>
+                <p class="text-justify">With all of your communication and tools in one place, remote teams will stay productive no matter where you’re working from.</p>
+            </div>        
+        </div>
+        <div class="col-md-6">
+            <div class="float-right pl-4">
+                <img class="w-100" src="../static/images/team_work.png" alt="Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mx-auto my-5">
+    <div class="row">
+        <div class="col">
+            <div class="text-center">
+                <h1 class="font-weight-bolder">Break out of the inbox</h1>       
+                <p>Working in channels gives everyone in your team a shared view of progress and purpose.</p>
+            </div>
+            <div class="bg-light">   
+                <video class="w-100 h-50" loop muted controls autoplay>
+                    <source src="../static/Videos/Slack_main.mp4" type="video/mp4">                        
+                </video>
+            </div>
+        </div>
+    </div>
+            
+</section>
+
+<hr/>
+
+<section>
+    <div class="container mx-auto my-5">
+        <div class="row">
+            <div class="col">
+                <div class="float-left align-text-bottom mt-5 pt-5">
+                    <h1 class="font-weight-bolder">Make the change to channels</h1>
+                    <p class="text-justify font-weight-bold">Productive teamwork happens in channels – organised<br> spaces for everything related to a project, topic or team.</p>
+                    <a href="#">Learn more about channels <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z"/>
+                      </svg></span></a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="float-right bg-light">
+                    <!-- video here -->
+                    <video class="w-100 h-25" loop muted controls autoplay>
+                        <source src="../static/Videos/Slack2.mp4" type="video/mp4">                        
+                    </video>
+                </div>
+            </div>
+        </div>           
+    </div>
+
+</section>
+
+<!-- parallax here -->
+<section>
+
+    <div id="paralax">
+
+        <video class="w-100 h-25" loop muted hide-controls autoplay >
+            <source class="px-5" src="../static/Videos/Slack_main.mp4" type="video/mp4">                        
+        </video>
+
+    </div>
+
+</section>
+
+<!-- Section  -->
+<section>
+
+    <div class="container mx-auto my-5">
+        <div class="row">
+            <div class="col">
+                <div class="float-right">
+                    <!-- video here -->
+                    <video class="w-100 h-25" loop muted controls autoplay>
+                        <source src="../static/Videos/Slack3.mp4" type="video/mp4">                        
+                    </video>
+                </div>
+            </div>
+            <div class="col">
+                <div class="float-left align-text-bottom mt-5 pt-5">
+                    <h1 class="font-weight-bolder">Flack Connect brings companies together</h1>
+                    <p class="text-justify font-weight-bold">Now channels can help you work as closely with external<br> partners and clients as you do with teams down the corridor.</p>
+                    <a href="#">See how with Flack Connect <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z"/>
+                      </svg></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+{% endblock %}
+<!-- body block ends -->
+
+
+
+<!-- FOOTER STARTS -->
+{% block footer %}
+<footer class="border-top">
+
+    <div class="row mt-5">
+        
+        <div class="col-md-6">
+
+            <div class="pl-5">
+
+                <h3 class="font-weight-bold">Sign up for Newsletter</h3>
+                <form action="#" method="post" class="form">
+                    <div class="form-group my-4">
+                        <input class="form-control d-inline-flex p-2 w-50" type="text" name="" id="NewsletterSignup" placeholder="write your email" autofocus autocomplete="off" required/>
+                    </div>
+                    <div class="form group">
+                        <button class="d-inline-flex p-2 btn btn-success">submit</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        
+        <div class="col-md-6">
+            <!-- SOCIAL MEDIA links here -->
+            <div class="pr-5">
+
+                <h5 class="font-weight-bold text-center">Follow me:</h5>
+                <ul class="mx-2 my-4 text-center font-weight-bolder">
+                    <a class="mx-3 text-dark" href="https://www.github.com"><i class="fab fa-2x fa-github"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.instagram.com"><i class="fab fa-2x fa-instagram"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.facebook.com"><i class="fab fa-2x fa-facebook"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.youtube.com"><i class="fab fa-2x fa-youtube"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.twitter.com"><i class="fab fa-2x fa-twitter"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.feedly.com"><i class="fas fa-2x fa-rss-square"></i><a>
+                </ul>
+                <div class="mx-4 my-2 text-center">
+                    <h3 class="bg-warning text-white font-weight-bolder">Important Note:-</h3>
+                    <h5 class="text-info">This is the clone version of the <br>original Slack made for practice purpose.</h5>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+
+    <div class="text-muted text-center border-top my-2 pt-4 font-weight-bold">
+        <p>Copyright ©2020, All rights reserved.</p>
+    </div>
+    
+</footer>
+{% endblock %}
+<!-- FOOTER ENDS -->
+
+
+<!-- JAVASCRIPT -->
+{% block script %}
+
+<script>
+
+    const paralax = document.getElementById('paralax');
+
+    window.addEventListener('scroll',function(){
+
+        let offset = window.pageYOffset;
+        paralax.style.backgroundPositionY = offset * 0.7 + 'px';
+    })
+
+</script>
+
+{% endblock %}
