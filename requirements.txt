@@ -1,6 +1,7 @@
-python
-flask
-requests
-re
-flask_socketio
-datetime
+# python
+pip
+Flask             
+Flask-Session     
+Flask-SocketIO
+# requests
+bcrypt

@@ -9,9 +9,11 @@
     <link rel="shortcut icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16.png">
     <!-- <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}"> -->
     <link rel="manifest" href="{{url_for('static', filename='site:webmanifest')}}">
-    <!--favicon end-->
+    
+    <!--BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <!-- FONT-AWESOME CDN -->
     <script src="https://kit.fontawesome.com/2ede387783.js" crossorigin="anonymous"></script>
     {% block link %}{% endblock %}
     <title>{% block title %} {% endblock %}</title>
@@ -22,31 +24,41 @@
 <body>
     
     <!--NAVBAR  -->
-    <div class="sticky-top">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light text-dark">
-        <div>
-        <a class="navbar-brand font-weight-bold h1" href="/">Flack</a>
-      </div>
-        <div class="collapse navbar-collapse float-right" id="navbarNav">
-          <ul class="navbar-nav float-right">
-            <li class="nav-item float-right">
-              <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/allchannels">Public Channels</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/signup">Sign up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/logout">Log out</a>
-            </li>
-             
-          </ul>
-        </div>
+ <div class="sticky-top">
+      <nav class="navbar navbar-light navbar-expand-sm bg-white text-dark">
+          
+          <a class="navbar-brand font-weight-bold ml-2" href="/">Flack</a>
+
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ml-auto mr-2">
+              <!-- <span class="sr-only">(current)</span>  -->
+              <li class="nav-item">
+                <a class="nav-link active" href="/"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/allchannels"><i class="fab fa-slack"></i> Public Channels</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/signup"><i class="fas fa-user-plus"></i> Sign up</a>
+              </li>
+               {% if username %}
+                  <li class="nav-item">
+                     <a class="nav-link active" href="/logout"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/login"><i class="fas fa-sign-in-alt"></i> Sign in</a>
+                  </li>
+
+               {% endif %}
+            </ul>
+          </div>
+
       </nav>
   </div>
 

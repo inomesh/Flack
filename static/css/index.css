@@ -105,8 +105,10 @@ body, #listrow{
 
 .sidebar-list:hover {
     color: rgb(255, 255, 255);
-    /* background-color: rgb(69, 8, 87); */
     background-color: #0f7299;
+    border-radius: 30px;
+    font-size: x-large;
+    text-align: justify;
 }
 
 .sidebar-head {
