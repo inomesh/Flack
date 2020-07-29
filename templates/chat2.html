@@ -15,14 +15,14 @@
 
 <div class="row">
       
-    <!--SIDEBAR-->
+    <!--SIDEBAR     channel-btn-->
 
   
     <div class="col-md-3 hashtag bg-black bs-sidebar">
       
         <h3 class="sidebar-head"> <strong>#Channels</strong>
-        <button class="channel-btn btn" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample">
-              <i class="fas fa-plu"></i></button>
+        <button class="float-right btn d-inline" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample">
+          <i class="fas fa-2x fa-plus-circle"></i> </button>
         </h3>
         
 
@@ -43,11 +43,17 @@
                    <!-- Channel_Name -->
                    <div class="form-group">
                     <label for="channel_name" class="text-dark">Channel Name</label>
-                    <input type="text" id="channel_name" class="form-control" placeholder="#Channel_Name" autocomplete="off" required>
-                    <small class="text-red channelInvalidInput font-weight-bold text-danger"></small><hr/>
+                    <input type="text" id="channel_name" class="form-control border-top-0 border-left-0 border-right-0 border-dark" placeholder="#ChannelName" autocomplete="off" required/>
+                    <small class="text-red channelInvalidInput font-weight-bold text-danger"><hr/></small>
                     <small class="form-text text-muted">Your channel name must starts with <strong>#</strong> and should be 6-20 characters long containing letters and numbers, and must not contain spaces, special characters or emoji.</small>
-                  </div>  
-                  
+                  </div>
+
+                  <!-- Channel Discription  -->
+                  <div class="form-group">
+                    <label for="channel_discription">Discription about this channel</label>
+                    <textarea name="" id="channel_discription" class="form-control border-top-0 border-left-0 border-right-0 border-dark" cols="5" rows="2" placeholder="type here" autocomplete="off"></textarea>
+                  </div> 
+
                   <hr/>
                   <div class="form-group">
                     <button type="submit" class="btn btn-outline-success form-control">Submit</button>
@@ -322,7 +328,7 @@
 
     function updateSidebarList(){
 
-      const array = JSON.parse(localStorage.getItem('channelList'))
+        const array = JSON.parse(localStorage.getItem('channelList'))
         const ulist = document.querySelector('#ulist')
         array.forEach(element => {
 
@@ -373,7 +379,6 @@
       
      //updating localStorage 
      localStorage.setItem('channelList',JSON.stringify(list));
-
     //wiping the inputs
       document.querySelector('#channel_name').value = ''
 

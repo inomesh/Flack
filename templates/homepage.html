@@ -123,10 +123,10 @@
                 <h3 class="font-weight-bold">Sign up for Newsletter</h3>
                 <form action="#" method="post" class="form">
                     <div class="form-group my-4">
-                        <input class="form-control d-inline-flex p-2 w-50" type="text" name="" id="NewsletterSignup" placeholder="write your email" autofocus autocomplete="off" required/>
+                        <input class="form-control d-inline-flex p-2 w-50" type="text" name="" id="NewsletterSignup" placeholder="write your email" autocomplete="off" required/>
                     </div>
                     <div class="form group">
-                        <button class="d-inline-flex p-2 btn btn-success">submit</button>
+                        <button class="d-inline-flex p-2 btn btn-outline-success">submit</button>
                     </div>
                 </form>
 
@@ -140,12 +140,12 @@
 
                 <h5 class="font-weight-bold text-center">Follow me:</h5>
                 <ul class="mx-2 my-4 text-center font-weight-bolder">
-                    <a class="mx-3 text-dark" href="https://www.github.com"><i class="fab fa-2x fa-github"></i></a>
-                    <a class="mx-3 text-dark" href="https://www.instagram.com"><i class="fab fa-2x fa-instagram"></i></a>
-                    <a class="mx-3 text-dark" href="https://www.facebook.com"><i class="fab fa-2x fa-facebook"></i></a>
-                    <a class="mx-3 text-dark" href="https://www.youtube.com"><i class="fab fa-2x fa-youtube"></i></a>
-                    <a class="mx-3 text-dark" href="https://www.twitter.com"><i class="fab fa-2x fa-twitter"></i></a>
-                    <a class="mx-3 text-dark" href="https://www.feedly.com"><i class="fas fa-2x fa-rss-square"></i><a>
+                    <a class="mx-3 text-dark" href="https://github.com/inomesh/Flack" title="Github"><i class="fab fa-2x fa-github"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.instagram.com/i_m_nomesh/" title="instagram"><i class="fab fa-2x fa-instagram"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.facebook.com/nomesh.sehgal" title="facebook" ><i class="fab fa-2x fa-facebook"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.youtube.com" title="youtube"><i class="fab fa-2x fa-youtube"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.twitter.com" title="twitter"><i class="fab fa-2x fa-twitter"></i></a>
+                    <a class="mx-3 text-dark" href="https://www.feedly.com" title="rss feed"><i class="fas fa-2x fa-rss-square"></i><a>
                 </ul>
                 <div class="mx-4 my-2 text-center">
                     <h3 class="bg-warning text-white font-weight-bolder">Important Note:-</h3>
@@ -166,19 +166,3 @@
 <!-- FOOTER ENDS -->
 
 
-<!-- JAVASCRIPT -->
-{% block script %}
-
-<script>
-
-    const paralax = document.getElementById('paralax');
-
-    window.addEventListener('scroll',function(){
-
-        let offset = window.pageYOffset;
-        paralax.style.backgroundPositionY = offset * 0.7 + 'px';
-    })
-
-</script>
-
-{% endblock %}

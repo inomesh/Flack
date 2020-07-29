@@ -9,6 +9,7 @@
 
 body, #listrow{
     background-color: #ffffff;
+    overflow-x: hidden;
 }
 
 .main-div{
@@ -70,10 +71,9 @@ body, #listrow{
 }
 /* channel Button */
 .channel-btn {
-    background-color: #fff0;
     border: none;
     color: rgb(0, 0, 0);
-    margin-left: 57%;
+    margin-left: 48%;
 }
 
 

@@ -91,7 +91,7 @@ def logincheck(mycsv,datalist):
             # if username not in i:
             #     return False
            
-print(logincheck('one.csv',['immayank','mayank@123#']))
+# print(logincheck('one.csv',['immayank','mayank@123#']))
 # print(logincheck('one.csv',['immadhuri','immadhuri123']))
 
 

@@ -81,12 +81,11 @@ def chat():
         
 #datalist should follow the pattern [username, password]
         datalist = [username, password]
-        if logincheck('one.csv',datalist) == True:
-            session['username'] = str(username)
-            session['password'] = str(password)
-            return render_template('chat2.html',username = session['username'])
+        if logincheck('one.csv',datalist):
+                session['username'] = str(username)
+                session['password'] = str(password)
+                return render_template('chat2.html',username = session['username'])
         else:
-            print(logincheck('one.csv',datalist))
             return render_template('login.html',message='false')
  
 #----------------------------------------------------------------------------------------------------------------------    
