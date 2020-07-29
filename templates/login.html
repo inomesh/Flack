@@ -17,7 +17,10 @@
                 <label for="login_username">Username</label>
                 <input type="text" id="login_username" name="login_username" class="form-control" placeholder="type your username" autocomplete="off" required/>
             </div>
-        
+            <!-- for dsplaying message in case of wrong input -->
+            <div class="message bg-white text-danger">
+            </div>
+
             <div class="form-group">
                 <label for="login_password">Password</label>
                 <input type="password" id="login_password" name="login_password" class="form-control" autocomplete="off" placeholder="type your password" required/>    
@@ -58,6 +61,30 @@
 
 <!-- JAVASCRIPT -->
 {% block script %}
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        var res = '{{message}}'
+        if(res === 'false'){
+            //creating element
+        var msg = document.querySelector('.message')
+        var child = document.createElement('h6')
+            //assigning value
+        child.innerHTML = res
+
+        msg.append(child)
+        
+        }
+    })
+    
+
+</script>
+
+
+
+
 <!-- 
     <script>
 

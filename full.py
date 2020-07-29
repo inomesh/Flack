@@ -75,7 +75,7 @@ def appendcsv(mycsv,datalist):
 
 #--------------------------------------------------------------------------------------------------------------------------
 # function for checking Login_input and password and comparing it with our csv
-
+#   datalist should follow the pattern [username, password]
 
 def logincheck(mycsv,datalist):
     username = str(datalist[0])
@@ -87,10 +87,12 @@ def logincheck(mycsv,datalist):
         for i in csv_reader:
             if username in i and checkpas(password,i[3]) == True:
                 return True
-            
 
-
-# print(logincheck('one.csv',['immayank','mayank@123#']))
+            # if username not in i:
+            #     return False
+           
+print(logincheck('one.csv',['immayank','mayank@123#']))
+# print(logincheck('one.csv',['immadhuri','immadhuri123']))
 
 
 

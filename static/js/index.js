@@ -21,18 +21,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         
     });
 
-
+    // Scroll effect
     const scroll = () => {
 
-       // const card_height = document.querySelector('.card').offsetHeight
-        const card_height = document.body.offsetHeight
-        const downscroll = window.innerHeight + (window.scrollY/2)
+        const s = document.querySelector('.body')
 
-        if(card_height - 130 <= downscroll){
-                window.scrollY += 130
-                window.scrollTo(0,window.scrollY)
-           }
-        
+        if( s.scrollHeight > s.scrollTop + s.clientHeight){
+            s.scrollTo(0,s.scrollHeight)
+          }
     }
 
 

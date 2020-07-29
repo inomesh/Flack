@@ -78,11 +78,16 @@ def chat():
         session.permanent = True
         username = request.form.get('login_username')
         password = request.form.get('login_password')
-        session['username'] = username
-        session['password'] = str(password)
-
-        return render_template('chat2.html',username = session['username'])
-
+        
+#datalist should follow the pattern [username, password]
+        datalist = [username, password]
+        if logincheck('one.csv',datalist) == True:
+            session['username'] = str(username)
+            session['password'] = str(password)
+            return render_template('chat2.html',username = session['username'])
+        else:
+            print(logincheck('one.csv',datalist))
+            return render_template('login.html',message='false')
  
 #----------------------------------------------------------------------------------------------------------------------    
 

@@ -107,13 +107,35 @@
 <script>
 
   document.addEventListener('DOMContentLoaded',()=>{
-
+    // checking if user already exists or not.
+    //if 'yes', then display 'Already exists'
     var message = '{{message}}'
     if (message === 'false') {
       document.querySelector('.already-exists').innerHTML = 'Already exists please try something else.'
     }
 
   });
+
+  document.querySelector('.form').onsubmit = ()=>{
+
+    // storing user raw password into localstorage in case of password forget.
+
+
+    // checking if password key already exists in the localstorage or not
+
+    if (localStorage.getItem('password') != null){
+      return true
+    }
+    else{
+
+      var pas = document.querySelector('#create_password').value
+
+      localStorage.setItem('password',JSON.stringify(pas))
+
+      return true
+    };
+    
+  };
 
   
 </script>
