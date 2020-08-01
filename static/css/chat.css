@@ -48,6 +48,28 @@
     padding: 0px 75px;
 }
 
+/* Inputs */
+
+#chat_search{
+
+    border: black;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+    border-width: thick;
+    border: thick;
+    background-color: #ededed;
+    padding: 10px 15px;
+    margin: ;
+    margin-top: 16px;
+    margin-left: -22px;
+    width: 90%;
+    border-radius: 50px;
+
+}
+
+
 #input {
     width: 90%;
     outline: none;
@@ -63,6 +85,10 @@
     border-bottom: 2px solid black;
     background-color: rgba(0, 0, 0, 0.295);
 }
+
+
+
+/* USERS message-box */
 
 .user1{
     max-width: 90%;

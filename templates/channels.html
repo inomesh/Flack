@@ -11,8 +11,7 @@
 
     <div class="row container-fluid">
         <div class="card-deck">
-
-        <!-- <div class="col-2">
+         <!-- <div class="col-2">
 
             <div class="card">
                 <div class="card-header">
@@ -26,30 +25,41 @@
 
         </div>
     
-    <div class="card-deck">
-        <div class="card">
+     <div class="card-deck"> 
+         <div class="card">
          <img class="card-img-top" src="..." alt="Card image cap">
          <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-  </div>
+            <div class="row">
+                <div class="col">
+                    <span class="mr-5" title="Users Joined"><i class="fas fa-user"></i> 100</span>
+                </div>
+                <div class="col">
+                     <button class="btn btn-outline-primary font-weight-bold float-right">Join</button>
+                </div>
+            </div>
+            
+        <!-- </div>  -->
+  </div> 
+     
     
     
     
     
-    
-    -->
     </div>
 
+    <div hidden>
+        <p id="chList">{{message}}</p>
+    </div>
 {% endblock %}
+
 
 <!-- FOOTER STARTS -->
 {% block footer %}
-<footer style="margin-top: 20%;">
+<footer style="margin-top: 25%;">
 
     <div class="align-text-bottom text-muted text-center border-top my-2 pt-4 font-weight-bold">
         <p>Copyright ©2020, All rights reserved.</p>
@@ -63,42 +73,83 @@
 
 <script>
 
+    // assigning the returned Channels_list array from the server
 
+    var temp = document.getElementById('chList').textContent
+    var arr = eval(temp)
+
+
+    // Creating channel List
     document.addEventListener('DOMContentLoaded',()=>{
 
-        var channel = JSON.parse(localStorage.getItem('channelList'))
-        channel.forEach(element => {
+                        //list of channels fetching from localStorage
+        // var channel = JSON.parse(localStorage.getItem('channelList')) 
+        arr.forEach(element => {
 
             //Tag creation
 
            var colDiv = document.createElement('div')
-           colDiv.classList    =  'col-md-3  col-sm-6'  
+           colDiv.classList    =  'col-md-3  col-sm-6 bg-white my-3'  
 
            var div = document.createElement('div')
-           div.classList    =  'card' 
+           div.classList    =  'card bg-white' 
 
+           //card image
+           var img = document.createElement('img')
+            img.classList = 'card-img-top'
+            img.src = "../static/images/image.jpg"
+            img.alt = "Card image cap"
+            img.style.height = '230px'
+
+            // card body
            var div2 = document.createElement('div')
            div2.classList = 'card-body'
 
+            // card-title
            var h5 = document.createElement('h5')
            h5.classList = 'card-title font-weight-bold'
 
-
+            // card-text
            var p = document.createElement('p')
            p.classList = 'card-text'
 
-           //adding values
+            // card footer
+           var footer = document.createElement('div')
+           footer.classList =   'card-footer'
 
-           h5.innerHTML = `#${element}`
-           p.innerHTML == 'this is a description.'
+            // footer inner
+            var icon = document.createElement('i')
+            icon.classList = 'fas fa-user'
+
+            var span = document.createElement('span')
+            span.classList = 'mr-5'
+            span.append(icon)
+            span.append('100') 
+
+           var button = document.createElement('button')
+           button.classList = 'btn btn-outline-primary font-weight-bold float-right'
+           button.title = 'Join channel'
+
+
+           //adding values
+           h5.textContent = `${element}`
+           p.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum expedita accusamus quidem, consequatur culpa amet dolor obcaecati provident incidunt explicabo iure, aut voluptate dicta architecto ratione enim officia? Aspernatur officia ea laborum quaerat commodi quae, sequi veritatis alias eligendi architecto saepe id impedit. Dignissimos fugit itaque id animi, incidunt dolorem!' 
+
+           button.textContent = 'Join'
 
         //appending
+            // foooter
+            footer.append(span)
+            footer.append(button)
+
            //col-body
            div2.append(h5)
            div2.append(p)
 
            //coard main
+           div.append(img)
            div.append(div2)
+           div.append(footer)
            colDiv.append(div)
            //row
            document.querySelector('.card-deck').append(colDiv) 
@@ -108,71 +159,6 @@
     });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    // document.addEventListener('DOMContentLoaded',()=>{
-
-    //     var channel = JSON.parse(localStorage.getItem('channelList'))
-    //     channel.forEach(element => {
-
-    //         //Tag creation
-    //        var div = document.createElement('div')
-    //        div.classList    =  'col-2' 
-
-    //        var div2 = document.createElement('div')
-    //        div2.classList = 'card-deck border border-light bg-white'
-
-    //        var div3 = document.createElement('div')
-    //        div3.classList = 'card-body'
-
-    //        var div4 = document.createElement('div')
-    //        div4.classList = 'card-title font-weight-bold'
-
-    //        var div5 = document.createElement('div')
-    //        div5.classList = 'card-text'
-
-    //        //adding values
-
-    //        div4.innerHTML = `#${element}`
-    //        div5.innerHTML = 'this is a discription.'
-           
-    //        //appending
-    //        //col-body
-    //        div3.append(div4)
-    //        div3.append(div5)
-
-    //        //card 
-    //        div2.appendChild(div3)
-
-    //        //coard main
-    //        div.append(div2)
-    //        //row
-    //        document.querySelector('.row').append(div) 
-
-    //     });
-
-    // });
 
 </script>
 {% endblock %}

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // }else{
 
   // }
-    localStorage.setItem('channelList', JSON.stringify(chList))
+    localStorage.setItem('channelList', JSON.stringify(channelList))
     // localStorage.setItem('channelList', JSON.stringify(channelList))
     // localStorage.setItem('userList', JSON.stringify(userList))
 });

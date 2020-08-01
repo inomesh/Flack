@@ -90,9 +90,31 @@
     <div class="col-md-9 main container-fluid">
         
         <div class="head">
+          <div class="row">
+            
+            <div class="col-md-3">
+              <h3 class="head-h3">#Flack Channel</h3>
+            </div>
 
-          <!-- <h3 class="head-h3">Message Box</h3> -->
-          <h3 class="head-h3">#Flack Channel</h3>
+            <div class="col-md-9">
+              <span class="float-left d-flex align-middle">
+                <i class="fas fa-2x fa-users p-1"></i>
+                <h5 class="mx-1 font-weight-bold p-1">100</h5> 
+              </span>
+
+
+              <div class="float-right search-chat" style="display: block ruby; margin: -65px 30px;">
+                
+                <input type="text" id="chat_search" class="" name="chat_search" autocomplete="off" placeholder="search"/>
+                <a href="#" id="chat_search_button"> <i class="fas fa-search text-dark"></i>  </a>
+                <!-- <button type="submit" > </button> -->
+              
+              </div>
+                  
+            </div>
+
+
+          </div>
 
         </div>
 
@@ -246,7 +268,7 @@
         <div class="btm" id="btm">
             <form id="form">
                 <input id="input" placeholder="type your message here" autocomplete="off" type="text" required/>
-                <input class="submit" type="submit" />
+                <input class="submit" id="submit_button" type="submit" value="send" />
             </form>
         </div>
 
@@ -293,15 +315,27 @@
       
       let name = event.target.innerHTML
       document.querySelector('.head-h3').innerHTML = name
-      
+
       //removing the body and its all childs
       document.querySelector('.body').remove()
 
-      //creating another body tag
+      //creating new body tag
       var a = document.createElement('body')
       a.classList = 'body'
       var after = document.querySelector('.main')
       after.insertBefore(a,after.childNodes[2])
+
+
+      // enabling inputs
+
+      if (document.querySelector('.head-h3').innerHTML == '#Flack Channel') {
+        document.getElementById('input').setAttribute('disabled')
+        document.getElementById('submit_button').setAttribute('disabled')
+      }
+      else{
+       document.getElementById('input').removeAttribute('disabled')
+       document.getElementById('submit_button').removeAttribute('disabled')
+      }
     }
 
     event.stopPropagation();        
@@ -316,10 +350,6 @@
       //setting up the sessinStorage for username
        let sessionUsername = `{{username}}`
        sessionStorage.setItem('username', sessionUsername) 
-
-
-
-
 
         // document.querySelector('#heading').innerHTML = 'Hi, {{username}}'
         updateSidebarList();
@@ -372,7 +402,7 @@
         list.push(newChannelName)
       }
       else{
-        document.querySelector('#channel_name').value = ''
+        document.querySelector('#channel_name').value = ' '
         document.querySelector('.channelInvalidInput').innerHTML = 'Channel already exists.'
       }
 

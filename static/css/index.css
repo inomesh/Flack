@@ -24,7 +24,7 @@ body, #listrow{
 }
 
 
-.card,.card-header,.card-body{
+/* .card,.card-header,.card-body{
     border: none;
     border-radius: 20px;
     background-color: #f2f2f2;
@@ -34,7 +34,7 @@ body, #listrow{
     margin: 1px 0px;
     width: auto;
     flex: content;
-}
+} */
 
 /* Input Filed */
 #input {

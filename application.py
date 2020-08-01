@@ -1,9 +1,10 @@
 import requests
 import re
 import bcrypt
-from hash import *      #
-from RegEx import *     # Custom made
-from full import *      #
+from hash import *              #
+from RegEx import *             # Custom made
+from full import *              #
+from channelCrud import *       #
 from flask import Flask, jsonify, render_template, request, url_for, redirect, session
 from flask_socketio import SocketIO, emit
 from datetime import timedelta
@@ -79,7 +80,7 @@ def chat():
         username = request.form.get('login_username')
         password = request.form.get('login_password')
         
-#datalist should follow the pattern [username, password]
+ #datalist should follow the pattern [username, password]
         datalist = [username, password]
         if logincheck('one.csv',datalist):
                 session['username'] = str(username)
@@ -117,7 +118,9 @@ def logout():
 # Channels route
 @app.route('/allchannels')
 def channel():
-    return render_template('channels.html')
+
+    arr = channelList()     #assgining the returned Channels_List array into a variable
+    return render_template('channels.html', message=arr)
 
 
 
@@ -136,4 +139,5 @@ def favicon():
 @app.route('/Videos/Slack_main.mp4')
 def video():
     redirect_to=url_for('static', filename='Slack_main.mp4')
+
 #----------------------------------------------------------------------------------------------------------------------    
