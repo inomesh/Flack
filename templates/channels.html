@@ -4,6 +4,9 @@
     All Channels
 {% endblock %}
 
+{% block link %} 
+    <script src="../static/js/channels.js"></script>
+{% endblock %}
 
 
 {% block body %}
@@ -23,14 +26,14 @@
                 </div>
             </div>
 
-        </div>
+        <!-- </div> -->
     
-     <div class="card-deck"> 
+     <!-- <div class="card-deck"> 
          <div class="card">
          <img class="card-img-top" src="..." alt="Card image cap">
-         <div class="card-body">
+         <div class="card-body"> 
             <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
         <div class="card-footer">
             <div class="row">
@@ -38,21 +41,19 @@
                     <span class="mr-5" title="Users Joined"><i class="fas fa-user"></i> 100</span>
                 </div>
                 <div class="col">
-                     <button class="btn btn-outline-primary font-weight-bold float-right">Join</button>
+                     <button onclick="joinChannel()" class="btn btn-outline-primary font-weight-bold float-right">Join</button>
                 </div>
-            </div>
+            </div> -->
             
-        <!-- </div>  -->
+        <!-- </div>   -->
   </div> 
      
     
-    
-    
-    
     </div>
 
+
     <div hidden>
-        <p id="chList">{{message}}</p>
+        <p id="temp-array">{{ message }}</p>
     </div>
 {% endblock %}
 
@@ -75,7 +76,7 @@
 
     // assigning the returned Channels_list array from the server
 
-    var temp = document.getElementById('chList').textContent
+    var temp = document.getElementById('temp-array').textContent
     var arr = eval(temp)
 
 
@@ -127,12 +128,14 @@
             span.append('100') 
 
            var button = document.createElement('button')
-           button.classList = 'btn btn-outline-primary font-weight-bold float-right'
-           button.title = 'Join channel'
+           button.setAttribute('class', 'btn btn-outline-primary font-weight-bold float-right') 
+           button.setAttribute('title', 'Join channel') 
 
 
            //adding values
            h5.textContent = `${element}`
+           h5.id = `${element.slice(1)}`
+           button.setAttribute('onclick', `joinChannel(${h5.textContent.slice(1)})`)    //lil-hack but working well
            p.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum expedita accusamus quidem, consequatur culpa amet dolor obcaecati provident incidunt explicabo iure, aut voluptate dicta architecto ratione enim officia? Aspernatur officia ea laborum quaerat commodi quae, sequi veritatis alias eligendi architecto saepe id impedit. Dignissimos fugit itaque id animi, incidunt dolorem!' 
 
            button.textContent = 'Join'
