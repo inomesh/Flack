@@ -4,10 +4,6 @@
     All Channels
 {% endblock %}
 
-{% block link %} 
-    <script src="../static/js/channels.js"></script>
-{% endblock %}
-
 
 {% block body %}
 
@@ -90,7 +86,7 @@
             //Tag creation
 
            var colDiv = document.createElement('div')
-           colDiv.classList    =  'col-md-3  col-sm-6 bg-white my-3'  
+           colDiv.classList    =  'col-md-3  col-sm-6 bg-white my-3 channelCard'  
 
            var div = document.createElement('div')
            div.classList    =  'card bg-white' 
@@ -128,14 +124,14 @@
             span.append('100') 
 
            var button = document.createElement('button')
-           button.setAttribute('class', 'btn btn-outline-primary font-weight-bold float-right') 
+           button.setAttribute('class', 'channelButton btn btn-outline-primary font-weight-bold float-right') 
            button.setAttribute('title', 'Join channel') 
-
+      
 
            //adding values
            h5.textContent = `${element}`
-           h5.id = `${element.slice(1)}`
-           button.setAttribute('onclick', `joinChannel(${h5.textContent.slice(1)})`)    //lil-hack but working well
+           h5.id = `${element.slice(1)}`                  
+           //    button.setAttribute('onclick', `joinChannel(${h5.textContent.slice(1)})`)    //lil-hack but working well }
            p.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum expedita accusamus quidem, consequatur culpa amet dolor obcaecati provident incidunt explicabo iure, aut voluptate dicta architecto ratione enim officia? Aspernatur officia ea laborum quaerat commodi quae, sequi veritatis alias eligendi architecto saepe id impedit. Dignissimos fugit itaque id animi, incidunt dolorem!' 
 
            button.textContent = 'Join'
@@ -159,9 +155,105 @@
 
         });
 
+
+
+
+
+
+
+
+
+
+// temporary
+
+        // var btn = document.querySelectorAll('.channelButton')
+//         var cardDeck = document.querySelectorAll('.channelCard')
+
+//         cardDeck.forEach(element => {
+//         element.addEventListener("click", event =>{
+
+//         if (event.target.matches('button')) {
+            
+//         let title = event.currentTarget.querySelector('h5').textContent.slice('1')
+//         console.log(title)
+    
+//     }
+
+// });
+//  });
+
+
+
+
+
+
     });
 
 
+
+</script>
+
+
+<!-- Joining channel chunk -->
+
+<script>
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+    // getting users already joined channels from the localStorage  cardh5
+    var chList = JSON.parse(localStorage.getItem('channelList'))
+
+    var cardDeck = document.querySelectorAll('.channelCard')    //selecting all the cards
+
+    // looping thorugh all of it, and listening button click.
+    cardDeck.forEach(element => {
+    element.addEventListener("click", event =>{
+
+        
+
+    // if it's button then do further
+    if (event.target.matches('button')) {
+        
+        let title = event.currentTarget.querySelector('h5').textContent.slice('1')
+
+        
+        // condition
+        var result = chList.find(element => element === title)
+
+        if (result == undefined) {
+        
+            let list = []       //creating new array
+                    
+            chList.forEach(element => {         //passing all items of localStorage to new array
+                list.push(element)
+            });
+
+            list.push(title)            //pushing new Channel into list
+            localStorage.setItem('channelList',JSON.stringify(list))        //setting up the new users joined channels list
+
+
+            // changing appearance effect of button
+            
+            
+            event.target.textContent = 'Joined'
+            event.target.classList.remove()
+            event.target.classList   = 'channelButton btn font-weight-bold float-right btn-success text-white'
+    
+            }
+
+
+
+
+        }
+
+    });
+});
+
+
+
+
+});
 
 </script>
 {% endblock %}
