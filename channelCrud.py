@@ -117,7 +117,7 @@ def updateChannelUsers(mycsv,channelName,number):
             os.rename(PreFilePath,NewFileName)
 
 
-# channelList 
+# channelList joined by the user
 def channelList():
     mylist = []
 
@@ -134,7 +134,7 @@ def channelList():
 
 # print(updateChannelUsers('channels.csv','#familydrama',40))
 # print(deleteChannel('channels.csv','#batmanforever'))
-# print(readchannelCsv('channels.csv','#friendsForever'))
+# print(readchannelCsv('channels.csv','#praesentium'))
 # print(appendChannelCsv('channels.csv',['#batmanforever',{ 'NoOfUsers':25,'description':'how are you boys'} ]))
 
 

@@ -92,12 +92,30 @@ def chat():
 #----------------------------------------------------------------------------------------------------------------------    
 
 
-#socket route
+#socket routes
 @socketio.on('chat request')
 def chat(obj):
     mydata = obj['data']
     sessionUsername = obj['Username']
     emit('sending back', { 'data':mydata, 'Username':sessionUsername}, broadcast = True)
+
+
+
+
+@socketio.on('new channel')
+def appendChannel(obj):
+
+    channelName = obj['channelName']
+    description = obj['description']
+    resultError = False
+    arr = [channelName, False]
+
+    if  readchannelCsv('channels.csv','#'+ channelName) == True:
+            emit('newChannel result', arr, broadcast = True)    #if true then, sending error message
+    else:
+        appendChannelCsv('channels.csv',['#'+ channelName,{ 'NoOfUsers':1,'description':description}])
+        arr[1] = True
+        emit('newChannel result', arr, broadcast = True)
 
 
 

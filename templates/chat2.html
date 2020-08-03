@@ -19,7 +19,8 @@
 
   
     <div class="col-md-3 hashtag bg-black bs-sidebar">
-      
+
+             <!-- sidebar head -->
         <h3 class="sidebar-head"> <strong>#Channels</strong>
         <button class="float-right btn d-inline" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample">
           <i class="fas fa-2x fa-plus-circle"></i> </button>
@@ -38,8 +39,8 @@
                 </button>
               </div>
               <div class="modal-body">
-
-                <form id="CreateNewChannel" onsubmit="createNewChannelFunction()" class="text-dark  justify-content-center">
+<!-- onsubmit="createNewChannelFunction()" -->
+                <form id="CreateNewChannel" class="text-dark  justify-content-center">
                    <!-- Channel_Name -->
                    <div class="form-group">
                     <label for="channel_name" class="text-dark">Channel Name</label>
@@ -51,7 +52,7 @@
                   <!-- Channel Discription  -->
                   <div class="form-group">
                     <label for="channel_discription">Discription about this channel</label>
-                    <textarea name="" id="channel_discription" class="form-control border-top-0 border-left-0 border-right-0 border-dark" cols="5" rows="2" placeholder="type here" autocomplete="off"></textarea>
+                    <textarea  id="channel_discription" class="form-control border-top-0 border-left-0 border-right-0 border-dark" cols="5" rows="2" placeholder="type here" autocomplete="off"></textarea>
                   </div> 
 
                   <hr/>
@@ -321,8 +322,8 @@
     
     if (event.target !== event.currentTarget) {
       
-      let name = event.target.innerHTML
-      document.querySelector('.head-h3').innerHTML = name
+      let name = event.target.textContent
+      document.querySelector('.head-h3').textContent = name
 
       //removing the body and its all childs
       document.querySelector('.body').remove()
@@ -336,13 +337,13 @@
 
       // enabling inputs
 
-      if (document.querySelector('.head-h3').innerHTML == '#Flack Channel') {
+      if (document.querySelector('.head-h3').textContent === "#Flack Channel") {
         document.getElementById('input').setAttribute('disabled')
         document.getElementById('submit_button').setAttribute('disabled')
       }
       else{
-       document.getElementById('input').removeAttribute('disabled')
-       document.getElementById('submit_button').removeAttribute('disabled')
+       document.getElementById('input').remove('disabled')
+       document.getElementById('submit_button').remove('disabled')
       }
     }
 
@@ -359,7 +360,6 @@
        let sessionUsername = `{{username}}`
        sessionStorage.setItem('username', sessionUsername) 
 
-        // document.querySelector('#heading').innerHTML = 'Hi, {{username}}'
         updateSidebarList();
 
     });
@@ -382,7 +382,7 @@
             // alink.href    = "#"
 
             div.classList = "list-group-item  sidebar-list"
-            div.innerHTML = "#" + element
+            div.textContent = "#" + element
 
             //appending
             alink.append(div)
@@ -401,22 +401,23 @@
     
     function createNewChannelFunction(){
 
-      const list = JSON.parse(localStorage.getItem('channelList'))
+      var list = JSON.parse(localStorage.getItem('channelList'))
+      var templist = []
+      list.forEach(e => templist.push(e))
       const newChannelName =  document.querySelector('#channel_name').value
-      //    dict['channel']   = newChannelName
 
       //checking if the channel name already exists in the list or not
       if (list.find(element => element === newChannelName ) == undefined) {
-        list.push(newChannelName)
+        templist.push(newChannelName)
       }
       else{
         document.querySelector('#channel_name').value = ' '
-        document.querySelector('.channelInvalidInput').innerHTML = 'Channel already exists.'
+        document.querySelector('.channelInvalidInput').textContent = 'Channel already exists.'
       }
 
       
      //updating localStorage 
-     localStorage.setItem('channelList',JSON.stringify(list));
+     localStorage.setItem('channelList',JSON.stringify(templist));
     //wiping the inputs
       document.querySelector('#channel_name').value = ''
 
@@ -424,7 +425,6 @@
       updateSidebarList();
       
     };   
-
     
 </script>
 

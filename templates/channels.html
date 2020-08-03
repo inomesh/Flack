@@ -68,6 +68,8 @@
 
 {% block script %}
 
+<!-- Creating Channel Cards -->
+
 <script>
 
     // assigning the returned Channels_list array from the server
@@ -124,19 +126,15 @@
             span.append('100') 
 
            var button = document.createElement('button')
-           button.setAttribute('class', 'channelButton btn btn-outline-primary font-weight-bold float-right') 
-           button.setAttribute('title', 'Join channel') 
-      
+           button.setAttribute('class', 'channelButton btn btn-outline-primary font-weight-bold float-right')   
 
            //adding values
            h5.textContent = `${element}`
-           h5.id = `${element.slice(1)}`                  
-           //    button.setAttribute('onclick', `joinChannel(${h5.textContent.slice(1)})`)    //lil-hack but working well }
            p.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum expedita accusamus quidem, consequatur culpa amet dolor obcaecati provident incidunt explicabo iure, aut voluptate dicta architecto ratione enim officia? Aspernatur officia ea laborum quaerat commodi quae, sequi veritatis alias eligendi architecto saepe id impedit. Dignissimos fugit itaque id animi, incidunt dolorem!' 
-
            button.textContent = 'Join'
-
+            
         //appending
+
             // foooter
             footer.append(span)
             footer.append(button)
@@ -154,36 +152,6 @@
            document.querySelector('.card-deck').append(colDiv) 
 
         });
-
-
-
-
-
-
-
-
-
-
-// temporary
-
-        // var btn = document.querySelectorAll('.channelButton')
-//         var cardDeck = document.querySelectorAll('.channelCard')
-
-//         cardDeck.forEach(element => {
-//         element.addEventListener("click", event =>{
-
-//         if (event.target.matches('button')) {
-            
-//         let title = event.currentTarget.querySelector('h5').textContent.slice('1')
-//         console.log(title)
-    
-//     }
-
-// });
-//  });
-
-
-
 
 
 
@@ -238,7 +206,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             
             event.target.textContent = 'Joined'
             event.target.classList.remove()
-            event.target.classList   = 'channelButton btn font-weight-bold float-right btn-success text-white'
+            event.target.classList   = 'channelButton btn font-weight-bold float-right btn-outline-success'
     
             }
 
