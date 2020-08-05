@@ -169,55 +169,69 @@
 
 document.addEventListener('DOMContentLoaded',()=>{
 
-    // getting users already joined channels from the localStorage  cardh5
-    var chList = JSON.parse(localStorage.getItem('channelList'))
+    const userSession = '{{ userSession }}' //received value to check weather user logged in or not.
 
-    var cardDeck = document.querySelectorAll('.channelCard')    //selecting all the cards
+    if (userSession === 'True') {
 
-    // looping thorugh all of it, and listening button click.
-    cardDeck.forEach(element => {
-    element.addEventListener("click", event =>{
 
+            // getting users already joined channels from the localStorage  cardh5
+        var chList = JSON.parse(localStorage.getItem('channelList'))
+
+        var cardDeck = document.querySelectorAll('.channelCard')    //selecting all the cards
+
+        // looping thorugh all of it, and listening button click.
+        cardDeck.forEach(element => {
+        element.addEventListener("click", event =>{
         
 
-    // if it's button then do further
-    if (event.target.matches('button')) {
         
+        // if it's button then do further
+        if (event.target.matches('button')) {
+    
         let title = event.currentTarget.querySelector('h5').textContent.slice('1')
 
-        
+            
         // condition
         var result = chList.find(element => element === title)
 
         if (result == undefined) {
-        
-            let list = []       //creating new array
-                    
-            chList.forEach(element => {         //passing all items of localStorage to new array
-                list.push(element)
-            });
-
-            list.push(title)            //pushing new Channel into list
-            localStorage.setItem('channelList',JSON.stringify(list))        //setting up the new users joined channels list
-
-
-            // changing appearance effect of button
-            
-            
-            event.target.textContent = 'Joined'
-            event.target.classList.remove()
-            event.target.classList   = 'channelButton btn font-weight-bold float-right btn-outline-success'
     
+        let list = []       //creating new array
+                
+        chList.forEach(element => {         //passing all items of localStorage to new array
+            list.push(element)
+        });
+
+        list.push(title)            //pushing new Channel into list
+        localStorage.setItem('channelList',JSON.stringify(list))        //setting up the new users joined channels list
+
+
+        // changing appearance effect of button
+        
+        
+        event.target.textContent = 'Joined'
+        event.target.classList.remove()
+        event.target.classList   = 'channelButton btn font-weight-bold float-right btn-outline-success'
+        
+        // reloading the page.
+        location.reload(true)
+
+                }
             }
 
+            });
+        });
 
 
+    } else {
 
-        }
+    // disabling the button, because user isn't logged in yet.
+    document.querySelectorAll('.btn').forEach(element => {
+        element.setAttribute('disabled','')
 
     });
-});
 
+    }
 
 
 

@@ -97,7 +97,8 @@ def chat():
 def chat(obj):
     mydata = obj['data']
     sessionUsername = obj['Username']
-    emit('sending back', { 'data':mydata, 'Username':sessionUsername}, broadcast = True)
+    channel =  obj['channel']
+    emit('sending back', { 'data':mydata, 'Username':sessionUsername,'channel':channel}, broadcast = True)
 
 
 
@@ -127,6 +128,7 @@ def appendChannel(obj):
 def logout():
     session.pop('username',None)
     session.pop('password',None)
+    
     return redirect(url_for('login'))
 
 
@@ -138,7 +140,11 @@ def logout():
 def channel():
 
     arr = channelList()     #assgining the returned Channels_List array into a variable
-    return render_template('channels.html', message=arr)
+    
+    if 'username' in session:
+        return render_template('channels.html', message=arr, userSession=True)
+    else:
+        return render_template('channels.html', message=arr, userSession=False)
 
 
 

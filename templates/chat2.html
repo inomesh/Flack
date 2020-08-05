@@ -95,36 +95,57 @@
             
             <!-- channel Name -->
             <div class="col-md-3">
-              <h3 class="head-h3">#Flack Channel</h3>
+              <h3 class="head-h3" id="channelName">#Flack Channel</h3>
             </div>
 
             <div class="col-md-9">
               <!-- Joined users -->
               <span class="float-left d-flex align-middle">
                 <i class="fas fa-2x fa-users p-1"></i>
-                <h5 class="mx-1 font-weight-bold p-1">100</h5> 
+                <h5 class="mx-1 font-weight-bold p-1 channelUsers">100</h5> 
               </span>
 
                 <!-- search box -->
-              <div class="search-chat text-center" style="display: block ruby; margin: -25px 120px;">
+              <div class="collapse" id="inChatSearch">
+                <div class="search-chat text-center" style="display: block ruby; margin: -25px 120px;">
                 
                 <input type="text" id="chat_search" class="" name="chat_search" autocomplete="off" placeholder="search"/>
                 <a href="#" id="chat_search_button"> <i class="fas fa-search text-dark"></i>  </a>
                 <!-- <button type="submit" > </button> -->
               
+                </div>
               </div>
-
               <!-- extras : -->
-              <button class="float-right btn btn-dark bg-white text-dark border-0" style="margin: -18px 20px;">
-                <i class="fas fa-2x fa-ellipsis-v"></i>
+              <button class="float-right btn btn-dark bg-white text-dark border-0" type="button" data-toggle="collapse" data-target="#extras" aria-expanded="false" aria-controls="extras" style="margin: -18px 20px;" title="more">
+                <i class="fas  fa-ellipsis-v"></i>
               </button>
                   
+              <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
 
+</div> -->
+            <div class="collapse" id="extras" style="width: 20%;margin-left: 77%;margin-top: 1%;">
+                <div class="card card-body">
+
+                  <ul class="list-group">
+
+                    <!-- in chat Search -->
+                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#userProfile" role="button" aria-expanded="false" aria-controls="userProfile"> profile </a>
+                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#inChatSearch" role="button" aria-expanded="false" aria-controls="inChatSearch"> search </a>
+                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#channelWallpaper" role="button" aria-expanded="false" aria-controls="channelWallpaper"> wallpaper </a>
+                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#channelAbout" role="button" aria-expanded="false" aria-controls="channelAbout"> about </a>
+                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href=#deleteChannel role="button" aria-expanded="false" aria-controls="deleteChannel"> delete channel </a>
+            
+                  </ul>
+
+                </div>
             </div>
 
 
-          </div>
+            </div>
 
+          </div>
         </div>
 
 
@@ -287,12 +308,14 @@
 
 
 
-    </div>
 
 </div>
-    
+</div>
 
-<!-- <div class="main">
+
+<!-- 
+  STRUCTURE
+  <div class="main">
 <div class="head"></div>
 <div class="body"></div>
 <div class="btn"></div>
@@ -319,6 +342,7 @@
       parentlist.addEventListener('click',chatboxheader, false)
 
     function chatboxheader(event){
+
     
     if (event.target !== event.currentTarget) {
       
@@ -334,18 +358,7 @@
       var after = document.querySelector('.main')
       after.insertBefore(a,after.childNodes[2])
 
-
-      // enabling inputs
-
-      if (document.querySelector('.head-h3').textContent === "#Flack Channel") {
-        document.getElementById('input').setAttribute('disabled')
-        document.getElementById('submit_button').setAttribute('disabled')
-      }
-      else{
-       document.getElementById('input').remove('disabled')
-       document.getElementById('submit_button').remove('disabled')
-      }
-    }
+ }
 
     event.stopPropagation();        
     
@@ -355,7 +368,7 @@
 
     //Displaying user name on the screen
     document.addEventListener('DOMContentLoaded',()=>{
-        
+
       //setting up the sessinStorage for username
        let sessionUsername = `{{username}}`
        sessionStorage.setItem('username', sessionUsername) 
@@ -363,6 +376,8 @@
         updateSidebarList();
 
     });
+
+
 
     function updateSidebarList(){
 
@@ -392,7 +407,6 @@
 
 
     };
-
 
 
 

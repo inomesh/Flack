@@ -8,16 +8,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // sending the object to flask server
     socket.on('connect', ()=>{
+
+        // Form submitting
         document.querySelector('#form').onsubmit = () => {
+
             const input = document.querySelector('#input').value;
-            const sessionUsername = sessionStorage.getItem('username')
-            const obj = { 
-                data :input, 
-                Username :sessionUsername
-            };
-            socket.emit('chat request', obj); 
+            
+            // checking for empty message if yes then do nothing otherwise, send the message to the server
+            if (emptyInput(input) === false) {
+
+                const sessionUsername = sessionStorage.getItem('username');
+                const channelName   =   document.querySelector('#channelName').textContent;
+                const obj = { 
+                    data :input, 
+                    Username :sessionUsername,
+                    channel : channelName
+                };
+                socket.emit('chat request', obj); 
+                
+            }
+
             return false
+        
         };
+
 
     // emiting for newly created channel to update into the channels.csv file.
 
@@ -39,6 +53,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     });
 
+
+
     // Scroll effect
     const scroll = () => {
 
@@ -54,58 +70,65 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // receiving the Object from the flask server
     socket.on('sending back', obj=> {
 
-        //creating div
-        const div = document.createElement('div')
-        // const label = document.createElement('div')
-        const divUserName = document.createElement('div')
-        const spanTime = document.createElement('span')
-        const hr = document.createElement('hr')
-        const divinner = document.createElement('div')
+        if (obj['channel'] === document.querySelector('#channelName').textContent ) {
 
-        //conditions for viewing messages in window ( right-left view )
-        var view;
-        if (obj.Username === sessionStorage.getItem('username')) {
-            view = 'user2 shadow  text-white rounded';
-        }else{
-            view = 'user1 shadow bg-light rounded';
-        }
+            //creating div
+            const div = document.createElement('div')
+            // const label = document.createElement('div')
+            const divUserName = document.createElement('div')
+            const spanTime = document.createElement('span')
+            const hr = document.createElement('hr')
+            const divinner = document.createElement('div')
 
-        //properties
-        div.className = view;                               //'user1 shadow bg-white rounded bg-primary'
-        divUserName.className = 'font-weight-bold mx-auto'
-        spanTime.className = 'float-right ml-3'
-        divinner.id = 'user'
+            //conditions for viewing messages in window ( right-left view )
+            var view;
+            if (obj.Username === sessionStorage.getItem('username')) {
+                    view = 'user2 shadow  text-white rounded';
+            }else{
+                view = 'user1 shadow bg-light rounded';
+            }
+
+            //properties
+            div.className = view;                               //'user1 shadow bg-white rounded bg-primary'
+            divUserName.className = 'font-weight-bold mx-auto'
+            spanTime.className = 'float-right ml-3'
+            divinner.id = 'user'
 
 
-        //Creating an object for current date for span tag
-        const time = new Date();
-        const timenow = time.toLocaleTimeString('en-US')
-          
+            //Creating an object for current date for span tag
+            const time = new Date();
+            const timenow = time.toLocaleTimeString('en-US')
+                
+                
+            //updating values
+            // divUserName.innerHTML = '@' + sessionStorage.getItem('username')
+            divUserName.innerHTML = '@' + obj.Username
+            spanTime.innerHTML    = timenow
+            // divinner.innerHTML    = document.querySelector('#input').value
+            divinner.innerHTML    = obj.data
+
+                
+
+            //appending
+            divUserName.append(spanTime)
+                //main div
+            div.append(divUserName)
+            div.append(hr)
+            div.append(divinner)
+
+            document.querySelector('.body').append(div)
+
+
+            //now clear the input field
+            document.querySelector('#input').value = '';
+
+
+            scroll();                   
         
-        //updating values
-        // divUserName.innerHTML = '@' + sessionStorage.getItem('username')
-        divUserName.innerHTML = '@' + obj.Username
-        spanTime.innerHTML    = timenow
-        // divinner.innerHTML    = document.querySelector('#input').value
-        divinner.innerHTML    = obj.data
+        } else {
+            console.table(obj)
+        } 
 
-        
-
-        //appending
-        divUserName.append(spanTime)
-            //main div
-        div.append(divUserName)
-        div.append(hr)
-        div.append(divinner)
-
-        document.querySelector('.body').append(div)
-
-
-        //now clear the input field
-        document.querySelector('#input').value = '';
-
-
-        scroll();
         });
 
 
