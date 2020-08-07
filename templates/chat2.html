@@ -2,8 +2,9 @@
 
 
 {% block link %}
-  <script src="../static/js/index.js"></script>
+  <script src="../static/js/socket.js"></script>
   <script src="../static/js/localStorage.js"></script>
+  <script src="../static/js/functions.js"></script>
   <link rel="stylesheet" href="../static/css/chat.css">
 
 {%endblock%}
@@ -363,8 +364,6 @@
     event.stopPropagation();        
     
     };
-
-
 
     //Displaying user name on the screen
     document.addEventListener('DOMContentLoaded',()=>{
