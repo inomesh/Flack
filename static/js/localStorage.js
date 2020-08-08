@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   
       
   };
-
     
   // chList = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipisicing', 'elit', 'Fuga', 'tempora', 'aliquam', 'Molestias', 'suscipit', 'praesentium', 'neque', 'blanditiis', 'expedita', 'ratione', 'quia', 'minima']
   const  chList = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipisicing', 'elit']
@@ -91,26 +90,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
    
     localStorage.setItem('channelList', JSON.stringify(channelList))
-    localStorage.setItem('users', JSON.stringify(dict))
+//     localStorage.setItem('users', JSON.stringify(dict))
 });
 
 
 
 
-// storing the message data, into LocalStorage
 
-var chatSubmit = document.getElementById('submit_button')
-chatSubmit.addEventListener('click', event=>{
-
-  var userData = JSON.parse(localStorage.getItem('users'))
-
-  if (userData) {
-    console.log(event)
-  } else {
-    console.log('else')
-  } 
-
-})
 
 
 

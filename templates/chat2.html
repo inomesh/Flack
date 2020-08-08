@@ -347,7 +347,7 @@
     
     if (event.target !== event.currentTarget) {
       
-      let name = event.target.textContent
+      let name = event.target.textContent     //name = channel Name
       document.querySelector('.head-h3').textContent = name
 
       //removing the body and its all childs
@@ -359,6 +359,35 @@
       var after = document.querySelector('.main')
       after.insertBefore(a,after.childNodes[2])
 
+// -------------------------------------------------------------------
+      var dict = JSON.parse(localStorage.getItem('users'))
+      let Uname = `{{username}}`   //current user
+      
+
+      var mili_array = unsortedLocalToBody(dict,name)
+
+      //looping through each object and passing to localmessageAppend function for displaying into the body.
+      mili_array.forEach(obj => {
+        
+        let c = mili_array.findIndex(function(ele,index){
+                //searching for the index of object
+
+               return Number(ele.time) === Number(obj.time)
+              })
+
+        if (c !== -1) {
+          let username = mili_array[c].name
+          let t = mili_array[c].time
+          let d = mili_array[c].data
+          localmessageAppend(username,t,d)
+        }
+
+      })
+      
+      
+
+
+// ------------------------------------------------------------------------
  }
 
     event.stopPropagation();        
@@ -369,7 +398,7 @@
     document.addEventListener('DOMContentLoaded',()=>{
 
       //setting up the sessinStorage for username
-       let sessionUsername = `{{username}}`
+       var sessionUsername = `{{username}}`
        sessionStorage.setItem('username', sessionUsername) 
 
         updateSidebarList();

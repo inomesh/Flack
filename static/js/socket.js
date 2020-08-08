@@ -61,6 +61,67 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         if (obj['channel'] === document.querySelector('#channelName').textContent ) {
 
+// ----------------------------------------------------------------------------------------------------
+
+            // storing data into localStorage
+            
+            var dict = JSON.parse(localStorage.getItem('users'))
+
+            // checking if user actually exist into localStorage or not
+            var userCheck;
+            for (const i in dict) {
+                if (i === obj.Username) {
+                    userCheck = true
+                    break
+                }
+            }
+
+            // now main
+            if (userCheck === true) {   //this will execute only if user exist in localstorage
+
+                // grabing a index of channel
+                let i = searchChannelIndex(dict,obj.Username,obj.channel)
+                if (i === -1) {
+                    createChannel(dict,obj.Username,obj.channel)
+                    // updateNewMessage(dict,obj.Username,obj.channel,obj.data)
+                    console.log('channel created and updated');
+                }
+                // } else {
+                //     updateNewMessage(dict,obj.Username,obj.channel,obj.data)
+                //     console.log('updation done')
+
+                // }   
+                updateNewMessage(dict,obj.Username,obj.channel,obj.data)
+                console.log('updation done')
+
+
+            } else {    //this will run if user doesn't exist in localStorage
+                
+            // steps
+            // 1. create user 
+            // 2. create channel
+            // 3. append data
+
+            // 1.
+            dict[obj.Username] = []
+
+            // 2. 
+            createChannel(dict,obj.Username,obj.channel)
+
+            // 3.
+            updateNewMessage(dict,obj.Username,obj.channel,obj.data)
+
+            }
+
+            // updating localStorage
+            localStorage.setItem('users',JSON.stringify(dict))
+
+
+
+
+
+
+// --------------------------------------------------------------------------------------------------
             // using function for appending data into chatbox
             messageAppend(obj.Username,obj.data)
 
