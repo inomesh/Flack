@@ -111,12 +111,10 @@ function updateNewMessage(obj,user,channelName,message){
     if (search === -1){
             // checking if channel actually exists or not, if not then return. else update the message.
             console.log('channel doesn;t exist, we re in updating messages')
-            // return false
     }else{
             // updating the data by adding new message into it
             obj[user][search][channelName][Date.now()] = message
             console.log('message updated after creating channel');
-            // return true
     }
 
 }
@@ -200,12 +198,8 @@ function localmessageAppend(username,localtime, data){
 }
 
 
-// -----------------------------------------------------------------------------------
 
-
-
-
-
+//function for appending message into the chat body, from the localStorage not in real time.
 
 function unsortedLocalToBody(dict,channelName){
         

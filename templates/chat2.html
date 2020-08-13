@@ -96,7 +96,7 @@
             
             <!-- channel Name -->
             <div class="col-md-3">
-              <h3 class="head-h3" id="channelName">#Flack Channel</h3>
+              <h3 class="head-h3" id="channelName">#Channel</h3>
             </div>
 
             <div class="col-md-9">
@@ -110,37 +110,29 @@
               <div class="collapse" id="inChatSearch">
                 <div class="search-chat text-center" style="display: block ruby; margin: -25px 120px;">
                 
-                <input type="text" id="chat_search" class="" name="chat_search" autocomplete="off" placeholder="search"/>
+                <input type="text" id="chat_search"  name="chat_search" autocomplete="off" placeholder="search"/>
                 <a href="#" id="chat_search_button"> <i class="fas fa-search text-dark"></i>  </a>
-                <!-- <button type="submit" > </button> -->
               
                 </div>
-              </div>
-              <!-- extras : -->
-              <button class="float-right btn btn-dark bg-white text-dark border-0" type="button" data-toggle="collapse" data-target="#extras" aria-expanded="false" aria-controls="extras" style="margin: -18px 20px;" title="more">
-                <i class="fas  fa-ellipsis-v"></i>
+              </div>              
+
+<!-- </div> -->
+
+            <!-- dropdown for extras -->
+            <div class="dropdown">
+              <button class="btn btn-default dropdown" type="button" id="extras" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 85%;margin-top: -1%;">
+                <span class="fas fa-ellipsis-h"></span>
               </button>
-                  
-              <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-target
-  </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="dropdown-item" data-toggle="collapse" href="#userProfile">Profile</a></li>
+                                    <!-- in chat Search -->
+                <li><a class="dropdown-item" data-toggle="collapse" href="#inChatSearch">Search</a></li>
+                <li><a class="dropdown-item" data-toggle="collapse" href="#channelWallpaper">wallpaper</a></li>
+                <li class="dropdown-item btn" id="clearMessages" role="button">Clear messages</li>
+                <li><a class="dropdown-item" data-toggle="collapse" href="#exitChannel">Exit channel</a></li>
+                <li><a class="dropdown-item border-top" data-toggle="collapse" href="#channelAbout">About</a></li>
 
-</div> -->
-            <div class="collapse" id="extras" style="width: 20%;margin-left: 77%;margin-top: 1%;">
-                <div class="card card-body">
-
-                  <ul class="list-group">
-
-                    <!-- in chat Search -->
-                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#userProfile" role="button" aria-expanded="false" aria-controls="userProfile"> profile </a>
-                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#inChatSearch" role="button" aria-expanded="false" aria-controls="inChatSearch"> search </a>
-                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#channelWallpaper" role="button" aria-expanded="false" aria-controls="channelWallpaper"> wallpaper </a>
-                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href="#channelAbout" role="button" aria-expanded="false" aria-controls="channelAbout"> about </a>
-                    <a class="list-group-item btn border-0 text-left border-bottom-dark w-100 text-dark font-weight-bold" data-toggle="collapse" href=#deleteChannel role="button" aria-expanded="false" aria-controls="deleteChannel"> delete channel </a>
-            
-                  </ul>
-
-                </div>
+              </ul>
             </div>
 
 
@@ -150,10 +142,22 @@
         </div>
 
 
-        <div class="body">
+        <div class="body bg-white" style="vertical-align: middle; background-image: url(../static/images/texture.png);">
 
+        
+          <section class="text-center text-dark font-weight-bolder" style="margin: 20% 20%;">
 
-            <div class="user1 shadow-sm rounded">
+            <h1 class="welcome">
+            <img class="body-image" src="../static/images/wavingHandEmoji.png" alt="slack_logo" style="width: 60px; vertical-align: bottom;">
+              Welcome!
+            </h1>
+            <h5 class="welcome_para"> Flack is a messaging app for teams</h5>
+          </section>
+         
+          
+          
+
+            <!-- <div class="user1 shadow-sm rounded">
                 <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
                 <hr/>
                 <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
@@ -287,7 +291,7 @@
       <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
       <hr/>
       <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-      </div>
+      </div> -->
 
 
 
@@ -299,7 +303,7 @@
         <div class="btm" id="btm">
             <form id="form">
                 <input id="input" placeholder="type your message here" autocomplete="off" type="text" required/>
-                <input class="submit" id="submit_button" type="submit" value="send" />
+                <button class="submit btn" id="submit_button" type="submit"><i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
 
@@ -346,7 +350,7 @@
 
     
     if (event.target !== event.currentTarget) {
-      
+    
       let name = event.target.textContent     //name = channel Name
       document.querySelector('.head-h3').textContent = name
 
@@ -468,6 +472,38 @@
       
     };   
     
+</script>
+
+<!-- script for Clear Messages from extras -->
+<script>
+
+  const clearMessage = document.querySelector('#clearMessages')
+  clearMessage.addEventListener('click',()=>{
+
+    const userName = sessionStorage.getItem('username')
+    const channelName = document.querySelector('#channelName').textContent
+    var dict = JSON.parse(localStorage.getItem('users'))
+    for (const key in dict) {
+      if (key === userName) {
+        // array of objects
+        let index = dict[key].findIndex(function(ele,index){
+                    return ele[channelName]
+                  })
+        
+        if (index !== -1) {
+          //assigning empty object to existing channel, in this way localStorage will be overwrite 
+          // and data will be cleared
+          dict[key][index][channelName] = {}
+          localStorage.setItem('users',JSON.stringify(dict))
+          window.location.reload(true)
+        }
+        
+        
+      }
+    }
+    
+
+  })
 </script>
 
 {% endblock %}
