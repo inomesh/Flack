@@ -81,7 +81,12 @@ function scroll() {
 };
 
 
+// Some extras
 
+//function for clearing ChildNodes
+function clearChilds(parent){
+    parent.innerHTML = '';
+}
 
 
 

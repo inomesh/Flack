@@ -14,6 +14,8 @@
 
 {% block body %}   
 
+<div class="chatWindow">
+
 <div class="row">
       
     <!--SIDEBAR     channel-btn-->
@@ -110,7 +112,7 @@
               <div class="collapse" id="inChatSearch">
                 <div class="search-chat text-center" style="display: block ruby; margin: -25px 120px;">
                 
-                <input type="text" id="chat_search"  name="chat_search" autocomplete="off" placeholder="search"/>
+                <input type="text" id="chat_search"  name="chat_search" autocomplete="off" placeholder="search..."/>
                 <a href="#" id="chat_search_button"> <i class="fas fa-search text-dark"></i>  </a>
               
                 </div>
@@ -123,7 +125,7 @@
               <button class="btn btn-default dropdown" type="button" id="extras" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 85%;margin-top: -1%;">
                 <span class="fas fa-ellipsis-h"></span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-right">
+              <ul class="dropdown-menu dropdown-menu-right fade">
                 <li><a class="dropdown-item" data-toggle="collapse" href="#userProfile">Profile</a></li>
                                     <!-- in chat Search -->
                 <li><a class="dropdown-item" data-toggle="collapse" href="#inChatSearch">Search</a></li>
@@ -295,7 +297,7 @@
 
 
 
-    </div>
+        </div>
        
 
 
@@ -310,13 +312,11 @@
 
 
 
-
-
-
-
 </div>
 </div>
 
+
+</div>
 
 <!-- 
   STRUCTURE
@@ -353,17 +353,15 @@
     
       let name = event.target.textContent     //name = channel Name
       document.querySelector('.head-h3').textContent = name
+    
+      //clearing childNodes from the body.
+      let parent = document.querySelector('.body')
+      clearChilds(parent);
+      parent.removeAttribute('style')
 
-      //removing the body and its all childs
-      document.querySelector('.body').remove()
 
-      //creating new body tag
-      var a = document.createElement('body')
-      a.classList = 'body'
-      var after = document.querySelector('.main')
-      after.insertBefore(a,after.childNodes[2])
-
-// -------------------------------------------------------------------
+      // checking for data stored in localStorage of clicked channel
+      // if yes, then retrieve it. else do nothing.
       var dict = JSON.parse(localStorage.getItem('users'))
       let Uname = `{{username}}`   //current user
       
@@ -389,9 +387,6 @@
       })
       
       
-
-
-// ------------------------------------------------------------------------
  }
 
     event.stopPropagation();        
@@ -474,6 +469,11 @@
     
 </script>
 
+
+
+<!-- scripts for extra's in ChatWindow Starts here-->
+
+
 <!-- script for Clear Messages from extras -->
 <script>
 
@@ -495,7 +495,10 @@
           // and data will be cleared
           dict[key][index][channelName] = {}
           localStorage.setItem('users',JSON.stringify(dict))
-          window.location.reload(true)
+          
+          //now clearing the childNodes from the body
+          let parent = document.querySelector('.body')
+          clearChilds(parent)
         }
         
         
@@ -506,4 +509,42 @@
   })
 </script>
 
+
+<!-- With-in chat_Window search  -->
+<script>
+        
+  const search = document.querySelector('#chat_search')
+  var body = document.querySelector('.body')
+  var bodyDiv = body.childNodes   
+  search.addEventListener('input', updateValue);
+          
+  function updateValue(e) {
+          let value = e.target.value
+          if (value && value.trim().length > 0) {
+                  value = e.target.value.trim()
+                  
+                  for (const i of bodyDiv) {
+                          var a = i.childNodes[2].textContent   //this gives me the user's message. not username and time beccause of childnodes[2]
+                          
+                          //checking if the query is in message or not if yes, then show it else don't
+                          if (a.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                                  i.style.display = '';        
+                          } 
+                          else {
+                                  i.style.display = "none";
+                          }
+                  }
+          }else{
+            //this will executed if input field is in focus state but empty.
+              for (const i of bodyDiv) {
+                i.removeAttribute('style')           
+              }
+          }
+          
+
+  }
+
+
+
+</script>
 {% endblock %}
