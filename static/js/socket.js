@@ -59,69 +59,55 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // receiving the Object from the flask server
     socket.on('sending back', obj=> {
 
-        if (obj['channel'] === document.querySelector('#channelName').textContent ) {
+        // storing data into localStorage
+        var dict = JSON.parse(localStorage.getItem('users'))
+        
+        // checking if user actually exist into localStorage or not
+        var userCheck;
+        for (const i in dict) {
+            if (i === obj.Username) {
+                userCheck = true
+                break
+            }
+        }
 
-// ----------------------------------------------------------------------------------------------------
+        // now main
+        if (userCheck === true) {   //this will execute only if user exist in localstorage
 
-            // storing data into localStorage
-            
-            var dict = JSON.parse(localStorage.getItem('users'))
-
-            // checking if user actually exist into localStorage or not
-            var userCheck;
-            for (const i in dict) {
-                if (i === obj.Username) {
-                    userCheck = true
-                    break
-                }
+            // grabing a index of channel
+            let i = searchChannelIndex(dict,obj.Username,obj.channel)
+            if (i === -1) {
+                createChannel(dict,obj.Username,obj.channel)
+                console.log('channel created and updated');
             }
 
-            // now main
-            if (userCheck === true) {   //this will execute only if user exist in localstorage
-
-                // grabing a index of channel
-                let i = searchChannelIndex(dict,obj.Username,obj.channel)
-                if (i === -1) {
-                    createChannel(dict,obj.Username,obj.channel)
-                    // updateNewMessage(dict,obj.Username,obj.channel,obj.data)
-                    console.log('channel created and updated');
-                }
-                // } else {
-                //     updateNewMessage(dict,obj.Username,obj.channel,obj.data)
-                //     console.log('updation done')
-
-                // }   
-                updateNewMessage(dict,obj.Username,obj.channel,obj.data)
-                console.log('updation done')
-
-
-            } else {    //this will run if user doesn't exist in localStorage
-                
-            // steps
-            // 1. create user 
-            // 2. create channel
-            // 3. append data
-
-            // 1.
-            dict[obj.Username] = []
-
-            // 2. 
-            createChannel(dict,obj.Username,obj.channel)
-
-            // 3.
             updateNewMessage(dict,obj.Username,obj.channel,obj.data)
 
-            }
 
-            // updating localStorage
-            localStorage.setItem('users',JSON.stringify(dict))
+        } else {    //this will run if user doesn't exist in localStorage
+            
+        // steps
+        // 1. create user 
+        // 2. create channel
+        // 3. append data
+
+        // 1.
+        dict[obj.Username] = []
+
+        // 2. 
+        createChannel(dict,obj.Username,obj.channel)
+
+        // 3.
+        updateNewMessage(dict,obj.Username,obj.channel,obj.data)
+
+        }
 
 
 
+        //condition for appearance
+        if (obj['channel'] === document.querySelector('#channelName').textContent ) {
 
 
-
-// --------------------------------------------------------------------------------------------------
             // using function for appending data into chatbox
             messageAppend(obj.Username,obj.data)
 
@@ -131,9 +117,41 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
             scroll();                   
         
-        } else {
-            console.table(obj)
+        } else {    //this will execute if, both user's ain't in the same channel window, but logged in.
+        
+        var sidebarListItem = document.querySelector('#ulist').children     //this gives the object containing all the list of sidebar.
+
+
+        for (const key in sidebarListItem) {
+            if (sidebarListItem[key].textContent === obj['channel'] ) {
+
+                var count;
+                if (sidebarListItem[key].childNodes[0].childNodes[1]) {
+                    count = Number(sidebarListItem[key].childNodes[0].childNodes[1].textContent)
+                    sidebarListItem[key].childNodes[0].childNodes[1].remove()
+                    console.log('inside if', sidebarListItem[key].childNodes[0].childNodes[1].textContent);
+                }else{
+                    count = 0
+                    console.log('inside else',count);
+                }
+                count++;
+                let span = document.createElement('span')
+                span.setAttribute('class','badge badge-primary badge-pill')
+                span.style = "margin-left: 75%;"
+                span.textContent = count
+                sidebarListItem[key].childNodes[0].append(span)
+
+
+            }
+        }
+        
+
+
+
         } 
+
+        // updating localStorage
+        localStorage.setItem('users',JSON.stringify(dict))
 
         });
 

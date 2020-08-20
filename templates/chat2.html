@@ -14,8 +14,6 @@
 
 {% block body %}   
 
-<div class="chatWindow">
-
 <div class="row">
       
     <!--SIDEBAR     channel-btn-->
@@ -93,7 +91,7 @@
 
     <div class="col-md-9 main container-fluid">
         
-        <div class="head">
+        <div class="head" hidden>
           <div class="row">
             
             <!-- channel Name -->
@@ -108,7 +106,7 @@
                 <h5 class="mx-1 font-weight-bold p-1 channelUsers">100</h5> 
               </span>
 
-                <!-- search box -->
+                <!--inChat search box -->
               <div class="collapse" id="inChatSearch">
                 <div class="search-chat text-center" style="display: block ruby; margin: -25px 120px;">
                 
@@ -131,7 +129,7 @@
                 <li><a class="dropdown-item" data-toggle="collapse" href="#inChatSearch">Search</a></li>
                 <li><a class="dropdown-item" data-toggle="collapse" href="#channelWallpaper">wallpaper</a></li>
                 <li class="dropdown-item btn" id="clearMessages" role="button">Clear messages</li>
-                <li><a class="dropdown-item" data-toggle="collapse" href="#exitChannel">Exit channel</a></li>
+                <li class="dropdown-item btn" id="exitChannel" role="button">Exit channel</li>
                 <li><a class="dropdown-item border-top" data-toggle="collapse" href="#channelAbout">About</a></li>
 
               </ul>
@@ -144,7 +142,7 @@
         </div>
 
 
-        <div class="body bg-white" style="vertical-align: middle; background-image: url(../static/images/texture.png);">
+        <div class="body bg-white" style="vertical-align: middle; background-image: url(../static/images/texture.png); height: 100%;">
 
         
           <section class="text-center text-dark font-weight-bolder" style="margin: 20% 20%;">
@@ -302,7 +300,7 @@
 
 
         <!-- Submit button-->
-        <div class="btm" id="btm">
+        <div class="btm" id="btm" hidden>
             <form id="form">
                 <input id="input" placeholder="type your message here" autocomplete="off" type="text" required/>
                 <button class="submit btn" id="submit_button" type="submit"><i class="fas fa-paper-plane"></i></button>
@@ -316,7 +314,6 @@
 </div>
 
 
-</div>
 
 <!-- 
   STRUCTURE
@@ -348,9 +345,21 @@
 
     function chatboxheader(event){
 
-    
+    // changing visibility of head and bottom from hidden to show.
+    document.querySelector('.head').removeAttribute('hidden')
+    document.querySelector('.btm').removeAttribute('hidden')
+
+
+
+
+    //now condition
     if (event.target !== event.currentTarget) {
-    
+      
+      //cheking for new-message badge, if yes then deleting it.
+      if(event.target.childNodes[1]){
+         event.target.childNodes[1].remove()
+      }
+
       let name = event.target.textContent     //name = channel Name
       document.querySelector('.head-h3').textContent = name
     
@@ -484,7 +493,6 @@
     const channelName = document.querySelector('#channelName').textContent
     var dict = JSON.parse(localStorage.getItem('users'))
     for (const key in dict) {
-      if (key === userName) {
         // array of objects
         let index = dict[key].findIndex(function(ele,index){
                     return ele[channelName]
@@ -502,7 +510,6 @@
         }
         
         
-      }
     }
     
 
@@ -545,6 +552,51 @@
   }
 
 
+
+</script>
+
+
+<!-- EXIT Channel -->
+<script>
+
+
+  var li = document.getElementById('exitChannel')
+
+  li.addEventListener('click',()=>{
+    var dict = JSON.parse(localStorage.getItem('users'))
+    var channelList = JSON.parse(localStorage.getItem('channelList'))
+    var channelName = document.querySelector('#channelName').textContent  //.slice(1)
+    if (confirm("You'll loose all of your data\n once you exit from the channel.")) {
+
+        for (const userName in dict) {
+
+          var index = dict[userName].findIndex(function(ele,index){
+          return ele[channelName]
+        })
+
+        if (index !== -1) {
+
+            //deleting channel from users of localStorage file.
+          let newDict = dict[userName].filter(channel => dict[userName].indexOf(channel) !== index )
+          dict[userName] = newDict 
+          
+        } 
+
+        }
+        // var userName    = sessionStorage.getItem('username')
+        //now deleting it from channelList of localStorage file
+          let newChannelList = channelList.filter(channel => channel !== channelName.slice(1))
+
+          //now updating the localStorage
+          localStorage.setItem('users',JSON.stringify(dict))
+          localStorage.setItem('channelList',JSON.stringify(newChannelList))
+
+          //refreshing the window
+          window.location.reload()
+
+      };
+
+  })
 
 </script>
 {% endblock %}
