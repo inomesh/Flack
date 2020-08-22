@@ -113,13 +113,18 @@ function updateNewMessage(obj,user,channelName,message){
 
     // searching for the index of channel
     let search = searchChannelIndex(obj,user,channelName) 
-    if (search === -1){
-            // checking if channel actually exists or not, if not then return. else update the message.
-            console.log('channel doesn;t exist, we re in updating messages')
-    }else{
-            // updating the data by adding new message into it
-            obj[user][search][channelName][Date.now()] = message
-            console.log('message updated after creating channel');
+    // if (search === -1){
+    //         // checking if channel actually exists or not, if not then return. else update the message.
+    //         console.log('channel doesn;t exist, we re in updating messages')
+    // }else{
+    //         // updating the data by adding new message into it
+    //         obj[user][search][channelName][Date.now()] = message
+    //         console.log('message updated after creating channel');
+    // }
+    if (search !== -1){
+        // checking if channel actually exists or not, only if yes, then execute.
+        // updating the data by adding new message into it
+        obj[user][search][channelName][Date.now()] = message
     }
 
 }

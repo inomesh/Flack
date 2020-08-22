@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         // storing data into localStorage
         var dict = JSON.parse(localStorage.getItem('users'))
-        
+        var channelList = JSON.parse(localStorage.getItem('channelList'))
         // checking if user actually exist into localStorage or not
         var userCheck;
         for (const i in dict) {
@@ -76,9 +76,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
             // grabing a index of channel
             let i = searchChannelIndex(dict,obj.Username,obj.channel)
-            if (i === -1) {
+            if (i === -1 && channelList.includes(obj.channel.slice(1))) {
+                //if channel ifn't in users Dict and it's also in the channelList only then create it
+                //and then append into it.
                 createChannel(dict,obj.Username,obj.channel)
-                console.log('channel created and updated');
             }
 
             updateNewMessage(dict,obj.Username,obj.channel,obj.data)
@@ -123,24 +124,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
         for (const key in sidebarListItem) {
-            if (sidebarListItem[key].textContent === obj['channel'] ) {
-
-                var count;
-                if (sidebarListItem[key].childNodes[0].childNodes[1]) {
+          
+            if (sidebarListItem[key].textContent === obj['channel'] || 
+                sidebarListItem[key].textContent.slice(0,-1) === obj['channel'] //this is because after badge inserted the channelname is now = channel+1,2... that is why 
+                                                                                //i m slicing it, so that we end up with the channel anme only not with badge.
+            ) {
+                
+                var count = 0;
+                
+                //checking if badge even exist or not
+                if(sidebarListItem[key].childNodes[0].childNodes[1]){
                     count = Number(sidebarListItem[key].childNodes[0].childNodes[1].textContent)
                     sidebarListItem[key].childNodes[0].childNodes[1].remove()
-                    console.log('inside if', sidebarListItem[key].childNodes[0].childNodes[1].textContent);
-                }else{
-                    count = 0
-                    console.log('inside else',count);
                 }
-                count++;
+                
                 let span = document.createElement('span')
                 span.setAttribute('class','badge badge-primary badge-pill')
                 span.style = "margin-left: 75%;"
-                span.textContent = count
+                span.innerText = count + 1
                 sidebarListItem[key].childNodes[0].append(span)
 
+            break;
 
             }
         }
