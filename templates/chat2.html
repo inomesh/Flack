@@ -100,10 +100,10 @@
             </div>
 
             <div class="col-md-9">
-              <!-- Joined users -->
+              <!-- Channel Joined users -->
               <span class="float-left d-flex align-middle">
                 <i class="fas fa-2x fa-users p-1"></i>
-                <h5 class="mx-1 font-weight-bold p-1 channelUsers">100</h5> 
+                <h5 class="mx-1 font-weight-bold p-1 channelUsers"></h5>  
               </span>
 
                 <!--inChat search box -->
@@ -363,10 +363,17 @@
       let name = event.target.textContent     //name = channel Name
       document.querySelector('.head-h3').textContent = name
     
+      //no of users of a channel. 
+      let obj = {{ data|tojson }}
+      let chIndex = obj.channelNamelist.findIndex(e => e === name)
+      let noOfusers = obj.channelDescriptionlist[chIndex].NoOfUsers
+      document.querySelector('.channelUsers').textContent = noOfusers
+
       //clearing childNodes from the body.
       let parent = document.querySelector('.body')
       clearChilds(parent);
       parent.removeAttribute('style')
+
 
 
       // checking for data stored in localStorage of clicked channel

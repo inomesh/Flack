@@ -48,9 +48,6 @@
     </div>
 
 
-    <div hidden>
-        <p id="temp-array">{{ message }}</p>
-    </div>
 {% endblock %}
 
 
@@ -73,86 +70,83 @@
 <script>
 
     // assigning the returned Channels_list array from the server
-
-    var temp = document.getElementById('temp-array').textContent
-    var arr = eval(temp)
-
+    const channelName = {{ message.channelNamelist|tojson}}    //using |tojson, we can access jinja variable directly
+    const channelDescription = {{ message.channelDescriptionlist|tojson}}
 
     // Creating channel List
     document.addEventListener('DOMContentLoaded',()=>{
 
                         //list of channels fetching from localStorage
-        // var channel = JSON.parse(localStorage.getItem('channelList')) 
-        arr.forEach(element => {
-
-            //Tag creation
-
-           var colDiv = document.createElement('div')
-           colDiv.classList    =  'col-md-3  col-sm-6 bg-white my-3 channelCard'  
-
-           var div = document.createElement('div')
-           div.classList    =  'card bg-white' 
-
-           //card image
-           var img = document.createElement('img')
-            img.classList = 'card-img-top'
-            img.src = "../static/images/image.jpg"
-            img.alt = "Card image cap"
-            img.style.height = '230px'
-
-            // card body
-           var div2 = document.createElement('div')
-           div2.classList = 'card-body'
-
-            // card-title
-           var h5 = document.createElement('h5')
-           h5.classList = 'card-title font-weight-bold'
-
-            // card-text
-           var p = document.createElement('p')
-           p.classList = 'card-text'
-
-            // card footer
-           var footer = document.createElement('div')
-           footer.classList =   'card-footer'
-
-            // footer inner
-            var icon = document.createElement('i')
-            icon.classList = 'fas fa-user'
-
-            var span = document.createElement('span')
-            span.classList = 'mr-5'
-            span.append(icon)
-            span.append('100') 
-
-           var button = document.createElement('button')
-           button.setAttribute('class', 'channelButton btn btn-outline-primary font-weight-bold float-right')   
-
-           //adding values
-           h5.textContent = `${element}`
-           p.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum expedita accusamus quidem, consequatur culpa amet dolor obcaecati provident incidunt explicabo iure, aut voluptate dicta architecto ratione enim officia? Aspernatur officia ea laborum quaerat commodi quae, sequi veritatis alias eligendi architecto saepe id impedit. Dignissimos fugit itaque id animi, incidunt dolorem!' 
-           button.textContent = 'Join'
+        for (let i = 0; i < channelName.length; i++) {
             
-        //appending
+                    //Tag creation
 
-            // foooter
-            footer.append(span)
-            footer.append(button)
+                var colDiv = document.createElement('div')
+                colDiv.classList    =  'col-md-3  col-sm-6 bg-white my-3 channelCard'  
 
-           //col-body
-           div2.append(h5)
-           div2.append(p)
+                var div = document.createElement('div')
+                div.classList    =  'card bg-white' 
 
-           //coard main
-           div.append(img)
-           div.append(div2)
-           div.append(footer)
-           colDiv.append(div)
-           //row
-           document.querySelector('.card-deck').append(colDiv) 
+                //card image
+                var img = document.createElement('img')
+                    img.classList = 'card-img-top'
+                    img.src = "../static/images/image.jpg"
+                    img.alt = "Card image cap"
+                    img.style.height = '230px'
 
-        });
+                    // card body
+                var div2 = document.createElement('div')
+                div2.classList = 'card-body'
 
+                    // card-title
+                var h5 = document.createElement('h5')
+                h5.classList = 'card-title font-weight-bold'
+
+                    // card-text
+                var p = document.createElement('p')
+                p.classList = 'card-text'
+
+                    // card footer
+                var footer = document.createElement('div')
+                footer.classList =   'card-footer'
+
+                    // footer inner
+                    var icon = document.createElement('i')
+                    icon.classList = 'fas fa-user'
+                    icon.style.marginRight = "5px"
+
+                    var span = document.createElement('span')
+                    span.classList = 'mr-5'
+                    span.append(icon)
+                    span.append(channelDescription[i].NoOfUsers)       //no of users of a channel
+
+                var button = document.createElement('button')
+                button.setAttribute('class', 'channelButton btn btn-outline-primary font-weight-bold float-right')   
+
+                //adding values
+                h5.textContent = `${channelName[i]}`
+                p.textContent    = channelDescription[i].description
+                button.textContent = 'Join'
+                    
+                //appending
+
+                // foooter
+                footer.append(span)
+                footer.append(button)
+
+                //col-body
+                div2.append(h5)
+                div2.append(p)
+
+                //coard main
+                div.append(img)
+                div.append(div2)
+                div.append(footer)
+                colDiv.append(div)
+                //row
+                document.querySelector('.card-deck').append(colDiv) 
+
+        }
 
 
     });

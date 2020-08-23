@@ -70,7 +70,7 @@ def chat():
     
     if request.method == 'GET':
         if 'username' and 'password' in session:
-             return render_template('chat2.html', username = session['username'])
+             return render_template('chat2.html', username = session['username'],data = channelList())
         else:
             return redirect(url_for('login'))
 
@@ -85,7 +85,7 @@ def chat():
         if logincheck('one.csv',datalist):
                 session['username'] = str(username)
                 session['password'] = str(password)
-                return render_template('chat2.html',username = session['username'])
+                return render_template('chat2.html',username = session['username'], data = channelList())     # channelList() function returns the array containing all the data of channels.csv
         else:
             return render_template('login.html',message='false')
  
@@ -93,6 +93,8 @@ def chat():
 
 
 #socket routes
+
+# route for chatMessages transfering.
 @socketio.on('chat request')
 def chat(obj):
     mydata = obj['data']
@@ -102,13 +104,12 @@ def chat(obj):
 
 
 
-
+# route for creating New channels and storing it into channels.csv
 @socketio.on('new channel')
 def appendChannel(obj):
 
     channelName = obj['channelName']
     description = obj['description']
-    resultError = False
     arr = [channelName, False]
 
     if  readchannelCsv('channels.csv','#'+ channelName) == True:
@@ -139,12 +140,12 @@ def logout():
 @app.route('/allchannels')
 def channel():
 
-    arr = channelList()     #assgining the returned Channels_List array into a variable
-    
+    obj = channelList()     #assgining the returned Channels_List array into a variable
+                            # function returns the array containing all the data of channels.csv
     if 'username' in session:
-        return render_template('channels.html', message=arr, userSession=True)
+        return render_template('channels.html', message=obj, userSession=True)
     else:
-        return render_template('channels.html', message=arr, userSession=False)
+        return render_template('channels.html', message=obj, userSession=False)
 
 
 

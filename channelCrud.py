@@ -119,15 +119,21 @@ def updateChannelUsers(mycsv,channelName,number):
 
 # channelList joined by the user
 def channelList():
-    mylist = []
+
+    obj = {
+        "channelNamelist" : [],
+        "channelDescriptionlist":[]
+    }
 
     with open('channels.csv','r') as read:
         read_csv  = csv.reader(read,lineterminator='\n', delimiter=',')
         next(read_csv)
         for i,j in read_csv:
-            mylist.append(i)
+            obj["channelNamelist"].append(i)
+            obj["channelDescriptionlist"].append(eval(j)) #converting string to object via eval() function.
         
-    return mylist
+    # return mylist
+    return obj
 
 
 
