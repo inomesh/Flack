@@ -400,7 +400,7 @@
           localmessageAppend(username,t,d)
         }
 
-      })
+      });
       
       
  }
@@ -412,9 +412,15 @@
     //Displaying user name on the screen
     document.addEventListener('DOMContentLoaded',()=>{
 
-      //setting up the sessinStorage for username
+      //setting up the sessionStorage for username
        var sessionUsername = `{{username}}`
        sessionStorage.setItem('username', sessionUsername) 
+
+      //deleting the session, once user clicks the Sign-out button.
+      document.getElementById('signOut').addEventListener('click',()=>{
+          sessionStorage.clear();
+      })
+
 
         updateSidebarList();
 
