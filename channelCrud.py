@@ -106,7 +106,8 @@ def updateChannelUsers(mycsv,channelName,number):
 
     # Removing existing file 
 
-            location = r'C:\Users\nomesh\Desktop\New folder\Javascript\channels.csv'  
+            # location = r'C:\Users\nomesh\Desktop\New folder\Javascript\channels.csv'  
+            location = r'C:\Users\nomesh\Desktop\New folder\practice\channels.csv'  
 
             os.remove(location)
 
@@ -116,6 +117,7 @@ def updateChannelUsers(mycsv,channelName,number):
             NewFileName = 'channels.csv'
             os.rename(PreFilePath,NewFileName)
 
+    return True 
 
 # channelList joined by the user
 def channelList():
@@ -140,7 +142,7 @@ def channelList():
 
 # print(updateChannelUsers('channels.csv','#familydrama',40))
 # print(deleteChannel('channels.csv','#batmanforever'))
-# print(readchannelCsv('channels.csv','#praesentium'))
+# result = readchannelCsv('channels.csv','#praesentium')
+# print(result)
 # print(appendChannelCsv('channels.csv',['#batmanforever',{ 'NoOfUsers':25,'description':'how are you boys'} ]))
-
 

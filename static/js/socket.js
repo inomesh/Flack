@@ -48,7 +48,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
             return false
 
         }
+    
 
+    // emiting for updating users, who are joining the existing channels
+
+        // now subtracting it from the channels.csv file user's count.
+        document.getElementById('exitChannel').addEventListener('click',() =>{
+
+            let channelName = document.getElementById('channelName').textContent
+            let obj = {
+                channel: channelName,
+                userCount:-1,
+                updation:true
+            }
+        
+            socket.emit('update new user',obj)
+
+        });
+
+           
 
 
     });
@@ -188,7 +206,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.querySelector('#channel_discription').value = ' '
 
     });
-
 
 });
 

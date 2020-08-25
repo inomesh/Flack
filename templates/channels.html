@@ -4,6 +4,10 @@
     All Channels
 {% endblock %}
 
+{% block link %}
+    <!-- <script src="../static/js/socket.js"></script> -->
+{% endblock %}
+
 
 {% block body %}
 
@@ -199,6 +203,25 @@ document.addEventListener('DOMContentLoaded',()=>{
         list.push(title)            //pushing new Channel into list
         localStorage.setItem('channelList',JSON.stringify(list))        //setting up the new users joined channels list
 
+        
+        // now emitting to update the channels.csv user's Count.
+        
+
+        var socket = io.connect(location.protocol + "//" + document.domain + ":" + location.port);
+
+        socket.on('connect', ()=>{
+            
+            let obj = {
+                channel: '#' + title,
+                userCount:1,
+                updation:true
+                }
+        
+            socket.emit('update new user',obj)
+
+        });
+
+
 
         // changing appearance effect of button
         
@@ -208,12 +231,25 @@ document.addEventListener('DOMContentLoaded',()=>{
         event.target.classList   = 'channelButton btn font-weight-bold float-right btn-outline-success'
         
         // reloading the page.
-        location.reload(true)
+        // location.reload(true)
 
                 }
             }
 
             });
+        
+        
+        //checking if channel is already joined by user or not if yes, then change appearance and disable it.
+        let name = element.querySelector('.card-title').textContent.slice(1)
+
+        if (chList.includes(name)) {
+            let btn = element.querySelector('button')
+            btn.classList.remove()
+            btn.classList = 'channelButton btn font-weight-bold float-right btn-outline-success'
+            btn.textContent = 'Joined'
+            btn.setAttribute('disabled','')
+        }
+        
         });
 
 

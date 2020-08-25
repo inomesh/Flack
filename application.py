@@ -1,3 +1,4 @@
+from os import truncate
 import requests
 import re
 import bcrypt
@@ -54,10 +55,8 @@ def login():
         arr = [firstName,lastName,username,password]
         
         if appendcsv('one.csv',arr) == True:
-            print(arr)
             return render_template('login.html')
         else:
-            print(appendcsv('one.csv',arr))
             return render_template('create_user.html',message='false')
 
 
@@ -118,6 +117,22 @@ def appendChannel(obj):
         appendChannelCsv('channels.csv',['#'+ channelName,{ 'NoOfUsers':1,'description':description}])
         arr[1] = True
         emit('newChannel result', arr, broadcast = True)
+
+
+
+
+#route for updating new user, joined an existing channel into the channels.csv
+@socketio.on('update new user')
+def updateNewUserToCsv(obj):
+       
+    # if obj['updation'] == True:
+        # updating the channels.csv by adding a new user to an existing channel.
+        if readchannelCsv('channels.csv',obj['channel']) == True:
+            result = updateChannelUsers('channels.csv',obj['channel'],obj['userCount'])
+            # emit('new user Updated',True, broadcast = True)
+            # not emitting because here we only want to run a function, and didn't want to
+            # apply another function on it. 
+
 
 
 
