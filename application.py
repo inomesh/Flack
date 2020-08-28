@@ -12,7 +12,8 @@ from flask_socketio import SocketIO, emit
 from datetime import timedelta
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'lucifer123'
+# app.config['SECRET_KEY'] = 'lucifer123'
+app.config['SECRET_KEY'] = os.environ['flaskAppPassword']
 app.permanent_session_lifetime = timedelta(days=5)
 socketio = SocketIO(app)
 
@@ -182,3 +183,8 @@ def video():
     redirect_to=url_for('static', filename='Slack_main.mp4')
 
 #----------------------------------------------------------------------------------------------------------------------    
+
+
+
+if __name__ == '__main__':
+    app.run()
