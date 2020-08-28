@@ -41,7 +41,7 @@ def appendChannelCsv(mycsv, datalist):
 
         # csv_writer.writerow(fields)
         # csv_writer.writerow(names)
-        if not readchannelCsv('channels.csv', datalist[0]):
+        if not readchannelCsv(os.getcwd() + '/channels.csv', datalist[0]):
                 csv_writer.writerow(datalist)
                 return True
         return 'already exists'
@@ -66,7 +66,7 @@ def deleteChannel(mycsv, ChannelName):
     # Removing existing file 
         
     # location = r'C:\Users\nomesh\Desktop\New folder\Javascript\channels.csv'  
-    location = os.getcwd() + '\channels.csv'  
+    location = os.getcwd() + '/channels.csv'  
     
     os.remove(location)
 
@@ -108,7 +108,7 @@ def updateChannelUsers(mycsv,channelName,number):
     # Removing existing file 
 
             # location = r'C:\Users\nomesh\Desktop\New folder\practice\channels.csv'  
-            location = os.getcwd() + '\channels.csv'  
+            location = os.getcwd() + '/channels.csv'  
             os.remove(location)
 
             #renaming the newFile as Previous one
@@ -127,7 +127,7 @@ def channelList():
         "channelDescriptionlist":[]
     }
 
-    with open('channels.csv','r') as read:
+    with open(os.getcwd() + '/channels.csv','r') as read:
         read_csv  = csv.reader(read,lineterminator='\n', delimiter=',')
         next(read_csv)
         for i,j in read_csv:
