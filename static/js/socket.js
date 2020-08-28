@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // sending the object to flask server
     socket.on('connect', ()=>{
-        console.log('connected users => ',socket.rooms);
-        // Form submitting
+
+    // Form submitting
         document.querySelector('#form').onsubmit = () => {
 
             const input = document.querySelector('#input').value;

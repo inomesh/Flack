@@ -65,7 +65,8 @@ def deleteChannel(mycsv, ChannelName):
 
     # Removing existing file 
         
-    location = r'C:\Users\nomesh\Desktop\New folder\Javascript\channels.csv'  
+    # location = r'C:\Users\nomesh\Desktop\New folder\Javascript\channels.csv'  
+    location = os.getcwd() + '\channels.csv'  
     
     os.remove(location)
 
@@ -106,9 +107,8 @@ def updateChannelUsers(mycsv,channelName,number):
 
     # Removing existing file 
 
-            # location = r'C:\Users\nomesh\Desktop\New folder\Javascript\channels.csv'  
-            location = r'C:\Users\nomesh\Desktop\New folder\practice\channels.csv'  
-
+            # location = r'C:\Users\nomesh\Desktop\New folder\practice\channels.csv'  
+            location = os.getcwd() + '\channels.csv'  
             os.remove(location)
 
             #renaming the newFile as Previous one
@@ -138,9 +138,7 @@ def channelList():
     return obj
 
 
-
-
-# print(updateChannelUsers('channels.csv','#familydrama',40))
+# print(updateChannelUsers(os.getcwd() + '\channels.csv','#familydrama',41))
 # print(deleteChannel('channels.csv','#batmanforever'))
 # result = readchannelCsv('channels.csv','#praesentium')
 # print(result)

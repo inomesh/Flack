@@ -1,4 +1,5 @@
 from os import truncate
+import os
 import requests
 import re
 import bcrypt
@@ -54,7 +55,7 @@ def login():
 
         arr = [firstName,lastName,username,password]
         
-        if appendcsv('one.csv',arr) == True:
+        if appendcsv(os.getcwd() + '\one.csv',arr) == True:
             return render_template('login.html')
         else:
             return render_template('create_user.html',message='false')
@@ -81,7 +82,7 @@ def chat():
         
  #datalist should follow the pattern [username, password]
         datalist = [username, password]
-        if logincheck('one.csv',datalist):
+        if logincheck(os.getcwd() + '\one.csv',datalist):
                 session['username'] = str(username)
                 session['password'] = str(password)
                 return render_template('chat2.html',username = session['username'], data = channelList())     # channelList() function returns the array containing all the data of channels.csv
@@ -111,10 +112,10 @@ def appendChannel(obj):
     description = obj['description']
     arr = [channelName, False]
 
-    if  readchannelCsv('channels.csv','#'+ channelName) == True:
+    if  readchannelCsv(os.getcwd() + '\channels.csv','#'+ channelName) == True:
             emit('newChannel result', arr, broadcast = True)    #if true then, sending error message
     else:
-        appendChannelCsv('channels.csv',['#'+ channelName,{ 'NoOfUsers':1,'description':description}])
+        appendChannelCsv(os.getcwd() + '\channels.csv',['#'+ channelName,{ 'NoOfUsers':1,'description':description}])
         arr[1] = True
         emit('newChannel result', arr, broadcast = True)
 
@@ -127,8 +128,8 @@ def updateNewUserToCsv(obj):
        
     # if obj['updation'] == True:
         # updating the channels.csv by adding a new user to an existing channel.
-        if readchannelCsv('channels.csv',obj['channel']) == True:
-            result = updateChannelUsers('channels.csv',obj['channel'],obj['userCount'])
+        if readchannelCsv(os.getcwd() + '\channels.csv',obj['channel']) == True:
+            result = updateChannelUsers(os.getcwd() + '\channels.csv',obj['channel'],obj['userCount'])
             # emit('new user Updated',True, broadcast = True)
             # not emitting because here we only want to run a function, and didn't want to
             # apply another function on it. 
