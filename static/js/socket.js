@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   //socket starts from here
-  // io({
-  //     transports: ['websocket']
-  // })
+
   var socket = io.connect(
     location.protocol + "//" + document.domain + ":" + location.port
   );
