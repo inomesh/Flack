@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //     transports: ['websocket']
   // })
   var socket = io.connect(
-    location.protocol + "//" + document.domain + ":" + location.port,
-    {
-      transports: ["websocket"],
-    }
+    location.protocol + "//" + document.domain + ":" + location.port
   );
 
   // sending the object to flask server
