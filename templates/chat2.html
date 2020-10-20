@@ -1,163 +1,338 @@
-{% extends 'Layout.html' %}
+{% extends 'Layout.html' %} {% block link %}
+<script src="../static/js/socket.js"></script>
+<script src="../static/js/localStorage.js"></script>
+<script src="../static/js/functions.js"></script>
+<link rel="stylesheet" href="../static/css/chat.css" />
 
+<!-- stylesheets with media queries for responsive designs across devices -->
+<link
+  rel="stylesheet"
+  media="screen and (max-width: 500px)"
+  href="../static/css/mobile.css"
+/>
 
-{% block link %}
-  <script src="../static/js/socket.js"></script>
-  <script src="../static/js/localStorage.js"></script>
-  <script src="../static/js/functions.js"></script>
-  <link rel="stylesheet" href="../static/css/chat.css">
+{%endblock%} {%block title%} chat app {% endblock %} {% block body %}
 
-{%endblock%}
-{%block title%}
-    chat app
-{% endblock %}
+<!-- Pre-Loader -->
+<div class="preloader">
 
-{% block body %}   
+  <style media="screen and (min-width:768px)">
+    .preloader {
+      position: fixed;
+      z-index: 20000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(../static/images/texture.png);
+      background-size: cover;
+      font-family: cursive;
+    }
 
-<div class="row">
+    .preloader.hidden {
+      animation: fadeOut 2s;
+      animation-fill-mode: forwards;
+    }
+
+    .note{
+      margin-top: 20%;
+    }
+
+    .spinner {
+      /* display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10%;  */
       
-    <!--SIDEBAR     channel-btn-->
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      background-color: white;
+      padding: 10px;
+      border-radius: 30px;
+    }
 
+    @keyframes fadeOut {
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  </style>
   
-    <div class="col-md-3 hashtag bg-black bs-sidebar">
+  <section
+    class="text-center text-dark font-weight-bolder note"
+    style="/*margin-top: 50%;*/"
+  >
+    <h1 class="welcome">
+      <img
+        class="body-image"
+        src="../static/images/wavingHandEmoji.png"
+        alt="slack_logo"
+        style="width: 60px; vertical-align: bottom"
+      />
+      Welcome!
+    </h1>
+    <h5 class="welcome_para">Flack is a messaging app for teams</h5>
+  </section>
 
-             <!-- sidebar head -->
-        <h3 class="sidebar-head"> <strong>#Channels</strong>
-        <button class="float-right btn d-inline" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample">
-          <i class="fas fa-2x fa-plus-circle"></i> </button>
-        </h3>
-        
+  <section class="spinner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </section>
+</div>
 
-        <!--  MODAL FOR NEW CHANNEL CREATION -->
+<!-- main -->
+<div class="row" hidden>
+  <!--SIDEBAR     channel-btn-->
 
-        <div class="modal fade" id="channelCreation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Channel</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+  <div class="col-md-3 hashtag bg-black bs-sidebar">
+    <!-- sidebar head -->
+    <h3 class="sidebar-head">
+      <strong>#Channels</strong>
+      <button
+        class="float-right btn d-inline"
+        type="button"
+        data-toggle="modal"
+        data-target="#channelCreation"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+        style="font-size: 12px; padding: 2px"
+      >
+        <i class="fas fa-2x fa-plus"></i>
+      </button>
+    </h3>
+
+    <!--  MODAL FOR NEW CHANNEL CREATION -->
+
+    <div
+      class="modal fade"
+      id="channelCreation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Create New Channel
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- onsubmit="createNewChannelFunction()" -->
+            <form
+              id="CreateNewChannel"
+              class="text-dark justify-content-center"
+            >
+              <!-- Channel_Name -->
+              <div class="form-group">
+                <label for="channel_name" class="text-dark">Channel Name</label>
+                <input
+                  type="text"
+                  id="channel_name"
+                  class="form-control border-top-0 border-left-0 border-right-0 border-dark"
+                  placeholder="#ChannelName"
+                  autocomplete="off"
+                  required
+                />
+                <small
+                  class="text-red channelInvalidInput font-weight-bold text-danger"
+                  ><hr
+                /></small>
+                <small class="form-text text-muted"
+                  >Your channel name must starts with <strong>#</strong> and
+                  should be 6-20 characters long containing letters and numbers,
+                  and must not contain spaces, special characters or
+                  emoji.</small
+                >
+              </div>
+
+              <!-- Channel Discription  -->
+              <div class="form-group">
+                <label for="channel_discription"
+                  >Discription about this channel</label
+                >
+                <textarea
+                  id="channel_discription"
+                  class="form-control border-top-0 border-left-0 border-right-0 border-dark"
+                  cols="5"
+                  rows="2"
+                  placeholder="type here"
+                  autocomplete="off"
+                ></textarea>
+              </div>
+
+              <hr />
+              <div class="form-group">
+                <button
+                  type="submit"
+                  class="btn btn-outline-success form-control"
+                >
+                  Submit
                 </button>
               </div>
-              <div class="modal-body">
-<!-- onsubmit="createNewChannelFunction()" -->
-                <form id="CreateNewChannel" class="text-dark  justify-content-center">
-                   <!-- Channel_Name -->
-                   <div class="form-group">
-                    <label for="channel_name" class="text-dark">Channel Name</label>
-                    <input type="text" id="channel_name" class="form-control border-top-0 border-left-0 border-right-0 border-dark" placeholder="#ChannelName" autocomplete="off" required/>
-                    <small class="text-red channelInvalidInput font-weight-bold text-danger"><hr/></small>
-                    <small class="form-text text-muted">Your channel name must starts with <strong>#</strong> and should be 6-20 characters long containing letters and numbers, and must not contain spaces, special characters or emoji.</small>
-                  </div>
-
-                  <!-- Channel Discription  -->
-                  <div class="form-group">
-                    <label for="channel_discription">Discription about this channel</label>
-                    <textarea  id="channel_discription" class="form-control border-top-0 border-left-0 border-right-0 border-dark" cols="5" rows="2" placeholder="type here" autocomplete="off"></textarea>
-                  </div> 
-
-                  <hr/>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-outline-success form-control">Submit</button>
-                  </div>                  
-                </form>
-              </div>
-              
-            </div>
+            </form>
           </div>
         </div>
- 
+      </div>
+    </div>
 
-
-        <!--  -->
-        <div class="sidebar-ulist">
-        <ul class="list-group" id="ulist">
-            <!-- <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Porta ac consectetur ac </div>  </a>
+    <!--  -->
+    <div class="sidebar-ulist">
+      <ul class="list-group" id="ulist">
+        <!-- <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Porta ac consectetur ac </div>  </a>
             <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Vestibulum at eros      </div>  </a>
             <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Cras justo odio         </div>  </a>
             <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Dapibus ac facilisis in </div>  </a>
             <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Morbi leo risus         </div>  </a>
             <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Porta ac consectetur ac </div>  </a>
-            <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Vestibulum at eros      </div>  </a> --> 
-        </ul>
-
-        </div>
+            <a onclick="chatboxheader();" href="#"> <div class="list-group-item  sidebar-list"># Vestibulum at eros      </div>  </a> -->
+      </ul>
     </div>
+  </div>
 
-    <!-- SIDEBAR ENDS -->
+  <!-- SIDEBAR ENDS -->
 
+  <!--MAIN BODY STARTS-->
 
-    <!--MAIN BODY STARTS-->
+  <div class="col-md-9 main container-fluid">
+    <div class="head" hidden>
+      <div class="row">
+        <!-- channel Name -->
+        <div class="col-md-3 head-3">
+          <h3 class="head-h3" id="channelName">#Channel</h3>
+        </div>
 
-    <div class="col-md-9 main container-fluid">
-        
-        <div class="head" hidden>
-          <div class="row">
-            
-            <!-- channel Name -->
-            <div class="col-md-3">
-              <h3 class="head-h3" id="channelName">#Channel</h3>
+        <div class="col-md-9 head-9">
+          <!-- Channel Joined users -->
+          <span class="float-left d-flex align-middle">
+            <i class="fas fa-2x fa-users p-1"></i>
+            <h5 class="mx-1 font-weight-bold p-1 channelUsers"></h5>
+          </span>
+
+          <div style="display: flex;
+          justify-content: end;
+          align-items: center;
+          width: 100%;">
+
+            <!--inChat search box -->
+          <div class="collapse" id="inChatSearch" style="width: 95%;">
+            <div
+              class="search-chat text-center"
+            >
+              <input
+                type="text"
+                id="chat_search"
+                name="chat_search"
+                autocomplete="off"
+                autofocus
+                placeholder="search..."
+              />
+              <a href="#" id="chat_search_button">
+                <i class="fas fa-search text-dark"></i>
+              </a>
             </div>
+          </div>
 
-            <div class="col-md-9">
-              <!-- Channel Joined users -->
-              <span class="float-left d-flex align-middle">
-                <i class="fas fa-2x fa-users p-1"></i>
-                <h5 class="mx-1 font-weight-bold p-1 channelUsers"></h5>  
-              </span>
+          <!-- </div> -->
 
-                <!--inChat search box -->
-              <div class="collapse" id="inChatSearch">
-                <div class="search-chat text-center" style="display: block ruby; margin: -25px 120px;">
-                
-                <input type="text" id="chat_search"  name="chat_search" autocomplete="off" placeholder="search..."/>
-                <a href="#" id="chat_search_button"> <i class="fas fa-search text-dark"></i>  </a>
-              
-                </div>
-              </div>              
-
-<!-- </div> -->
-
-            <!-- dropdown for extras -->
-            <div class="dropdown">
-              <button class="btn btn-default dropdown" type="button" id="extras" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 85%;margin-top: -1%;">
-                <span class="fas fa-ellipsis-h"></span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-right fade">
-                <li><a class="dropdown-item" data-toggle="collapse" href="#userProfile">Profile</a></li>
-                                    <!-- in chat Search -->
-                <li><a class="dropdown-item" data-toggle="collapse" href="#inChatSearch">Search</a></li>
-                <li><a class="dropdown-item" data-toggle="collapse" href="#channelWallpaper">wallpaper</a></li>
-                <li class="dropdown-item btn" id="clearMessages" role="button">Clear messages</li>
-                <li class="dropdown-item btn" id="exitChannel" role="button">Exit channel</li>
-                <li><a class="dropdown-item border-top" data-toggle="collapse" href="#channelAbout">About</a></li>
-
-              </ul>
-            </div>
-
-
-            </div>
+          <!-- dropdown for extras -->
+          <div class="dropdown">
+            <button
+              class="btn btn-default dropdown"
+              type="button"
+              id="extras"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span class="fas fa-ellipsis-h"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right fade">
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-toggle="collapse"
+                  href="#userProfile"
+                  >Profile</a
+                >
+              </li>
+              <!-- in chat Search -->
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-toggle="collapse"
+                  href="#inChatSearch"
+                  >Search</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-toggle="collapse"
+                  href="#channelWallpaper"
+                  >wallpaper</a
+                >
+              </li>
+              <li class="dropdown-item btn" id="clearMessages" role="button">
+                Clear messages
+              </li>
+              <li class="dropdown-item btn" id="exitChannel" role="button">
+                Exit channel
+              </li>
+              <li>
+                <a
+                  class="dropdown-item border-top"
+                  data-toggle="collapse"
+                  href="#channelAbout"
+                  >About</a
+                >
+              </li>
+            </ul>
+          </div>
 
           </div>
+
         </div>
+      </div>
+    </div>
 
+    <div
+      class="body bg-white"
+      style="
+        vertical-align: middle;
+        background-image: url(../static/images/texture.png);
+        height: 100%;
+      "
+    >
+      <section
+        class="text-center text-dark font-weight-bolder"
+        style="margin: 20% 20%"
+      >
+        <h1 class="welcome">
+          <img
+            class="body-image"
+            src="../static/images/wavingHandEmoji.png"
+            alt="slack_logo"
+            style="width: 60px; vertical-align: bottom"
+          />
+          Welcome!
+        </h1>
+        <h5 class="welcome_para">Flack is a messaging app for teams</h5>
+      </section>
 
-        <div class="body bg-white" style="vertical-align: middle; background-image: url(../static/images/texture.png); height: 100%;">
-
-        
-          <section class="text-center text-dark font-weight-bolder" style="margin: 20% 20%;">
-
-            <h1 class="welcome">
-            <img class="body-image" src="../static/images/wavingHandEmoji.png" alt="slack_logo" style="width: 60px; vertical-align: bottom;">
-              Welcome!
-            </h1>
-            <h5 class="welcome_para"> Flack is a messaging app for teams</h5>
-          </section>
-         
-          
-          
-
-            <!-- <div class="user1 shadow-sm rounded">
+      <!-- <div class="user1 shadow-sm rounded">
                 <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
                 <hr/>
                 <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
@@ -292,28 +467,24 @@
       <hr/>
       <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
       </div> -->
+    </div>
 
-
-
-        </div>
-       
-
-
-        <!-- Submit button-->
-        <div class="btm" id="btm" hidden>
-            <form id="form">
-                <input id="input" placeholder="type your message here" autocomplete="off" type="text"/>
-                <button class="submit btn" id="submit_button" type="submit"><i class="fas fa-paper-plane"></i></button>
-            </form>
-        </div>
-
-
-
-
+    <!-- Submit button-->
+    <div class="btm" id="btm" hidden>
+      <form id="form">
+        <input
+          id="input"
+          placeholder="type your message here"
+          autocomplete="off"
+          type="text"
+        />
+        <button class="submit btn" id="submit_button" type="submit">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
-</div>
-
-
 
 <!-- 
   STRUCTURE
@@ -324,293 +495,379 @@
 </div>
  -->
 
-
-
-
-
-
-
-
-
-{% endblock %}
-
-
-{% block script %}
+{% endblock %} {% block script %}
 
 <script>
 
-  // Chat Dialouge Box- Title appearance changing effects`
-    var parentlist = document.querySelector('.list-group');
-      parentlist.addEventListener('click',chatboxheader, false)
+   // Chat Dialouge Box- Title appearance changing effects`
+     var parentlist = document.querySelector('.list-group');
+       parentlist.addEventListener('click',chatboxheader, false)
 
-    function chatboxheader(event){
+     async function chatboxheader(event){
 
-    // changing visibility of head and bottom from hidden to show.
-    document.querySelector('.head').removeAttribute('hidden')
-    document.querySelector('.btm').removeAttribute('hidden')
-
-
-
-
-    //now condition
-    if (event.target !== event.currentTarget) {
-      
-      //cheking for new-message badge, if yes then deleting it.
-      if(event.target.childNodes[1]){
-         event.target.childNodes[1].remove()
-      }
-
-      let name = event.target.textContent     //name = channel Name
-      document.querySelector('.head-h3').textContent = name
-    
-      //no of users of a channel. 
-      let obj = {{ data|tojson }}
-      let chIndex = obj.channelNamelist.findIndex(e => e === name)
-      let noOfusers = obj.channelDescriptionlist[chIndex].NoOfUsers
-      document.querySelector('.channelUsers').textContent = noOfusers
-
-      //clearing childNodes from the body.
-      let parent = document.querySelector('.body')
-      clearChilds(parent);
-      parent.removeAttribute('style')
+     // changing visibility of head and bottom from hidden to show.
+     document.querySelector('.head').removeAttribute('hidden')
+     document.querySelector('.btm').removeAttribute('hidden')
 
 
 
-      // checking for data stored in localStorage of clicked channel
-      // if yes, then retrieve it. else do nothing.
-      var dict = JSON.parse(localStorage.getItem('users'))
-      let Uname = `{{username}}`   //current user
-      
 
-      var mili_array = unsortedLocalToBody(dict,name)
+     //now condition
+     if (event.target !== event.currentTarget) {
 
-      //looping through each object and passing to localmessageAppend function for displaying into the body.
-      mili_array.forEach(obj => {
-        
-        let c = mili_array.findIndex(function(ele,index){
-                //searching for the index of object
+       //cheking for new-message badge, if yes then deleting it.
+       if(event.target.childNodes[1]){
+          event.target.childNodes[1].remove()
+       }
 
-               return Number(ele.time) === Number(obj.time)
-              })
+       let name = event.target.textContent     //name = channel Name
+       document.querySelector('.head-h3').textContent = name
 
-        if (c !== -1) {
-          let username = mili_array[c].name
-          let t = mili_array[c].time
-          let d = mili_array[c].data
-          localmessageAppend(username,t,d)
-        }
+       //no of users of a channel.
+       let obj = {{ data|tojson }}
+       let chIndex = obj.channelNamelist.findIndex(e => e === name)
+       let noOfusers = obj.channelDescriptionlist[chIndex].NoOfUsers
+       document.querySelector('.channelUsers').textContent = noOfusers
 
-      });
-      
-      
- }
-
-    event.stopPropagation();        
-    
-    };
-
-    //Displaying user name on the screen
-    document.addEventListener('DOMContentLoaded',()=>{
-
-      //setting up the sessionStorage for username
-       var sessionUsername = `{{username}}`
-       sessionStorage.setItem('username', sessionUsername) 
-
-      //deleting the session, once user clicks the Sign-out button.
-      document.getElementById('signOut').addEventListener('click',()=>{
-          sessionStorage.clear();
-      })
+       //clearing childNodes from the body.
+       let parent = document.querySelector('.body')
+       clearChilds(parent);
+       parent.removeAttribute('style')
 
 
-        updateSidebarList();
+       // checking for data stored in localStorage of clicked channel
+       // if yes, then retrieve it. else do nothing.
+       var dict = JSON.parse(localStorage.getItem('users'))
+       let Uname = `{{username}}`   //current user
 
-    });
+
+       var mili_array = unsortedLocalToBody(dict,name)
+
+       //looping through each object and passing to localmessageAppend function for displaying into the body.
+       mili_array.forEach(obj => {
+
+         let c = mili_array.findIndex(function(ele,index){
+                 //searching for the index of object
+
+                return Number(ele.time) === Number(obj.time)
+               })
+
+         if (c !== -1) {
+           let username = mili_array[c].name
+           let t = mili_array[c].time
+           let d = mili_array[c].data
+           localmessageAppend(username,t,d)
+         }
 
 
 
-    function updateSidebarList(){
+       });
 
-        const array = JSON.parse(localStorage.getItem('channelList'))
-        const ulist = document.querySelector('#ulist')
-        array.forEach(element => {
-
-            //creating element and storing it into variable
-            let alink = document.createElement('a')          
-            let div = document.createElement('div')
-          
-            //setting up properties
-            alink.setAttribute('onclick','chatboxheader()')
-            alink.setAttribute('href','#')
-
-            // alink.onclick = "chatboxheader();"
-            // alink.href    = "#"
-
-            div.classList = "list-group-item  sidebar-list"
-            div.textContent = "#" + element
-
-            //appending
-            alink.append(div)
-            ulist.append(alink) 
-
-        });
-
-
-    };
-
-
-
-    //New Channel storage system
-
-    
-    function createNewChannelFunction(){
-
-      var list = JSON.parse(localStorage.getItem('channelList'))
-      var templist = []
-      list.forEach(e => templist.push(e))
-      const newChannelName =  document.querySelector('#channel_name').value
-
-      //checking if the channel name already exists in the list or not
-      if (list.find(element => element === newChannelName ) == undefined) {
-        templist.push(newChannelName)
-      }
-      else{
-        document.querySelector('#channel_name').value = ' '
-        document.querySelector('.channelInvalidInput').textContent = 'Channel already exists.'
-      }
-
-      
-     //updating localStorage 
-     localStorage.setItem('channelList',JSON.stringify(templist));
-    //wiping the inputs
-      document.querySelector('#channel_name').value = ''
-
-    // Updating Sidebar
-      updateSidebarList();
-      
-    };   
-    
-</script>
-
-
-
-<!-- scripts for extra's in ChatWindow Starts here-->
-
-
-<!-- script for Clear Messages from extras -->
-<script>
-
-  const clearMessage = document.querySelector('#clearMessages')
-  clearMessage.addEventListener('click',()=>{
-
-    const userName = sessionStorage.getItem('username')
-    const channelName = document.querySelector('#channelName').textContent
-    var dict = JSON.parse(localStorage.getItem('users'))
-    for (const key in dict) {
-        // array of objects
-        let index = dict[key].findIndex(function(ele,index){
-                    return ele[channelName]
-                  })
-        
-        if (index !== -1) {
-          //assigning empty object to existing channel, in this way localStorage will be overwrite 
-          // and data will be cleared
-          dict[key][index][channelName] = {}
-          localStorage.setItem('users',JSON.stringify(dict))
-          
-          //now clearing the childNodes from the body
-          let parent = document.querySelector('.body')
-          clearChilds(parent)
-        }
-        
-        
-    }
-    
-
-  })
-</script>
-
-
-<!-- With-in chat_Window search  -->
-<script>
-        
-  const search = document.querySelector('#chat_search')
-  var body = document.querySelector('.body')
-  var bodyDiv = body.childNodes   
-  search.addEventListener('input', updateValue);
-          
-  function updateValue(e) {
-          let value = e.target.value
-          if (value && value.trim().length > 0) {
-                  value = e.target.value.trim()
-                  
-                  for (const i of bodyDiv) {
-                          var a = i.childNodes[2].textContent   //this gives me the user's message. not username and time beccause of childnodes[2]
-                          
-                          //checking if the query is in message or not if yes, then show it else don't
-                          if (a.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                                  i.style.display = '';        
-                          } 
-                          else {
-                                  i.style.display = "none";
-                          }
-                  }
-          }else{
-            //this will executed if input field is in focus state but empty.
-              for (const i of bodyDiv) {
-                i.removeAttribute('style')           
-              }
-          }
-          
 
   }
 
 
+      event.stopPropagation();
 
+     };
+
+     //Displaying user name on the screen
+     document.addEventListener('DOMContentLoaded',()=>{
+
+       //setting up the sessionStorage for username
+        var sessionUsername = `{{username}}`
+        sessionStorage.setItem('username', sessionUsername)
+
+       //deleting the session, once user clicks the Sign-out button.
+       let signout = document.getElementById('signOut')
+       if (signout) {
+          signout.addEventListener('click',()=>{
+            sessionStorage.clear();
+       })
+       }
+
+
+         updateSidebarList();
+
+     });
+
+
+
+     function updateSidebarList(){
+
+         const array = JSON.parse(localStorage.getItem('channelList'))
+         const ulist = document.querySelector('#ulist')
+         ulist.innerHTML = "";
+         array.forEach(element => {
+
+             //creating element and storing it into variable
+             let li = document.createElement('li')
+             let div = document.createElement('div')
+
+             //setting up properties
+             li.setAttribute('onclick','chatboxheader()')
+            //  li.setAttribute('href','')
+
+             // li.onclick = "chatboxheader();"
+             // li.href    = "#"
+
+             div.classList = "list-group-item  sidebar-list"
+             div.textContent = "#" + element
+
+             //appending
+             li.append(div)
+             ulist.append(li)
+
+         });
+
+
+     };
+
+
+
+     //New Channel storage system
+
+
+     function createNewChannelFunction(){
+
+       var list = JSON.parse(localStorage.getItem('channelList'))
+       var templist = []
+       list.forEach(e => templist.push(e))
+       const newChannelName =  document.querySelector('#channel_name').value
+
+       //checking if the channel name already exists in the list or not
+       if (list.find(element => element === newChannelName ) == undefined) {
+         templist.push(newChannelName)
+       }
+       else{
+         document.querySelector('#channel_name').value = ' '
+         document.querySelector('.channelInvalidInput').textContent = 'Channel already exists.'
+       }
+
+
+      //updating localStorage
+      localStorage.setItem('channelList',JSON.stringify(templist));
+     //wiping the inputs
+       document.querySelector('#channel_name').value = ''
+
+     // Updating Sidebar
+       updateSidebarList();
+
+     };
 </script>
 
+<!-- scripts for extra's in ChatWindow Starts here-->
+
+<!-- script for Clear Messages from extras -->
+<script>
+  const clearMessage = document.querySelector("#clearMessages");
+  clearMessage.addEventListener("click", () => {
+    const userName = sessionStorage.getItem("username");
+    const channelName = document.querySelector("#channelName").textContent;
+    var dict = JSON.parse(localStorage.getItem("users"));
+    for (const key in dict) {
+      // array of objects
+      let index = dict[key].findIndex(function (ele, index) {
+        return ele[channelName];
+      });
+
+      if (index !== -1) {
+        //assigning empty object to existing channel, in this way localStorage will be overwrite
+        // and data will be cleared
+        dict[key][index][channelName] = {};
+        localStorage.setItem("users", JSON.stringify(dict));
+
+        //now clearing the childNodes from the body
+        let parent = document.querySelector(".body");
+        clearChilds(parent);
+      }
+    }
+  });
+</script>
+
+<!-- With-in chat_Window search  -->
+<script>
+  const search = document.querySelector("#chat_search");
+  var body = document.querySelector(".body");
+  var bodyDiv = body.childNodes;
+  search.addEventListener("input", updateValue);
+
+  function updateValue(e) {
+    let value = e.target.value;
+    if (value && value.trim().length > 0) {
+      value = e.target.value.trim();
+
+      for (const i of bodyDiv) {
+        var a = i.childNodes[2].textContent; //this gives me the user's message. not username and time beccause of childnodes[2]
+
+        //checking if the query is in message or not if yes, then show it else don't
+        if (a.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+          i.style.display = "";
+        } else {
+          i.style.display = "none";
+        }
+      }
+    } else {
+      //this will executed if input field is in focus state but empty.
+      for (const i of bodyDiv) {
+        i.removeAttribute("style");
+      }
+    }
+  }
+</script>
 
 <!-- EXIT Channel -->
 <script>
+  var li = document.getElementById("exitChannel");
 
-
-  var li = document.getElementById('exitChannel')
-
-  li.addEventListener('click',()=>{
-    var dict = JSON.parse(localStorage.getItem('users'))
-    var channelList = JSON.parse(localStorage.getItem('channelList'))
-    var channelName = document.querySelector('#channelName').textContent  //.slice(1)
-    if (confirm("You'll loose all of your data\n once you exit from the channel.")) {
-
-        for (const userName in dict) {
-
-          var index = dict[userName].findIndex(function(ele,index){
-          return ele[channelName]
-        })
+  li.addEventListener("click", () => {
+    var dict = JSON.parse(localStorage.getItem("users"));
+    var channelList = JSON.parse(localStorage.getItem("channelList"));
+    var channelName = document.querySelector("#channelName").textContent; //.slice(1)
+    if (
+      confirm("You'll loose all of your data\n once you exit from the channel.")
+    ) {
+      for (const userName in dict) {
+        var index = dict[userName].findIndex(function (ele, index) {
+          return ele[channelName];
+        });
 
         if (index !== -1) {
-
-            //deleting channel from users of localStorage file.
-          let newDict = dict[userName].filter(channel => dict[userName].indexOf(channel) !== index )
-          dict[userName] = newDict 
-          
-        } 
-
+          //deleting channel from users of localStorage file.
+          let newDict = dict[userName].filter(
+            (channel) => dict[userName].indexOf(channel) !== index
+          );
+          dict[userName] = newDict;
         }
-        // var userName    = sessionStorage.getItem('username')
-        //now deleting it from channelList of localStorage file
-          let newChannelList = channelList.filter(channel => channel !== channelName.slice(1))
+      }
+      // var userName    = sessionStorage.getItem('username')
+      //now deleting it from channelList of localStorage file
+      let newChannelList = channelList.filter(
+        (channel) => channel !== channelName.slice(1)
+      );
 
-          //now updating the localStorage
-          localStorage.setItem('users',JSON.stringify(dict))
-          localStorage.setItem('channelList',JSON.stringify(newChannelList))
+      //now updating the localStorage
+      localStorage.setItem("users", JSON.stringify(dict));
+      localStorage.setItem("channelList", JSON.stringify(newChannelList));
 
-
-          //refreshing the window
-          window.location.reload()
-
-      };
-
-  })
-
+      //refreshing the window
+      window.location.reload();
+    }
+  });
 </script>
+
+<!-- Responsive design changes -->
+
+<!-- For mobile -->
+<script>
+  if (window.innerWidth < 576) {
+    mobileAppend();
+
+    //User clicks on channelsList
+    let channelList = document
+      .querySelector(".hashtag")
+      .querySelector("#ulist");
+
+    channelList.addEventListener("click", () => {
+      // channels list visibility toggeling
+      document.querySelector(".hashtag").style = "z-index:unset;";
+
+      // nav effect
+      let top = document.querySelector(".sticky-top");
+
+      let nav = document.querySelector("nav");
+      nav.style = `visibility:hidden; opacity:0;`;
+
+      top.innerHTML = document.querySelector(".head").innerHTML;
+
+      top.appendChild(nav);
+
+      // toggeling visibility
+      document.querySelector(".head").style = `visibility:hidden; opacity:0;`;
+      top.classList.add("head");
+
+      // backButton click
+      backButtonFunction();
+    });
+
+    // popState
+    window.addEventListener("popstate", (event) => {
+      alert(event);
+      event.preventDefault();
+    });
+
+    //  misselenious styling with js
+    let dotButton = document.querySelector("#extras");
+    if (dotButton) {
+      dotButton.removeAttribute("style");
+    }
+  }
+
+  // pre-loader styling
+  let preloader = document.querySelector(".preloader");
+
+  window.addEventListener("load", () => {
+    // for preloader
+    preloader.classList.add("hidden");
+  });
+
+  preloader.addEventListener("animationend", () => {
+    preloader.remove();
+    document
+      .querySelector(".inside-body")
+      .querySelector(".row")
+      .removeAttribute("hidden");
+  });
+
+  async function mobileAppend() {
+    await updateSidebarList();
+
+    // let top = document.querySelector(".sticky-top");
+
+    // let nav = document.querySelector('nav')
+    // nav.style = `visibility:hidden; opacity:0;`;
+
+    // top.innerHTML = document.querySelector(".head").innerHTML;
+
+    // top.appendChild(nav)
+
+    // document.querySelector(".head").remove();
+    // top.classList.add("head");
+    // removing some elements from body
+    // document.querySelector('.body').innerHTML = "";
+  }
+
+  function backButtonFunction() {
+    let nav = document.querySelector(".sticky-top");
+
+    // backArrowIcon
+    let arrowIcon = document.createElement("i");
+    arrowIcon.classList = "fas fa-arrow-left";
+    arrowIcon.style = `padding: 10px; cursor:pointer;`;
+
+    let parent = nav.querySelector("#channelName").parentElement;
+    parent.style = `display: flex;align-items: center;padding-left: 0px;`;
+
+    let firstchild = nav.querySelector("#channelName");
+    parent.insertBefore(arrowIcon, firstchild);
+
+    // on click
+    arrowIcon.addEventListener("click", () => {
+      document.querySelector(".hashtag").style = `z-index:1;`;
+
+      // toggle navbar visibility
+      nav.classList.remove("head");
+      nav.querySelector(".row").remove();
+      nav.querySelector("nav").removeAttribute("style");
+
+      // toggling head visibilty
+      let head = document.querySelector(".main").querySelector(".head");
+      head.removeAttribute("style");
+
+      // // update Channel List
+      // updateSidebarList();
+    });
+  }
+</script>
+
 {% endblock %}

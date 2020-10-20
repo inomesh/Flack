@@ -1,122 +1,99 @@
-/* html{
-    background-color: rgba(0, 0, 0, 0.349);
-} */
-
-.inside-body{
-    margin: 50px;
+.inside-body {
+  margin: 50px;
 }
 
-
-body, #listrow{
-    background-color: #ffffff;
-    overflow-x: hidden;
+body,
+#listrow {
+  background-color: #ffffff;
+  overflow-x: hidden;
 }
 
-.main-div{
-    margin-top: 10px;
-    padding: 10px;
+.main-div {
+  margin-top: 10px;
+  padding: 10px;
 }
 
-
-
-.messages{
-    margin-bottom: 100px
+.messages {
+  margin-bottom: 100px;
 }
-
-
-/* .card,.card-header,.card-body{
-    border: none;
-    border-radius: 20px;
-    background-color: #f2f2f2;
-}
-
-.card-header{
-    margin: 1px 0px;
-    width: auto;
-    flex: content;
-} */
 
 /* Input Filed */
 #input {
-    border: none;
-    border-radius: 20px;
-    width: 80%;
-    padding: 10px 10px;
-    margin: 15px 10px;
-    vertical-align: middle;
+  border: none;
+  border-radius: 20px;
+  width: 80%;
+  padding: 10px 10px;
+  margin: 15px 10px;
+  vertical-align: middle;
 }
 
 /* Submit Button */
 .submit {
-    width: auto;
-    border-radius: 20px;
-    vertical-align: middle;
-    padding: 7px 14px;
-    margin: 0px 5px;
-    border: 1px solid #dedddd;
-    font-style: italic;
+  width: auto;
+  border-radius: 20px;
+  vertical-align: middle;
+  padding: 7px 14px;
+  margin: 0px 5px;
+  border: 1px solid #dedddd;
+  font-style: italic;
 }
 
-
-#inputbar{
-    margin-top: 90%;
+#inputbar {
+  margin-top: 90%;
 }
 
 /* SIDEBAR */
 
-
 /* heading */
-.sidebar-head{
-    color: rgb(0, 0, 0);
+.sidebar-head {
+  color: rgb(0, 0, 0);
 }
 /* channel Button */
 .channel-btn {
-    border: none;
-    color: rgb(0, 0, 0);
-    margin-left: 48%;
+  border: none;
+  color: rgb(0, 0, 0);
+  margin-left: 48%;
 }
-
 
 /* channel_list */
 .hashtag {
-    left: -13px;
-    height: 92%;
-    /* background-color: rgb(102, 16, 124); */
-    background-color: #f9f9f9;
-    top: 70px;
-    width: 100%;
-    padding: 30px !important;
-    position: absolute;
+  left: -13px;
+  height: 92%;
+  /* background-color: rgb(102, 16, 124); */
+  background-color: #f9f9f9;
+  top: 70px;
+  width: 100%;
+  padding: 30px !important;
+  position: absolute;
 }
 
-
-.hashtag, .sidebar-ulist, .sidebar-list {
-    /* color: rgb(190, 50, 255); */
-    /* background-color: rgb(102, 16, 124); */
-    color: rgba(0, 0, 0, 0.67);
-    background-color: #f9f9f9;
-    border: None;
-    font-weight: bolder;
-    font-style: italic;
-    overflow-y: auto;
+.hashtag,
+.sidebar-ulist,
+.sidebar-list {
+  /* color: rgb(190, 50, 255); */
+  /* background-color: rgb(102, 16, 124); */
+  color: rgba(0, 0, 0, 0.67);
+  background-color: #f9f9f9;
+  border: None;
+  font-weight: bold;
+  overflow-y: auto;
 }
-
-
 
 .sidebar-list:hover {
-    color: rgb(255, 255, 255);
-    background-color: #0f7299;
-    border-radius: 30px;
-    font-size: x-large;
-    text-align: justify;
+  color: rgb(255, 255, 255);
+  background-color: #0f7299;
+  border-radius: 30px;
+  font-size: x-large;
+  text-align: justify;
+  cursor: pointer;
 }
 
 .sidebar-head {
-    color: solid rgb(190, 50, 255) ;
-    margin-bottom: 20px;
-    border-bottom: 2px solid;
+  color: solid rgb(190, 50, 255);
+  margin-bottom: 20px;
+  border-bottom: 2px solid;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
