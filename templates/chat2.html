@@ -59,6 +59,50 @@
       }
     }
   </style>
+
+  <style media="screen and (max-width:500px)">
+    .preloader {
+      position: fixed;
+      z-index: 20000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(../static/images/texture.png);
+      background-size: cover;
+      font-family: cursive;
+    }
+
+    .preloader.hidden {
+      animation: fadeOut 2s;
+      animation-fill-mode: forwards;
+    }
+
+    .note{
+      margin-top: 20%;
+    }
+
+    .spinner {
+      /* display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10%;  */
+      
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      background-color: white;
+      padding: 10px;
+      border-radius: 30px;
+    }
+
+    @keyframes fadeOut {
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  </style>
   
   <section
     class="text-center text-dark font-weight-bolder note"
@@ -227,10 +271,13 @@
           width: 100%;">
 
             <!--inChat search box -->
-          <div class="collapse" id="inChatSearch" style="width: 95%;">
+          <div class="collapse" id="inChatSearch">
             <div
               class="search-chat text-center"
-            >
+              >
+              <a href="#" id="chat_search_button">
+                  <i class="fas fa-search text-dark"></i>
+              </a>
               <input
                 type="text"
                 id="chat_search"
@@ -239,9 +286,6 @@
                 autofocus
                 placeholder="search..."
               />
-              <a href="#" id="chat_search_button">
-                <i class="fas fa-search text-dark"></i>
-              </a>
             </div>
           </div>
 
@@ -259,7 +303,10 @@
             >
               <span class="fas fa-ellipsis-h"></span>
             </button>
+
             <ul class="dropdown-menu dropdown-menu-right fade">
+              <!-- for mobile, only for this dropdown lil changes -->
+             
               <li>
                 <a
                   class="dropdown-item"
@@ -344,129 +391,7 @@
            <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
          </div>
               
-         <div class="user1 shadow-sm  rounded">
-                <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-                <hr/>
-                <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-              </div>
-              
-         <div class="user2 shadow-sm  rounded">
-            <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-            <hr/>
-           <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-         </div>
-
-
-
-         <div class="user1 shadow-sm  rounded">
-          <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-          <hr/>
-          <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-        </div>
-        
-       <div class="user2 shadow-sm   rounded">
-          <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-          <hr/>
-         <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-       </div>
-     
-     
-     
-       <div class="user1 shadow-sm  rounded">
-        <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-        <hr/>
-        <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-      </div>
-
-      <div class="user2 shadow-sm   rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-      </div>          
-
-
-
-
-    <div class="user1 shadow-sm  rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-    </div>
-    
-    <div class="user2 shadow-sm   rounded">
-    <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-    <hr/>
-    <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-    </div>
-
-
-
-    <div class="user1 shadow-sm  rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-    </div>
-
-    <div class="user2 shadow-sm   rounded">
-    <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-    <hr/>
-    <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-    </div>
-
-
-
-    <div class="user1 shadow-sm  rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-    </div>
-
-    <div class="user2 shadow-sm   rounded">
-    <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-    <hr/>
-    <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-    </div>
-
-
-
-      <div class="user1 shadow-sm  rounded">
-        <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-        <hr/>
-        <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-      </div>
-
-      <div class="user2 shadow-sm  rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-      </div>
-
-
-      <div class="user1 shadow-sm  rounded">
-        <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-        <hr/>
-        <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-      </div>
-
-      <div class="user2 shadow-sm   rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-      </div>
-
-
-
-      <div class="user1 shadow-sm  rounded">
-        <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-        <hr/>
-        <div  id="user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia voluptatum corporis saepe beatae, rem vel est quaerat recusandae culpa dignissimos voluptates reiciendis hic nostrum deleniti minima eaque magnam, ipsa incidunt porro veritatis odio consequatur? Nemo, sequi necessitatibus, culpa earum harum expedita consectetur recusandae eum ratione tempora ullam a vitae quis.</div>
-      </div>
-
-      <div class="user2 shadow-sm   rounded">
-      <div class="font-weight-bold">@username <span class="float-right"> 12:00AM </span></div>
-      <hr/>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati voluptatibus doloremque sed a dolor veniam sapiente blanditiis quibusdam, nihil sequi.</div>
-      </div> -->
+        -->
     </div>
 
     <!-- Submit button-->
@@ -791,8 +716,9 @@
     });
 
     // popState
-    window.addEventListener("popstate", (event) => {
-      alert(event);
+    window.addEventListener("popstate", async event => {
+      
+      await backButtonFunction();
       event.preventDefault();
     });
 
@@ -842,8 +768,8 @@
 
     // backArrowIcon
     let arrowIcon = document.createElement("i");
-    arrowIcon.classList = "fas fa-arrow-left";
-    arrowIcon.style = `padding: 10px; cursor:pointer;`;
+    arrowIcon.classList = "fas fa-2x fa-arrow-left";
+    arrowIcon.style = `padding: 10px; font-size: 22px;`;
 
     let parent = nav.querySelector("#channelName").parentElement;
     parent.style = `display: flex;align-items: center;padding-left: 0px;`;

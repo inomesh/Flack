@@ -1,14 +1,16 @@
 body {
-  overflow-y: hidden;
+  overflow: hidden;
   cursor: pointer;
 }
 
 .body {
   background: url(../images/Create_user.png) no-repeat center center fixed;
   background-size: cover;
-  height: 80.7%;
+  height: 82.17%;
   padding: 10px 5px 2px 5px;
   word-wrap: anywhere;
+  top: 7.82%;
+  position: absolute;
 }
 
 .main {
@@ -29,22 +31,35 @@ body {
   flex-wrap: unset;
 }
 
-#input {
-  border: none;
-  border-radius: 20px;
-  width: 80%;
-  margin: 15px 8px;
-  vertical-align: middle;
-  padding: 10px;
-}
-
 .btm {
   width: 100%;
   height: 10%;
   background-color: rgb(242, 242, 242);
   position: absolute;
   /* bottom: 28px; */
+  align-items: center;
+  display: flex;
   padding: 0px 2px;
+}
+
+#form {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+#input {
+  border: none;
+  border-radius: 20px;
+  width: 80%;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.btm #input:focus {
+  margin-bottom: 4px;
 }
 
 .submit {
@@ -95,8 +110,9 @@ hr {
 .hashtag {
   left: 0;
   z-index: 2000;
-  height: 93%;
-  top: 7%;
+  height: 90%;
+  top: 10%;
+  position: absolute;
 }
 
 .head-h3 {
@@ -104,7 +120,61 @@ hr {
   margin-bottom: 0;
 }
 
-.sticky-top{
-  height: 66px;
+.sticky-top {
+  height: 10%;
+  padding: unset;
+}
 
+.head {
+  height: 45px;
+  padding: 5px;
+}
+
+#extras {
+  transform: rotate(90deg);
+  outline: none;
+  box-shadow: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  transform: translate3d(-115px, 0px, 0px);
+  top: 0px;
+  left: 0px;
+  will-change: transform;
+}
+
+/* SIDEBAR LIST */
+
+/* .sidebar-list:hover {
+    color: black;
+    background-color: #131c211e;
+    border-radius: 0;
+    font-size: inherit;
+    text-align: justify;
+    cursor: pointer;
+  } */
+
+@keyframes list_hover {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sidebar-list:focus {
+  animation-name: list_hover;
+  animation-duration: 0.1s;
+  transition: all ease-in-out;
+}
+
+.sidebar-list:hover {
+  color: black;
+  border-radius: 0;
+  font-size: inherit;
+  text-align: justify;
+  cursor: pointer;
+  background-color: #131c211e;
 }
