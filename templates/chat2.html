@@ -8,12 +8,14 @@
 <link
   rel="stylesheet"
   media="screen and (max-width: 500px)"
-  href="../static/css/mobile.css"
-/>
+  href="../static/css/mobile.css" >
+
+
 
 {%endblock%} {%block title%} chat app {% endblock %} {% block body %}
 
-<!-- Pre-Loader -->
+ <!-- Pre Loader  -->
+
 <div class="preloader">
 
   <style media="screen and (min-width:768px)">
@@ -132,9 +134,39 @@
   <!--SIDEBAR     channel-btn-->
 
   <div class="col-md-3 hashtag bg-black bs-sidebar">
+
     <!-- sidebar head -->
-    <h3 class="sidebar-head">
+
+    <div class="sidebar-head">
+
+      <div class="row">
+
+        <div class="col-6">
+           <h3> <strong>#Channels</strong> </h3>
+        </div>
+
+        <div class="col-6">
+
+          <button class="btn btn-default float-right" onclick="openSlideMenu()">
+          <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+          </button>
+
+          <!-- <button class="float-right btn d-inline" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample" style="font-size: 12px; padding: 2px">
+            <i class="fas fa-2x fa-plus" aria-hidden="true"></i>
+          </button> -->
+
+        </div>
+
+      </div>
+      
+   </div>
+
+    <!-- <h3 class="sidebar-head">
       <strong>#Channels</strong>
+
+      <button class="btn btn-default">
+        <i class="fas fa-ellipsis-v" onclick="openSlideMenu()"></i>
+      </button>
       <button
         class="float-right btn d-inline"
         type="button"
@@ -146,7 +178,10 @@
       >
         <i class="fas fa-2x fa-plus"></i>
       </button>
-    </h3>
+    </h3> -->
+
+    <!-- sidebar temp -->
+    {% include "sidebar.html" %}
 
     <!--  MODAL FOR NEW CHANNEL CREATION -->
 
@@ -266,7 +301,7 @@
           </span>
 
           <div style="display: flex;
-          justify-content: end;
+          justify-content: flex-end;
           align-items: center;
           width: 100%;">
 
@@ -319,6 +354,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="dropdown-item-search"
                   data-toggle="collapse"
                   href="#inChatSearch"
                   >Search</a
@@ -358,9 +394,10 @@
     <div
       class="body bg-white"
       style="
-        vertical-align: middle;
-        background-image: url(../static/images/texture.png);
-        height: 100%;
+      vertical-align: middle;
+      background: url(../static/images/texture.png) no-repeat center center;
+      height: 100%;
+      background-size: cover;
       "
     >
       <section
@@ -685,49 +722,54 @@
 
 <!-- For mobile -->
 <script>
-  if (window.innerWidth < 576) {
-    mobileAppend();
-
-    //User clicks on channelsList
-    let channelList = document
-      .querySelector(".hashtag")
-      .querySelector("#ulist");
-
-    channelList.addEventListener("click", () => {
-      // channels list visibility toggeling
-      document.querySelector(".hashtag").style = "z-index:unset;";
-
-      // nav effect
-      let top = document.querySelector(".sticky-top");
-
-      let nav = document.querySelector("nav");
-      nav.style = `visibility:hidden; opacity:0;`;
-
-      top.innerHTML = document.querySelector(".head").innerHTML;
-
-      top.appendChild(nav);
-
-      // toggeling visibility
-      document.querySelector(".head").style = `visibility:hidden; opacity:0;`;
-      top.classList.add("head");
-
-      // backButton click
-      backButtonFunction();
-    });
-
-    // popState
-    window.addEventListener("popstate", async event => {
-      
-      await backButtonFunction();
-      event.preventDefault();
-    });
-
-    //  misselenious styling with js
-    let dotButton = document.querySelector("#extras");
-    if (dotButton) {
-      dotButton.removeAttribute("style");
+  
+    if (window.matchMedia("(max-width: 500px)")){
+ 
+      mobileAppend();  
+  
+      //User clicks on channelsList
+      let channelList = document
+        .querySelector(".hashtag")
+        .querySelector("#ulist");
+  
+      channelList.addEventListener("click", () => {
+        // channels list visibility toggeling
+        document.querySelector(".hashtag").style = "z-index:unset;";
+  
+        // history api 
+       window.history.pushState(null,'chat','/chat')
+  
+        // nav effect
+        let top = document.querySelector(".sticky-top");
+  
+        let nav = document.querySelector("nav");
+        nav.style = `visibility:hidden; opacity:0;`;
+  
+        top.innerHTML = document.querySelector(".head").innerHTML;
+  
+        top.appendChild(nav);
+  
+        // toggeling visibility
+        document.querySelector(".head").style = `visibility:hidden; opacity:0;`;
+        top.classList.add("head");
+  
+        // backButton click
+        backButtonFunction();
+      });
+  
+  
+      //  misselenious styling with js
+      let dotButton = document.querySelector("#extras");
+      if (dotButton) {
+        dotButton.removeAttribute("style");
+      }
+  
+      // inChat search appending function to element.
+      let dropdown_search = document.querySelector('#dropdown-item-search')
+      dropdown_search.setAttribute('onclick','create_inChatSearchBackButton()')
+    
     }
-  }
+
 
   // pre-loader styling
   let preloader = document.querySelector(".preloader");
@@ -735,6 +777,13 @@
   window.addEventListener("load", () => {
     // for preloader
     preloader.classList.add("hidden");
+
+    // popState
+    window.addEventListener("popstate", async event => {
+      
+      await backToNav();
+      event.preventDefault();
+    });
   });
 
   preloader.addEventListener("animationend", () => {
@@ -779,6 +828,57 @@
 
     // on click
     arrowIcon.addEventListener("click", () => {
+      //function which does what its name says.
+      backToNav();
+    });
+  }
+
+  async function create_inChatSearchBackButton(){
+
+    let search = document.querySelector('#inChatSearch')
+      if (search.style.display !== "none" ||
+        search.style.display !== ''){
+
+          search.style = `display: flex;
+          justify-content: space-between;
+          align-items: center;`
+
+          if(!search.children[1]){
+
+          let button = document.createElement('button')
+          button.setAttribute('class','btn btn-default')
+          button.setAttribute('id','inChatSearch-closeButton')
+          button.setAttribute('onclick','run_inChatSearchBackButton()')
+          button.setAttribute('style','padding: 10px;')
+
+          let icon = document.createElement('i')
+          icon.setAttribute('class','fas fa-times')
+          icon.setAttribute('aria-hidden','true')
+          
+          await button.appendChild(icon)
+
+          await search.appendChild(button)
+          
+        }
+    }
+  }
+    
+  async function run_inChatSearchBackButton(){
+    //  inChatSearch close button
+    let searchCloseButton = document.querySelector("#inChatSearch #inChatSearch-closeButton");
+    if (searchCloseButton !== null){
+
+        let search = document.querySelector('#inChatSearch');
+        search.setAttribute('style','display:none;');
+    
+      };
+  }
+
+
+  async function backToNav(){
+
+      let nav = document.querySelector(".sticky-top");
+
       document.querySelector(".hashtag").style = `z-index:1;`;
 
       // toggle navbar visibility
@@ -791,9 +891,11 @@
       head.removeAttribute("style");
 
       // // update Channel List
-      // updateSidebarList();
-    });
+      await updateSidebarList();
+
   }
+
+
 </script>
 
 {% endblock %}

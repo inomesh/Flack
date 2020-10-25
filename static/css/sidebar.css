@@ -1,0 +1,92 @@
+:root {
+  --sidebar-slide-head : #260e26;
+  --sidebar-slide-body : #401740;
+
+  --border-bottom : 2px solid rgba(255,255,255,0.2);
+
+  --icons-idle  : #796d79;
+  --icons-hover : white;
+}
+
+
+.sidebar-slide-nav {
+  display:none;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 6%;
+  left: 0;
+  background-color: var(--sidebar-slide-body);
+  /* opacity: 0.9; */
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar-slide-nav .sidebar-slide-head {
+  margin: 0;
+  background-color: var(--sidebar-slide-head);
+  padding: 10%;
+  height: 10%;
+}
+
+.sidebar-slide-nav .sidebar-slide-userProfile {
+  cursor: pointer;
+}
+
+.sidebar-slide-nav .sidebar-slide-extra_buttons {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.sidebar-slide-nav ul {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-slide-nav ul li {
+  width: 100%;
+  display: flex;
+  padding: 20px 30px;
+  font-size: 25px;
+  text-decoration: none;
+  color: #ccc;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.sidebar-slide-nav ul li:active {
+  border-left: 5px solid white;
+}
+
+.sidebar-slide-nav ul li:hover,
+.sidebar-slide-nav .close:hover,
+.sidebar-slide-nav #create-channel-button:hover{
+  color: var(--icons-hover);
+  /* background-color: rgba(0, 0, 0, 0.692); */
+  font-weight: bolder;
+  transition: 0.4s ease-in-out;
+}
+
+.sidebar-slide-nav .close,
+.sidebar-slide-nav #create-channel-button {
+  top: 0;
+  font-size: 30px;
+  position: relative;
+  color: var(--icons-idle);
+  outline: none;
+  box-shadow: none;
+  margin: 0 10px !important;
+  transition: all 0.4s ease-in-out;
+}
+
+#content {
+  padding: 20px;
+  transition: margin-left 0.6s ease-in-out;
+  overflow: hidden;
+  width: 100%;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+

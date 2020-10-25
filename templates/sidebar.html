@@ -1,0 +1,371 @@
+    <script defer>
+    
+        // sidebar slide 1  --> 
+        function openSlideMenu(){
+            let menu = document.getElementById('menu');
+            menu.style.display = 'block';
+            setTimeout(()=>{
+                menu.style.width = '25%';
+            },50)
+        }
+    
+        function closeSlideMenu(){
+            let menu = document.getElementById('menu');
+            menu.style.width = '0px';
+            setTimeout(()=>{
+                menu.style.display = 'none';
+            },500)
+        }
+        
+
+        // sidebar slide 2 --> user profile
+        function openUserProfileSidebarSlide(){
+          let sidebar = document.querySelector('.sidebar-slide-second');
+          sidebar.style.setProperty('display','block');
+          setTimeout(()=>{
+            sidebar.style.setProperty('width','25%');
+          },50);
+
+        };
+
+        function closeUserProfileSidebarSlide(){
+            let sidebar = document.querySelector('.sidebar-slide-second');
+            sidebar.style.width = '0px';
+            setTimeout(()=>{
+              sidebar.style.display = 'none';
+            },500)
+            
+        };
+    
+    </script>
+
+    <link rel="stylesheet" href="../static/css/sidebar.css">
+
+    <section>
+
+        <!-- first sidebar slide -->
+        <div class="sidebar-slide-first sidebar-slide-nav" id="menu">
+
+                <!-- sidebar slide starts -->
+                <ul>
+
+                    <div class="row sidebar-slide-head">
+
+                        <div class="col-4 sidebar-slide-userProfile" title="User Profile">
+                            <img src="../static/images/svg/default_profile_pic.svg" onclick="openUserProfileSidebarSlide()" class="w-50 rounded rounded-lg border border-light float-left bg-white" 
+                            alt="User Profile Image">
+                        </div>
+                        
+                        <div class="col-8 sidebar-slide-extra_buttons">
+
+                            <!-- Create New Channel button -->
+                            <button class="btn d-inline" id="create-channel-button" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample" style="font-size: 12px; padding: 2px" title="New Channel">
+                                <i class="fas fa-2x fa-plus" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- close button -->
+                            <button class=" btn btn-default close" onclick="closeSlideMenu()" title="close">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    
+                    </div>
+
+                    <!-- <div class="sidebar-slide-body">
+                            <li id="profile" onclick="openUserProfileSidebarSlide()">Profile</li>
+                            <div>
+                              <i class="fas fa-adjust"></i>
+                              <li id="theme">Theme</li>
+                            </div>
+                            <li id="chat-wallpaper">Chat Wallpaper</li>
+                            <li id="notifications">Notifications</li>
+                            <li id="help">Help</li>
+                    </div> -->
+
+                    <div class="sidebar-slide-body">
+
+                      <div class="row" id="profile" onclick="openUserProfileSidebarSlide()">
+                        <div class="col-2">
+                          <i class="fas fa-user"></i>
+                        </div>
+                        <div class="col-10">
+                          <li>Profile</li>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-2">
+                          <i class="fas fa-adjust"></i>
+                        </div>
+                        <div class="col-10">
+                          <li id="theme">Theme</li>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-2">
+                          <i class="far fa-image"></i>
+                        </div>
+                        <div class="col-10">
+                          <li id="chat-wallpaper">Chat Wallpaper</li>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-2">
+                          <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="col-10">
+                          <li id="notifications">Notifications</li>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-2">
+                          <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="col-10">
+                          <li id="help">Help</li>
+                        </div>
+                      </div>
+
+                    </div>
+
+                </ul>
+               
+                <style>
+
+                  .sidebar-slide-body > div {
+                    margin: 0;
+                    cursor: pointer;
+                  }
+
+                  .sidebar-slide-body > div > div{
+                    justify-content: flex-start;
+                    display: flex;
+                    align-items: center;
+                    color: white;
+                  }
+
+                  .sidebar-slide-body > div > .col-2 {
+                    justify-content: center;
+                  } 
+                  
+                  .sidebar-slide-body > div > .col-10 {
+                    border-bottom: var(--border-bottom);
+                  } 
+                  
+                  </style>
+
+        </div>
+
+        <!-- second sidebar slide - user profile  -->
+        <div class="sidebar-slide-second sidebar-slide-nav" style="height: 100%;">
+
+            <!-- sidebar slide starts -->
+
+                <div class="row sidebar-slide-head">
+
+                    <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
+                        <!-- close button -->
+                        <button class=" btn btn-default close" id="close-user-profile" onclick="closeUserProfileSidebarSlide()" title="close">
+                            <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
+                        </button>
+                        
+                        <h3 style="color: #fff;
+                        font-size: 22px;
+                        font-family: verdana;
+                        margin: 0;
+                        font-weight: bold;">Profile</h3>
+                    </div>
+                    
+                </div>
+
+                
+                <div class="sidebar-slide-body" style="">
+                        
+                    <div class="user-profile-image" style="position: relative;height: 200px;left: 25%;max-width: min-content;margin-top: 5%;">
+                   
+                    <img src="../static/images/svg/default_profile_pic.svg" class="rounded rounded-lg border border-light float-left bg-white" alt="User Profile Image" style="
+                        position: static;
+                        width: 200px;
+                        height: 200px;
+                        border: none !important;
+                        background: none !important;
+                        ">
+
+                    </div>
+                
+                    <form style="padding: 10px;width: 100%;margin-top: 10%;" _lpchecked="1">
+
+                        <div class="form-group" style="color: white;">
+                            <label for="exampleInputEmail1" style="">Your Name</label>
+                            <input type="text" class="form-control-plaintext" id="exampleInputEmail1" readonly="" aria-describedby="emailHelp" placeholder="N O M E S H" style="color: white;font-weight: bold;font-size: 16px;border-bottom: 2px solid rgba(255,255,255,0.2);margin-bottom: 10px;outline: none;font-family: verdana;" maxlength="25" autocomplete="off">
+                            <small id="emailHelp" class="form-text" style="color: rgba(255,255,255,0.7);">This name will visible to your contacts.</small>
+                        </div>
+
+                        <div class="form-group" style="color: white;">
+                            <label for="exampleInputPassword1">About</label>
+                            <input type="text" readonly="" class="form-control-plaintext" id="exampleInputPassword1" placeholder="Busy" style="color: white;font-weight: bold;font-size: 16px;border-bottom: 2px solid rgba(255,255,255,0.2);margin-bottom: 10px;outline: none;font-family: verdana;">
+                        </div>
+                        
+                    </form>
+                        
+                </div>
+                
+      
+                <style>
+
+                    input {
+                        outline: 0;
+                    }
+        
+                    input::placeholder {
+                        color: white;
+                        font-weight: normal;
+                        font-size: 16px;
+                        font-family: verdana;
+                      }
+        
+        /* sidebar.css | http://127.0.0.1:5000/static/css/sidebar.css */
+        
+        .sidebar-slide-nav {
+            display: none;
+            width: 0;
+            z-index: 2;
+            overflow: hidden;
+          }
+          
+          .sidebar-slide-nav .close, .sidebar-slide-nav #create-channel-button {
+        
+            margin: 0 20px 5px 0 !important;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .w-100 {
+            margin-top: 20px;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            left: 25%;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .w-100 > img:nth-child(1) {
+            width: 200px;
+            height: 200px;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h3:nth-child(2) {
+            color: #fff;
+            font-size: 24px;
+            font-family: sans-serif;
+            margin: 0;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          /* .col-12 { */
+          .sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .fa-arrow-left {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .sidebar-slide-2 > ul:nth-child(1) {
+            display: block;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          div.sidebar-slide-body:nth-child(3) {
+            top: 25%;
+            position: relative;
+            left: 0;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          #exampleInputEmail1 {
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            margin-bottom: 10px;
+            outline: none;
+            font-family: verdana;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          div.sidebar-slide-body:nth-child(3) > form:nth-child(1) {
+            padding: 10px;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(2) {
+            
+            color: white;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(1) {
+            color: white;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          #emailHelp {
+            font-weight: ;
+            color: rgba(255,255,255,0.7);
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          #exampleInputPassword1 {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid white;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .col-12 {
+          
+            justify-content: flex-start;
+            align-items: end;
+            margin: 0;
+            padding: 0;
+          }
+          
+          /* Element | http://127.0.0.1:5000/chat */
+          
+          .w-100 {
+            margin: 20px;
+          }
+          
+                </style>
+
+        </div>
+
+
+       
+    </section>
+    

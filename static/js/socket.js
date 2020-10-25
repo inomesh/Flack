@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           let span = document.createElement("span");
           span.setAttribute("class", "badge badge-primary badge-pill");
-          span.style = "margin-left: 75%;";
+          span.style = "margin-left: 50%;";
           span.innerText = count + 1;
           sidebarListItem[key].childNodes[0].append(span);
 

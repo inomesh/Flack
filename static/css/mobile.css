@@ -1,3 +1,7 @@
+:root {
+  --icon-color: rgba(0, 0, 0);
+}
+
 body {
   overflow: hidden;
   cursor: pointer;
@@ -6,40 +10,45 @@ body {
 .body {
   background: url(../images/Create_user.png) no-repeat center center fixed;
   background-size: cover;
-  height: 82.17%;
   padding: 10px 5px 2px 5px;
   word-wrap: anywhere;
-  top: 7.82%;
   position: absolute;
+  height: 83%;
+  top: 7%;
 }
 
 .main {
   width: 100%;
   height: 100%;
   padding: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 0px;
+  transform: none;
+  margin: 0;
   border: none;
   z-index: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* z-index: 1000; */
 }
 
 .sticky-top .row {
   display: flex;
   flex-wrap: unset;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .btm {
   width: 100%;
   height: 10%;
   background-color: rgb(242, 242, 242);
-  position: absolute;
-  /* bottom: 28px; */
   align-items: center;
   display: flex;
   padding: 0px 2px;
+  position: fixed;
+  bottom: 0;
 }
 
 #form {
@@ -48,6 +57,7 @@ body {
   width: 100%;
   height: 100%;
   align-items: center;
+  position: absolute;
 }
 
 #input {
@@ -110,9 +120,9 @@ hr {
 .hashtag {
   left: 0;
   z-index: 2000;
-  height: 90%;
   top: 10%;
-  position: absolute;
+  height: 100%;
+  position: fixed;
 }
 
 .head-h3 {
@@ -120,14 +130,13 @@ hr {
   margin-bottom: 0;
 }
 
-.sticky-top {
-  height: 10%;
-  padding: unset;
-}
-
 .head {
-  height: 45px;
   padding: 5px;
+  top: 0;
+  border: none;
+  position: fixed;
+  height: 7%;
+  width: 100%;
 }
 
 #extras {
@@ -136,9 +145,47 @@ hr {
   box-shadow: none;
 }
 
+#inChatSearch {
+  width: 100%;
+  z-index: 1;
+  transition:all ease 0.6s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 7%;
+  margin: 0;
+  display: none;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+
+#inChatSearch:focus {
+  width: 100%;
+}
+
+#inChatSearch .search-chat {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+}
+
+#inChatSearch .search-chat #chat_search {
+  border: none;
+  background-color: #ededed;
+  padding: 10px 15px;
+  width: 90%;
+  outline: none;
+  border-radius: 30px;
+}
+
 .dropdown-menu {
+  transition: all 0.6s ease 0s, transform 0.6s ease 0s;
   position: absolute;
-  transform: translate3d(-115px, 0px, 0px);
+  transform: translate3d(-120px, 40px, 0px);
   top: 0px;
   left: 0px;
   will-change: transform;
@@ -177,4 +224,9 @@ hr {
   text-align: justify;
   cursor: pointer;
   background-color: #131c211e;
+}
+
+/* misseleneos */
+i {
+  color: var(--icon-color);
 }
