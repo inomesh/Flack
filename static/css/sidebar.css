@@ -6,6 +6,8 @@
 
   --icons-idle  : #796d79;
   --icons-hover : white;
+
+  --text-idle : #ccc;
 }
 
 
@@ -50,7 +52,7 @@
   padding: 20px 30px;
   font-size: 25px;
   text-decoration: none;
-  color: #ccc;
+  color: var(--text-idle);
   cursor: pointer;
   justify-content: flex-start;
 }

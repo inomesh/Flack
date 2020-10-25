@@ -36,7 +36,8 @@
             },500)
             
         };
-    
+        
+
     </script>
 
     <link rel="stylesheet" href="../static/css/sidebar.css">
@@ -93,7 +94,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" title="Theme">
                         <div class="col-2">
                           <i class="fas fa-adjust"></i>
                         </div>
@@ -102,7 +103,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" title="Chat Wallpaper" onclick="openChatWallpaperSidebarSlide()">
                         <div class="col-2">
                           <i class="far fa-image"></i>
                         </div>
@@ -111,7 +112,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" title="Notifications">
                         <div class="col-2">
                           <i class="fas fa-bell"></i>
                         </div>
@@ -120,7 +121,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" title="Help">
                         <div class="col-2">
                           <i class="fas fa-question-circle"></i>
                         </div>
@@ -365,7 +366,8 @@
 
         </div>
 
-
-       
+        <!-- Third sidebar slide - Chat wallpaper -->
+        {% include "./sidebar-slide/chat_wallpaper.html"%}
+        
     </section>
     

@@ -1,3 +1,8 @@
+:root {
+  --theme-text:black;
+  --theme-background:#ededed;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +19,7 @@
   top: 50%;
   left: 61%;
   transform: translate(-50%, -50%);
+  transition: all 0.6s ease-in-out;
 }
 
 .head {
@@ -60,7 +66,7 @@
 
 #chat_search {
   border: thick;
-  background-color: #ededed;
+  background-color: var(--theme-background);
   padding: 10px 15px;
   width: 90%;
   outline: none;
@@ -68,7 +74,7 @@
 
 #inChatSearch {
   width: 80%;
-  background-color: #ededed;
+  background-color: var(--theme-background);
   border: thick;
   border-radius: 50px;
 }
@@ -84,7 +90,7 @@
 }
 
 .label {
-  color: rgb(0, 0, 0);
+  color: var(--theme-text);
   border-bottom: 2px solid black;
   background-color: rgba(0, 0, 0, 0.295);
 }
@@ -113,8 +119,8 @@
   display: table;
   clear: both;
   /* background-color: #005a83e6; */
-  background-color: #4e1d4ef2;
-  color: rgb(255, 255, 255);
+  background-color: var(--theme-background);
+  color: var(--theme-text);
   font-weight: bold;
   border-radius: 20px;
   word-break: break-word;

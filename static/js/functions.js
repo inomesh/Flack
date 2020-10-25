@@ -23,9 +23,9 @@ function messageAppend(username, data) {
   //conditions for viewing messages in window ( right-left view )
   var view;
   if (username === sessionStorage.getItem("username")) {
-    view = "user2 shadow  text-white rounded";
+    view = "user2 shadow rounded";
   } else {
-    view = "user1 shadow bg-light rounded";
+    view = "user1 shadow rounded";
   }
 
   //properties
@@ -166,9 +166,9 @@ function localmessageAppend(username, localtime, data) {
   //conditions for viewing messages in window ( right-left view )
   var view;
   if (username === sessionStorage.getItem("username")) {
-    view = "user2 shadow  text-white rounded";
+    view = "user2 shadow rounded";
   } else {
-    view = "user1 shadow bg-light rounded";
+    view = "user1 shadow rounded";
   }
 
   //properties
