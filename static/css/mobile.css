@@ -120,7 +120,7 @@ hr {
 .hashtag {
   left: 0;
   z-index: 2000;
-  top: 10%;
+  /* top: 10%; */
   height: 100%;
   position: fixed;
 }
@@ -227,6 +227,6 @@ hr {
 }
 
 /* misseleneos */
-i {
+.fas {
   color: var(--icon-color);
 }

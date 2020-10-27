@@ -17,28 +17,94 @@
             },500)
         }
         
-
-        // sidebar slide 2 --> user profile
+        //functions for single task
         function openUserProfileSidebarSlide(){
-          let sidebar = document.querySelector('.sidebar-slide-second');
-          sidebar.style.setProperty('display','block');
-          setTimeout(()=>{
-            sidebar.style.setProperty('width','25%');
-          },50);
+            let div = document.querySelector('.sidebar-slide-profile')
+            div.style.display = 'block';
+              setTimeout(()=>{
+                div.style.width = '25%';
+              },50)
+        }
 
-        };
 
-        function closeUserProfileSidebarSlide(){
-            let sidebar = document.querySelector('.sidebar-slide-second');
-            sidebar.style.width = '0px';
-            setTimeout(()=>{
-              sidebar.style.display = 'none';
-            },500)
+        //event function for opening the sidebar.
+        window.addEventListener('load',()=>{
+
+            let body = document.querySelector('.sidebar-slide-body')
+            body.addEventListener('click',sidebar_slide_open)
+          })
+
+        function sidebar_slide_open(e){
+
+            let body = document.querySelector('.sidebar-slide-body').children
+            const receiveText = e.target.textContent.toLowerCase()
+
+            for(div in body){
+
+                let text = body[div].title.toLowerCase()
+                // checking if target is the root sidebar or not.
+                if (receiveText === text && receiveText !== "<empty string>" && receiveText) {
+   
+                  text = text.split(' ').join("-").toLowerCase()
+               
+                  let sidebar_parent = document.querySelector(`.sidebar-slide-${text}`);
+                  
+                  let display = sidebar_parent.style["display"]
+                  
+                  if(sidebar_parent){
+
+                    if ( display === "none" || display === ''){
+                 
+                      if (text){
+                        sidebar_parent.style.display = 'block';
+                        setTimeout(()=>{
+                          sidebar_parent.style.width = '25%';
+                        },50)
+                        console.log('hello')
+                        return
+                        
+                       }
+       
+                   }
+                  }
+               }
+
+
+            }
+ 
+        }
+
+        function sidebar_slide_close(){
+
+          let sidebar_header = document.querySelectorAll('.sidebar-slider-header-text')
+          
+          sidebar_header.forEach(e => {
             
-        };
+            let text = e.textContent
+            text = text.split(' ').join("-").toLowerCase()
+            
+            let sidebar_parent = document.querySelector(`.sidebar-slide-${text}`);
+            
+            if (sidebar_parent.style.display === "block"){
+            
+              if (text){
+                sidebar_parent.style.width = '0px';
+                  setTimeout(()=>{
+                    sidebar_parent.style.display = 'none';
+                  },500)
+                }
+
+            }
+           
+
+          })
+
+          
+        }
         
 
-    </script>
+
+      </script>
 
     <link rel="stylesheet" href="../static/css/sidebar.css">
 
@@ -85,7 +151,7 @@
 
                     <div class="sidebar-slide-body">
 
-                      <div class="row" id="profile" onclick="openUserProfileSidebarSlide()">
+                      <div class="row" title="profile" >
                         <div class="col-2">
                           <i class="fas fa-user"></i>
                         </div>
@@ -94,7 +160,7 @@
                         </div>
                       </div>
 
-                      <div class="row" title="Theme">
+                      <div class="row" title="Theme" >
                         <div class="col-2">
                           <i class="fas fa-adjust"></i>
                         </div>
@@ -103,7 +169,7 @@
                         </div>
                       </div>
 
-                      <div class="row" title="Chat Wallpaper" onclick="openChatWallpaperSidebarSlide()">
+                      <div class="row" title="Chat Wallpaper" >
                         <div class="col-2">
                           <i class="far fa-image"></i>
                         </div>
@@ -112,7 +178,7 @@
                         </div>
                       </div>
 
-                      <div class="row" title="Notifications">
+                      <div class="row"  title="Notifications">
                         <div class="col-2">
                           <i class="fas fa-bell"></i>
                         </div>
@@ -121,7 +187,7 @@
                         </div>
                       </div>
 
-                      <div class="row" title="Help">
+                      <div class="row"  title="Help">
                         <div class="col-2">
                           <i class="fas fa-question-circle"></i>
                         </div>
@@ -161,7 +227,7 @@
         </div>
 
         <!-- second sidebar slide - user profile  -->
-        <div class="sidebar-slide-second sidebar-slide-nav" style="height: 100%;">
+        <div class="sidebar-slide-second sidebar-slide-profile sidebar-slide-nav" style="height: 100%;">
 
             <!-- sidebar slide starts -->
 
@@ -169,11 +235,11 @@
 
                     <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
                         <!-- close button -->
-                        <button class=" btn btn-default close" id="close-user-profile" onclick="closeUserProfileSidebarSlide()" title="close">
+                        <button class=" btn btn-default close" onclick="sidebar_slide_close()" id="close-user-profile" title="close">
                             <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
                         </button>
                         
-                        <h3 style="color: #fff;
+                        <h3 class="sidebar-slider-header-text" style="color: #fff;
                         font-size: 22px;
                         font-family: verdana;
                         margin: 0;

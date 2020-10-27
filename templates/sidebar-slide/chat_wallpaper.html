@@ -67,29 +67,10 @@
 
     })
 
-    
-    function openChatWallpaperSidebarSlide(){
-
-        let div = document.querySelector('.sidebar-slide-third')
-        div.style.display = 'block';
-        setTimeout(()=>{
-            div.style.width = '25%';
-        },50);
-    }
-
-    function closeChatWallpaperSidebarSlide(){
-        let div = document.querySelector('.sidebar-slide-third')
-        div.style.width = '0px';
-        setTimeout(()=>{
-            div.style.display = 'none';
-          },500)
-    }
-
-
 </script>
 
-
-<div class="sidebar-slide-third sidebar-slide-nav" style="">
+<!--  -->
+<div class="sidebar-slide-third sidebar-slide-chat-wallpaper sidebar-slide-nav" style="">
 
     <!-- sidebar slide starts -->
 
@@ -97,11 +78,11 @@
 
             <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
                 <!-- close button -->
-                <button class=" btn btn-default close" id="close-Chat-Wallpaper-slide" onclick="closeChatWallpaperSidebarSlide()" title="close">
+                <button class=" btn btn-default close" id="close-Chat-Wallpaper-slide" onclick="sidebar_slide_close()" title="close">
                     <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
                 </button>
                 
-                <h3 style="color: #fff;
+                <h3 class="sidebar-slider-header-text" style="color: #fff;
                 font-size: 22px;
                 font-family: verdana;
                 margin: 0;
@@ -124,7 +105,7 @@
         </div>
         
 
-        <style>
+        <!-- <style>
 
             input {
                 outline: 0;
@@ -271,6 +252,79 @@
     margin: 20px;
   }
   
-        </style>
+        </style> -->
 
+
+        <style>
+
+          .sidebar-slide-nav {
+            z-index: 2;
+            overflow: hidden;
+            width: 25%;
+            height: 100%;
+            position: fixed;
+            top: 6%;
+            left: 0;
+            background-color: var(--sidebar-slide-body, #000);
+            transition: all 0.3s ease-in-out;
+          }
+          
+          .sidebar-slide-nav .sidebar-slide-head {
+            margin: 0;
+            background-color: var(--sidebar-slide-head);
+            padding: 10%;
+            height: 10%;
+            background-color: blueviolet;
+          }
+          
+          .sidebar-slide-nav .sidebar-slide-userProfile {
+            cursor: pointer;
+          }
+          
+          .sidebar-slide-nav .close,
+          .sidebar-slide-nav #create-channel-button {
+            top: 0;
+            margin: 0 20px 5px 0 !important;
+            font-size: 30px;
+            position: relative;
+            color: var(--icons-idle);
+            outline: none;
+            box-shadow: none;
+            transition: all 0.4s ease-in-out;
+          }
+          
+          .sidebar-slide-nav .sidebar-slide-body {
+            padding: 20px;
+            overflow-y: auto;
+            height: 80%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            position: relative;
+          }
+          
+          .sidebar-slide-body .row {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: pointer;
+          }
+          
+          .sidebar-slide-body .row > div {
+            width: 100px;
+            height: 100px;
+            justify-content: flex-start;
+            display: flex;
+            align-items: center;
+            color: white;
+          }
+
+
+
+        </style>
 </div>
+
+
