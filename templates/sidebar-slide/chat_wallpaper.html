@@ -1,330 +1,330 @@
 
 <script defer>
 
-    let colorList = ["#E44236", "#B83227", "#D63031", "#E84342", "#FF3031", "#BA2F16", "#EC4849", "#FF3E4D", "#E71C23", "#EA425C", "#E8290B", "#AE1438", "#E83350", "#FF4848", "#FF362E", "#3498DB", "#2475B0", "#74B9FF", "#0A79DF", "#4834DF", "#30336B", "#487EB0", "#192A56", "#6A89CC", "#0A3D62", "#4BCFFA", "#0ABDE3", "#25CCF7", "#67E6DC", "#3C40C6", "#2ecc72", "#26ae60", "#6ab04c", "#6AB04A", "#badc57", "#43BE31", "#45CE30", "#10A881", "#1BCA9B", "#7CEC9F", "#019031", "#A3CB37", "#75DA8B", "#53E0BC", "#218F76", "#EEC213", "#F5C469", "#F4C724", "#F0DF87", "#DFAF2B", "#FAC42F", "#F3B63A", "#FBD28B", "#F3B431", "#FAD02E", "#E5B143", "#F3CC79", "#F9DDA4", "#FFF222", "#E1DA00", "#7B8788", "#99AAAB", "#2C3335", "#616C6F", "#DAE0E2", "#535C68", "#333945", "#2F363F", "#586776", "#8395A7", "#A4B0BD", "#777E8B", "#758AA2", "#47535E", "#4C4B4B", "#EAF0F1", "#E74292", "#01CBC6", "#BB2CD9", "#8B78E6", "#00CCCD", "#1287A5", "#EA7773", "#2B2B52", "#F5BCBA"]
+  let colorList = ["#E44236", "#B83227", "#D63031", "#E84342", "#FF3031", "#BA2F16", "#EC4849", "#FF3E4D", "#E71C23", "#EA425C", "#E8290B", "#AE1438", "#E83350", "#FF4848", "#FF362E", "#3498DB", "#2475B0", "#74B9FF", "#0A79DF", "#4834DF", "#30336B", "#487EB0", "#192A56", "#6A89CC", "#0A3D62", "#4BCFFA", "#0ABDE3", "#25CCF7", "#67E6DC", "#3C40C6", "#2ecc72", "#26ae60", "#6ab04c", "#6AB04A", "#badc57", "#43BE31", "#45CE30", "#10A881", "#1BCA9B", "#7CEC9F", "#019031", "#A3CB37", "#75DA8B", "#53E0BC", "#218F76", "#EEC213", "#F5C469", "#F4C724", "#F0DF87", "#DFAF2B", "#FAC42F", "#F3B63A", "#FBD28B", "#F3B431", "#FAD02E", "#E5B143", "#F3CC79", "#F9DDA4", "#FFF222", "#E1DA00", "#7B8788", "#99AAAB", "#2C3335", "#616C6F", "#DAE0E2", "#535C68", "#333945", "#2F363F", "#586776", "#8395A7", "#A4B0BD", "#777E8B", "#758AA2", "#47535E", "#4C4B4B", "#EAF0F1", "#E74292", "#01CBC6", "#BB2CD9", "#8B78E6", "#00CCCD", "#1287A5", "#EA7773", "#2B2B52", "#F5BCBA"]
 
-    window.addEventListener('load',()=>{
+  window.addEventListener('load',()=>{
 
-        let mainDiv = document.querySelector('#sidebar-sllide-chat-Wallpaper')
+      let mainDiv = document.querySelector('#sidebar-sllide-chat-Wallpaper')
 
-        let row = document.querySelector('#sidebar-sllide-chat-Wallpaper .row')
+      let row = document.querySelector('#sidebar-sllide-chat-Wallpaper .row')
 
-        colorList.forEach(color => {
+      colorList.forEach(color => {
 
-            mainDiv.setAttribute('style',`padding: 20px;
-            overflow-y: auto;
-            height: 80%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 0;
-            left: 0;
-            position: relative;`);
+          mainDiv.setAttribute('style',`padding: 20px;
+          overflow-y: auto;
+          height: 80%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: 0;
+          left: 0;
+          position: relative;`);
 
-            let div = document.createElement('div');
-            div.setAttribute('class','colorList col-3 border');
-            div.setAttribute('style',`background-color:${color};width: 100px;
-            height: 100px;`);
-            
-            row.append(div);
-            mainDiv.append(row);            
+          let div = document.createElement('div');
+          div.setAttribute('class','colorList col-3 border');
+          div.setAttribute('style',`background-color:${color};width: 100px;
+          height: 100px;`);
+          
+          row.append(div);
+          mainDiv.append(row);            
 
-        })
+      })
 
-        let Wallpaper = document.querySelector('#sidebar-sllide-chat-Wallpaper .row')
-        let body = document.querySelector('.body')
-        let bodyPreviousStyle = body.getAttribute('style')
-                
-        if(Wallpaper){
-            Wallpaper.addEventListener('mouseover', e => {
+      let Wallpaper = document.querySelector('#sidebar-sllide-chat-Wallpaper .row')
+      let body = document.querySelector('.body')
+      let bodyPreviousStyle = body.getAttribute('style')
+              
+      if(Wallpaper){
+          Wallpaper.addEventListener('mouseover', e => {
 
-                let color = e.target.style["background-color"]
-                
-                if (color !== "<empty string>"){
+              let color = e.target.style["background-color"]
+              
+              if (color !== "<empty string>"){
 
-                    if (e.target.id === "colorlist-image"){
-                        body.style = `background: ${color} url(../../static/images/chat-background.jpg) no-repeat center center !important;`
-                    }else{
-                        body.style = `background:${color} !important;height: 100%;`;                
-                    }
+                  if (e.target.id === "colorlist-image"){
+                      body.style = `background: ${color} url(../../static/images/chat-background.jpg) no-repeat center center !important;`
+                  }else{
+                      body.style = `background:${color} !important;height: 100%;`;                
+                  }
 
-                }
-
-
-            })
-
-            Wallpaper.addEventListener('mouseleave', e => {
-
-                body.style = bodyPreviousStyle;
-
-            })
+              }
 
 
-        }
+          })
+
+          Wallpaper.addEventListener('mouseleave', e => {
+
+              body.style = bodyPreviousStyle;
+
+          })
+
+
+      }
 
 
 
-    })
+  })
 
 </script>
 
 <!--  -->
-<div class="sidebar-slide-third sidebar-slide-chat-wallpaper sidebar-slide-nav" style="">
+<div class="col-12 col-md-5 col-lg-3 sidebar-slide-third sidebar-slide-chat-wallpaper sidebar-slide-nav" style="">
 
-    <!-- sidebar slide starts -->
+  <!-- sidebar slide starts -->
 
-        <div class="row sidebar-slide-head">
+      <div class="row sidebar-slide-head">
 
-            <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
-                <!-- close button -->
-                <button class=" btn btn-default close" id="close-Chat-Wallpaper-slide" onclick="sidebar_slide_close()" title="close">
-                    <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
-                </button>
-                
-                <h3 class="sidebar-slider-header-text" style="color: #fff;
-                font-size: 22px;
-                font-family: verdana;
-                margin: 0;
-                font-weight: bold;">Chat Wallpaper</h3>
-            </div>
-            
-        </div>
+          <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
+              <!-- close button -->
+              <button class=" btn btn-default close" id="close-Chat-Wallpaper-slide" onclick="sidebar_slide_close()" title="close">
+                  <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
+              </button>
+              
+              <h3 class="sidebar-slider-header-text" style="color: #fff;
+              font-size: 22px;
+              font-family: verdana;
+              margin: 0;
+              font-weight: bold;">Chat Wallpaper</h3>
+          </div>
+          
+      </div>
 
-        
-        <div class="sidebar-slide-body" id="sidebar-sllide-chat-Wallpaper">
-                
-            <div class="row" style="height: 100%;width: 100%;">
+      
+      <div class="sidebar-slide-body" id="sidebar-sllide-chat-Wallpaper">
+              
+          <div class="row" style="height: 100%;width: 100%;">
 
-                <div class="colorList col-3 border" id="colorlist-image" style="background:url(../../static/images/chat-background.jpg) center center !important;width: 100px;
-            height: 100px;"></div>
+              <div class="colorList col-3 border" id="colorlist-image" style="background:url(../../static/images/chat-background.jpg) center center !important;width: 100px;
+          height: 100px;"></div>
 
-            </div>
+          </div>
 
 
-        </div>
-        
+      </div>
+      
 
-        <!-- <style>
+      <!-- <style>
 
-            input {
-                outline: 0;
+          input {
+              outline: 0;
+          }
+
+          input::placeholder {
+              color: white;
+              font-weight: normal;
+              font-size: 16px;
+              font-family: verdana;
             }
-
-            input::placeholder {
-                color: white;
-                font-weight: normal;
-                font-size: 16px;
-                font-family: verdana;
-              }
 
 /* sidebar.css | http://127.0.0.1:5000/static/css/sidebar.css */
 
 .sidebar-slide-nav {
-    display: none;
-    width: 0;
-    z-index: 2;
-    overflow: hidden;
-  }
-  
-  .sidebar-slide-nav .close, .sidebar-slide-nav #create-channel-button {
+  display: none;
+  width: 0;
+  z-index: 2;
+  overflow: hidden;
+}
 
-    margin: 0 20px 5px 0 !important;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .w-100 {
-    margin-top: 20px;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    left: 25%;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .w-100 > img:nth-child(1) {
-    width: 200px;
-    height: 200px;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h3:nth-child(2) {
-    color: #fff;
-    font-size: 24px;
-    font-family: sans-serif;
-    margin: 0;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  /* .col-12 { */
-  .sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .fa-arrow-left {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .sidebar-slide-2 > ul:nth-child(1) {
-    display: block;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  div.sidebar-slide-body:nth-child(3) {
-    top: 25%;
-    position: relative;
-    left: 0;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  #exampleInputEmail1 {
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 2px solid rgba(255,255,255,0.2);
-    margin-bottom: 10px;
-    outline: none;
-    font-family: verdana;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  div.sidebar-slide-body:nth-child(3) > form:nth-child(1) {
-    padding: 10px;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(2) {
-    
-    color: white;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(1) {
-    color: white;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  #emailHelp {
-    font-weight: ;
-    color: rgba(255,255,255,0.7);
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  #exampleInputPassword1 {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-bottom: 1px solid white;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .col-12 {
-  
-    justify-content: flex-start;
-    align-items: end;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Element | http://127.0.0.1:5000/chat */
-  
-  .w-100 {
-    margin: 20px;
-  }
-  
-        </style> -->
+.sidebar-slide-nav .close, .sidebar-slide-nav #create-channel-button {
 
+  margin: 0 20px 5px 0 !important;
+}
 
-        <style>
+/* Element | http://127.0.0.1:5000/chat */
 
-          .sidebar-slide-nav {
-            z-index: 2;
-            overflow: hidden;
-            width: 25%;
-            height: 100%;
-            position: fixed;
-            top: 6%;
-            left: 0;
-            background-color: var(--sidebar-slide-body, #000);
-            transition: all 0.3s ease-in-out;
-          }
-          
-          .sidebar-slide-nav .sidebar-slide-head {
-            margin: 0;
-            background-color: var(--sidebar-slide-head);
-            padding: 10%;
-            height: 10%;
-            background-color: blueviolet;
-          }
-          
-          .sidebar-slide-nav .sidebar-slide-userProfile {
-            cursor: pointer;
-          }
-          
-          .sidebar-slide-nav .close,
-          .sidebar-slide-nav #create-channel-button {
-            top: 0;
-            margin: 0 20px 5px 0 !important;
-            font-size: 30px;
-            position: relative;
-            color: var(--icons-idle);
-            outline: none;
-            box-shadow: none;
-            transition: all 0.4s ease-in-out;
-          }
-          
-          .sidebar-slide-nav .sidebar-slide-body {
-            padding: 20px;
-            overflow-y: auto;
-            height: 80%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 0;
-            left: 0;
-            position: relative;
-          }
-          
-          .sidebar-slide-body .row {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            cursor: pointer;
-          }
-          
-          .sidebar-slide-body .row > div {
-            width: 100px;
-            height: 100px;
-            justify-content: flex-start;
-            display: flex;
-            align-items: center;
-            color: white;
-          }
+.w-100 {
+  margin-top: 20px;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 25%;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+.w-100 > img:nth-child(1) {
+  width: 200px;
+  height: 200px;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+.sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h3:nth-child(2) {
+  color: #fff;
+  font-size: 24px;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+/* .col-12 { */
+.sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+.fa-arrow-left {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+.sidebar-slide-2 > ul:nth-child(1) {
+  display: block;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+div.sidebar-slide-body:nth-child(3) {
+  top: 25%;
+  position: relative;
+  left: 0;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+#exampleInputEmail1 {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  margin-bottom: 10px;
+  outline: none;
+  font-family: verdana;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+div.sidebar-slide-body:nth-child(3) > form:nth-child(1) {
+  padding: 10px;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(2) {
+  
+  color: white;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(1) {
+  color: white;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+#emailHelp {
+  font-weight: ;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+#exampleInputPassword1 {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+.col-12 {
+
+  justify-content: flex-start;
+  align-items: end;
+  margin: 0;
+  padding: 0;
+}
+
+/* Element | http://127.0.0.1:5000/chat */
+
+.w-100 {
+  margin: 20px;
+}
+
+      </style> -->
 
 
+      <!-- <style>
 
-        </style>
+        .sidebar-slide-nav {
+          z-index: 2;
+          overflow: hidden;
+          width: 25%;
+          height: 100%;
+          position: fixed;
+          top: 6%;
+          left: 0;
+          background-color: var(--sidebar-slide-body, #000);
+          transition: all 0.3s ease-in-out;
+        }
+        
+        .sidebar-slide-nav .sidebar-slide-head {
+          margin: 0;
+          background-color: var(--sidebar-slide-head);
+          padding: 10%;
+          height: 10%;
+          background-color: blueviolet;
+        }
+        
+        .sidebar-slide-nav .sidebar-slide-userProfile {
+          cursor: pointer;
+        }
+        
+        .sidebar-slide-nav .close,
+        .sidebar-slide-nav #create-channel-button {
+          top: 0;
+          margin: 0 20px 5px 0 !important;
+          font-size: 30px;
+          position: relative;
+          color: var(--icons-idle);
+          outline: none;
+          box-shadow: none;
+          transition: all 0.4s ease-in-out;
+        }
+        
+        .sidebar-slide-nav .sidebar-slide-body {
+          padding: 20px;
+          overflow-y: auto;
+          height: 80%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: 0;
+          left: 0;
+          position: relative;
+        }
+        
+        .sidebar-slide-body .row {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          cursor: pointer;
+        }
+        
+        .sidebar-slide-body .row > div {
+          width: 100px;
+          height: 100px;
+          justify-content: flex-start;
+          display: flex;
+          align-items: center;
+          color: white;
+        }
+
+
+
+      </style> -->
 </div>
 
 

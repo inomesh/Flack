@@ -1,219 +1,218 @@
-    <script defer>
+<script defer>
     
-        // sidebar slide 1  --> 
-        function openSlideMenu(){
-            let menu = document.getElementById('menu');
-            menu.style.display = 'block';
-            setTimeout(()=>{
-                menu.style.width = '25%';
-            },50)
-        }
-    
-        function closeSlideMenu(){
-            let menu = document.getElementById('menu');
-            menu.style.width = '0px';
-            setTimeout(()=>{
-                menu.style.display = 'none';
-            },500)
-        }
-        
-        //functions for single task
-        function openUserProfileSidebarSlide(){
-            let div = document.querySelector('.sidebar-slide-profile')
-            div.style.display = 'block';
-              setTimeout(()=>{
-                div.style.width = '25%';
-              },50)
-        }
+  // sidebar slide 1  --> 
+  function openSlideMenu(){
+      let menu = document.getElementById('menu');
+      menu.style.display = 'block';
+      setTimeout(()=>{
+          menu.style.width = '';
+      },50)
+  }
+
+  function closeSlideMenu(){
+      let menu = document.getElementById('menu');
+      menu.style.width = '0px';
+      setTimeout(()=>{
+          menu.style.display = 'none';
+      },500)
+  }
+  
+  //functions for single task
+  function openUserProfileSidebarSlide(){
+      let div = document.querySelector('.sidebar-slide-profile')
+      div.style.display = 'block';
+        setTimeout(()=>{
+          div.style.width = '';
+        },50)
+  }
 
 
-        //event function for opening the sidebar.
-        window.addEventListener('load',()=>{
+  //event function for opening the sidebar.
+  window.addEventListener('load',()=>{
 
-            let body = document.querySelector('.sidebar-slide-body')
-            body.addEventListener('click',sidebar_slide_open)
-          })
+      let body = document.querySelector('.sidebar-slide-body')
+      body.addEventListener('click',sidebar_slide_open)
+    })
 
-        function sidebar_slide_open(e){
+  function sidebar_slide_open(e){
 
-            let body = document.querySelector('.sidebar-slide-body').children
-            const receiveText = e.target.textContent.toLowerCase()
+      let body = document.querySelector('.sidebar-slide-body').children
+      const receiveText = e.target.textContent.toLowerCase()
 
-            for(div in body){
+      for(div in body){
 
-                let text = body[div].title.toLowerCase()
-                // checking if target is the root sidebar or not.
-                if (receiveText === text && receiveText !== "<empty string>" && receiveText) {
-   
-                  text = text.split(' ').join("-").toLowerCase()
-               
-                  let sidebar_parent = document.querySelector(`.sidebar-slide-${text}`);
-                  
-                  let display = sidebar_parent.style["display"]
-                  
-                  if(sidebar_parent){
+          let text = body[div].title.toLowerCase()
+          // checking if target is the root sidebar or not.
+          if (receiveText === text && receiveText !== "<empty string>" && receiveText) {
 
-                    if ( display === "none" || display === ''){
-                 
-                      if (text){
-                        sidebar_parent.style.display = 'block';
-                        setTimeout(()=>{
-                          sidebar_parent.style.width = '25%';
-                        },50)
-                        console.log('hello')
-                        return
-                        
-                       }
-       
-                   }
-                  }
-               }
-
-
-            }
- 
-        }
-
-        function sidebar_slide_close(){
-
-          let sidebar_header = document.querySelectorAll('.sidebar-slider-header-text')
-          
-          sidebar_header.forEach(e => {
-            
-            let text = e.textContent
             text = text.split(' ').join("-").toLowerCase()
-            
+         
             let sidebar_parent = document.querySelector(`.sidebar-slide-${text}`);
             
-            if (sidebar_parent.style.display === "block"){
+            let display = sidebar_parent.style["display"]
             
-              if (text){
-                sidebar_parent.style.width = '0px';
-                  setTimeout(()=>{
-                    sidebar_parent.style.display = 'none';
-                  },500)
-                }
+            if(sidebar_parent){
 
-            }
+              if ( display === "none" || display === ''){
            
+                if (text){
+                  sidebar_parent.style.display = 'block';
+                  setTimeout(()=>{
+                    sidebar_parent.style.width = '';
+                  },50)
+                
+                  return
+                  
+                 }
+ 
+             }
+            }
+         }
 
-          })
 
-          
-        }
-        
+      }
 
+  }
 
-      </script>
+  function sidebar_slide_close(){
 
-    <link rel="stylesheet" href="../static/css/sidebar.css">
+    let sidebar_header = document.querySelectorAll('.sidebar-slider-header-text')
+    
+    sidebar_header.forEach(e => {
+      
+      let text = e.textContent
+      text = text.split(' ').join("-").toLowerCase()
+      
+      let sidebar_parent = document.querySelector(`.sidebar-slide-${text}`);
+      
+      if (sidebar_parent.style.display === "block"){
+      
+        if (text){
+          sidebar_parent.style.width = '0px';
+            setTimeout(()=>{
+              sidebar_parent.style.display = 'none';
+            },500)
+          }
 
-    <section>
+      }
+     
 
-        <!-- first sidebar slide -->
-        <div class="sidebar-slide-first sidebar-slide-nav" id="menu">
+    })
 
-                <!-- sidebar slide starts -->
-                <ul>
+    
+  }
+  
 
-                    <div class="row sidebar-slide-head">
+  </script>
 
-                        <div class="col-4 sidebar-slide-userProfile" title="User Profile">
-                            <img src="../static/images/svg/default_profile_pic.svg" onclick="openUserProfileSidebarSlide()" class="w-50 rounded rounded-lg border border-light float-left bg-white" 
-                            alt="User Profile Image">
-                        </div>
-                        
-                        <div class="col-8 sidebar-slide-extra_buttons">
+  <link rel="stylesheet" href="../static/css/sidebar.css">
 
-                            <!-- Create New Channel button -->
-                            <button class="btn d-inline" id="create-channel-button" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample" style="font-size: 12px; padding: 2px" title="New Channel">
-                                <i class="fas fa-2x fa-plus" aria-hidden="true"></i>
-                            </button>
+  <section>
 
-                            <!-- close button -->
-                            <button class=" btn btn-default close" onclick="closeSlideMenu()" title="close">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    
-                    </div>
+      <!-- first sidebar slide -->
+      <div class="col-12 col-md-5 col-lg-3 sidebar-slide-first sidebar-slide-nav" id="menu">
 
-                    <!-- <div class="sidebar-slide-body">
-                            <li id="profile" onclick="openUserProfileSidebarSlide()">Profile</li>
-                            <div>
-                              <i class="fas fa-adjust"></i>
-                              <li id="theme">Theme</li>
-                            </div>
-                            <li id="chat-wallpaper">Chat Wallpaper</li>
-                            <li id="notifications">Notifications</li>
-                            <li id="help">Help</li>
-                    </div> -->
+              <!-- sidebar slide starts -->
+              <ul>
 
-                    <div class="sidebar-slide-body">
+                  <div class="row sidebar-slide-head">
 
-                      <div class="row" title="profile" >
-                        <div class="col-2">
-                          <i class="fas fa-user"></i>
-                        </div>
-                        <div class="col-10">
-                          <li>Profile</li>
-                        </div>
+                      <div class="col-4 sidebar-slide-userProfile" title="User Profile">
+                          <img src="../static/images/svg/default_profile_pic.svg" onclick="openUserProfileSidebarSlide()" class="w-50 rounded rounded-lg border border-light float-left bg-white" 
+                          alt="User Profile Image">
                       </div>
+                      
+                      <div class="col-8 sidebar-slide-extra_buttons">
 
-                      <div class="row" title="Theme" >
-                        <div class="col-2">
-                          <i class="fas fa-adjust"></i>
-                        </div>
-                        <div class="col-10">
-                          <li id="theme">Theme</li>
-                        </div>
+                          <!-- Create New Channel button -->
+                          <button class="btn d-inline" id="create-channel-button" type="button" data-toggle="modal" data-target="#channelCreation" aria-expanded="false" aria-controls="collapseExample" style="font-size: 12px; padding: 2px" title="New Channel">
+                              <i class="fas fa-2x fa-plus" aria-hidden="true"></i>
+                          </button>
+
+                          <!-- close button -->
+                          <button class=" btn btn-default close" onclick="closeSlideMenu()" title="close">
+                              <i class="fas fa-times"></i>
+                          </button>
                       </div>
+                  
+                  </div>
 
-                      <div class="row" title="Chat Wallpaper" >
-                        <div class="col-2">
-                          <i class="far fa-image"></i>
-                        </div>
-                        <div class="col-10">
+                  <!-- <div class="sidebar-slide-body">
+                          <li id="profile" onclick="openUserProfileSidebarSlide()">Profile</li>
+                          <div>
+                            <i class="fas fa-adjust"></i>
+                            <li id="theme">Theme</li>
+                          </div>
                           <li id="chat-wallpaper">Chat Wallpaper</li>
-                        </div>
-                      </div>
-
-                      <div class="row"  title="Notifications">
-                        <div class="col-2">
-                          <i class="fas fa-bell"></i>
-                        </div>
-                        <div class="col-10">
                           <li id="notifications">Notifications</li>
-                        </div>
-                      </div>
-
-                      <div class="row"  title="Help">
-                        <div class="col-2">
-                          <i class="fas fa-question-circle"></i>
-                        </div>
-                        <div class="col-10">
                           <li id="help">Help</li>
-                        </div>
-                      </div>
+                  </div> -->
 
+                  <div class="sidebar-slide-body">
+
+                    <div class="row" title="profile" >
+                      <div class="col-2">
+                        <i class="fas fa-user"></i>
+                      </div>
+                      <div class="col-10">
+                        <li>Profile</li>
+                      </div>
                     </div>
 
-                </ul>
-               
-                <style>
+                    <div class="row" title="Theme" >
+                      <div class="col-2">
+                        <i class="fas fa-adjust"></i>
+                      </div>
+                      <div class="col-10">
+                        <li id="theme">Theme</li>
+                      </div>
+                    </div>
+
+                    <div class="row" title="Chat Wallpaper" >
+                      <div class="col-2">
+                        <i class="far fa-image"></i>
+                      </div>
+                      <div class="col-10">
+                        <li id="chat-wallpaper">Chat Wallpaper</li>
+                      </div>
+                    </div>
+
+                    <div class="row"  title="Notifications">
+                      <div class="col-2">
+                        <i class="fas fa-bell"></i>
+                      </div>
+                      <div class="col-10">
+                        <li id="notifications">Notifications</li>
+                      </div>
+                    </div>
+
+                    <div class="row"  title="Help">
+                      <div class="col-2">
+                        <i class="fas fa-question-circle"></i>
+                      </div>
+                      <div class="col-10">
+                        <li id="help">Help</li>
+                      </div>
+                    </div>
+
+                  </div>
+
+              </ul>
+            
+              <style>
 
                   .sidebar-slide-body > div {
                     margin: 0;
                     cursor: pointer;
                   }
-
+  
                   .sidebar-slide-body > div > div{
                     justify-content: flex-start;
                     display: flex;
                     align-items: center;
                     color: white;
                   }
-
+  
                   .sidebar-slide-body > div > .col-2 {
                     justify-content: center;
                   } 
@@ -222,218 +221,99 @@
                     border-bottom: var(--border-bottom);
                   } 
                   
-                  </style>
+              </style>
 
-        </div>
+      </div>
 
-        <!-- second sidebar slide - user profile  -->
-        <div class="sidebar-slide-second sidebar-slide-profile sidebar-slide-nav" style="height: 100%;">
 
-            <!-- sidebar slide starts -->
+      <!-- second sidebar slide - user profile  -->
+      <div class="col-12 col-md-5 col-lg-3 sidebar-slide-second sidebar-slide-profile sidebar-slide-nav h-100" style="">
 
-                <div class="row sidebar-slide-head">
+          <!-- sidebar slide starts -->
 
-                    <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
-                        <!-- close button -->
-                        <button class=" btn btn-default close" onclick="sidebar_slide_close()" id="close-user-profile" title="close">
-                            <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
-                        </button>
-                        
-                        <h3 class="sidebar-slider-header-text" style="color: #fff;
-                        font-size: 22px;
-                        font-family: verdana;
-                        margin: 0;
-                        font-weight: bold;">Profile</h3>
-                    </div>
+              <div class="row sidebar-slide-head">
+
+                  <div title="User Profile" style="display: flex;justify-content: flex-start;align-items: flex-end;margin: 0;padding: 0;" class="col-12 sidebar-slide-userProfile">
+                      <!-- close button -->
+                      <button class=" btn btn-default close" onclick="sidebar_slide_close()" id="close-user-profile" title="close">
+                          <i class="fas fa-arrow-left" aria-hidden="true" style="font-size: 22px;font-weight: bold;color: white;"></i>
+                      </button>
+                      
+                      <h3 class="sidebar-slider-header-text" style="color: #fff;
+                      font-size: 22px;
+                      font-family: verdana;
+                      margin: 0;
+                      font-weight: bold;">Profile</h3>
+                  </div>
+                  
+              </div>
+
+              
+              <div class="sidebar-slide-body">
                     
-                </div>
-
+                  <div class="user-profile-image" style="position: relative;height: 200px;left: 25%;max-width: min-content;margin-top: 5%;">
                 
-                <div class="sidebar-slide-body" style="">
-                        
-                    <div class="user-profile-image" style="position: relative;height: 200px;left: 25%;max-width: min-content;margin-top: 5%;">
-                   
-                    <img src="../static/images/svg/default_profile_pic.svg" class="rounded rounded-lg border border-light float-left bg-white" alt="User Profile Image" style="
-                        position: static;
-                        width: 200px;
-                        height: 200px;
-                        border: none !important;
-                        background: none !important;
-                        ">
+                  <img src="../static/images/svg/default_profile_pic.svg" class="rounded rounded-lg border border-light float-left bg-white" alt="User Profile Image" style="
+                      position: static;
+                      width: 200px;
+                      height: 200px;
+                      border: none !important;
+                      background: none !important;
+                      ">
 
-                    </div>
-                
-                    <form style="padding: 10px;width: 100%;margin-top: 10%;" _lpchecked="1">
+                  </div>
+              
+                  <form class="mt-3 p-2 w-100" _lpchecked="1">
 
-                        <div class="form-group" style="color: white;">
-                            <label for="exampleInputEmail1" style="">Your Name</label>
-                            <input type="text" class="form-control-plaintext" id="exampleInputEmail1" readonly="" aria-describedby="emailHelp" placeholder="N O M E S H" style="color: white;font-weight: bold;font-size: 16px;border-bottom: 2px solid rgba(255,255,255,0.2);margin-bottom: 10px;outline: none;font-family: verdana;" maxlength="25" autocomplete="off">
-                            <small id="emailHelp" class="form-text" style="color: rgba(255,255,255,0.7);">This name will visible to your contacts.</small>
-                        </div>
+                      <div class="form-group">
+                          <label class="text-white" for="sidebar-slide-user-profile-user-name">Your Name</label>
+                          <input type="text" class="form-control-plaintext" id="sidebar-slide-user-profile-user-name" readonly="" value="N O M E S H" maxlength="25" autocomplete="off">
+                      </div>
 
-                        <div class="form-group" style="color: white;">
-                            <label for="exampleInputPassword1">About</label>
-                            <input type="text" readonly="" class="form-control-plaintext" id="exampleInputPassword1" placeholder="Busy" style="color: white;font-weight: bold;font-size: 16px;border-bottom: 2px solid rgba(255,255,255,0.2);margin-bottom: 10px;outline: none;font-family: verdana;">
-                        </div>
-                        
-                    </form>
-                        
-                </div>
-                
+                      <div class="form-group">
+                          <label class="text-white" for="sidebar-slide-user-profile-user-about">About</label>
+                          <input type="text" readonly="" class="form-control-plaintext" id="sidebar-slide-user-profile-user-about" value="Busy" >
+                      </div>
+                      
+                  </form>
+                      
+              </div>
+              
+
+              <style>
       
-                <style>
+                  /* User profile sidebar... this is for Your Name */
+          
+                  #sidebar-slide-user-profile-user-name {
+                    color: white !important;
+                    font-weight: bold;
+                    font-size: 16px;
+                    border-bottom: 1px solid white;
+                    margin-bottom: 10px;
+                    outline: none;
+                    font-family: verdana;
+                  }
+          
+          
+                  /* User profile sidebar... this is for about */
+                  
+                  #sidebar-slide-user-profile-user-about {
+                    color: white !important;
+                    font-size: 16px;
+                    font-weight: bold;
+                    border-bottom: 1px solid white;
+                  }
+                 
+                     
+              </style> 
 
-                    input {
-                        outline: 0;
-                    }
-        
-                    input::placeholder {
-                        color: white;
-                        font-weight: normal;
-                        font-size: 16px;
-                        font-family: verdana;
-                      }
-        
-        /* sidebar.css | http://127.0.0.1:5000/static/css/sidebar.css */
-        
-        .sidebar-slide-nav {
-            display: none;
-            width: 0;
-            z-index: 2;
-            overflow: hidden;
-          }
-          
-          .sidebar-slide-nav .close, .sidebar-slide-nav #create-channel-button {
-        
-            margin: 0 20px 5px 0 !important;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .w-100 {
-            margin-top: 20px;
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            left: 25%;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .w-100 > img:nth-child(1) {
-            width: 200px;
-            height: 200px;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h3:nth-child(2) {
-            color: #fff;
-            font-size: 24px;
-            font-family: sans-serif;
-            margin: 0;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          /* .col-12 { */
-          .sidebar-slide-2 > ul:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .fa-arrow-left {
-            font-size: 22px;
-            font-weight: bold;
-            color: white;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .sidebar-slide-2 > ul:nth-child(1) {
-            display: block;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          div.sidebar-slide-body:nth-child(3) {
-            top: 25%;
-            position: relative;
-            left: 0;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          #exampleInputEmail1 {
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-bottom: 2px solid rgba(255,255,255,0.2);
-            margin-bottom: 10px;
-            outline: none;
-            font-family: verdana;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          div.sidebar-slide-body:nth-child(3) > form:nth-child(1) {
-            padding: 10px;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(2) {
-            
-            color: white;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          div.sidebar-slide-body:nth-child(3) > form:nth-child(1) > div:nth-child(1) {
-            color: white;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          #emailHelp {
-            font-weight: ;
-            color: rgba(255,255,255,0.7);
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          #exampleInputPassword1 {
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border-bottom: 1px solid white;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .col-12 {
-          
-            justify-content: flex-start;
-            align-items: end;
-            margin: 0;
-            padding: 0;
-          }
-          
-          /* Element | http://127.0.0.1:5000/chat */
-          
-          .w-100 {
-            margin: 20px;
-          }
-          
-                </style>
+      </div>
 
-        </div>
 
-        <!-- Third sidebar slide - Chat wallpaper -->
-        {% include "./sidebar-slide/chat_wallpaper.html"%}
-        
-    </section>
-    
+      <!-- Third sidebar slide - Chat wallpaper -->
+      {% include "./sidebar-slide/chat_wallpaper.html"%}
+
+
+
+  
+  </section>

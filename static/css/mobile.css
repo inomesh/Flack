@@ -2,6 +2,21 @@
   --icon-color: rgba(0, 0, 0);
 }
 
+
+/* scrollbar */
+*{
+  scrollbar-width: 10px !important;
+  scrollbar-color: #4e1d4e #f1f1f1 !important;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+
+
 body {
   overflow: hidden;
   cursor: pointer;
@@ -31,7 +46,7 @@ body {
   /* z-index: 1000; */
 }
 
-.sticky-top .row {
+.nav-div .row {
   display: flex;
   flex-wrap: unset;
 
@@ -119,7 +134,7 @@ hr {
 
 .hashtag {
   left: 0;
-  z-index: 2000;
+  z-index: 1;
   /* top: 10%; */
   height: 100%;
   position: fixed;
@@ -228,5 +243,5 @@ hr {
 
 /* misseleneos */
 .fas {
-  color: var(--icon-color);
+  color: var(--icon-color) !important;
 }

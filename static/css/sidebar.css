@@ -1,22 +1,22 @@
 :root {
-  --sidebar-slide-head : #260e26;
-  --sidebar-slide-body : #401740;
+  --sidebar-slide-head: #260e26;
+  --sidebar-slide-body: #401740;
 
-  --border-bottom : 2px solid rgba(255,255,255,0.2);
+  --border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 
-  --icons-idle  : #796d79;
-  --icons-hover : white;
+  --icons-idle: #796d79;
+  --icons-hover: white;
 
-  --text-idle : #ccc;
+  --text-idle: #ccc;
 }
 
-
 .sidebar-slide-nav {
-  display:none;
+  display: none;
   height: 100%;
-  width: 0;
+  padding: 0;
+  z-index: 2;
+  /* width: 0; */
   position: fixed;
-  z-index: 1;
   top: 6%;
   left: 0;
   background-color: var(--sidebar-slide-body);
@@ -30,16 +30,17 @@
   background-color: var(--sidebar-slide-head);
   padding: 10%;
   height: 10%;
-}
-
-.sidebar-slide-nav .sidebar-slide-userProfile {
   cursor: pointer;
 }
+/* 
+.sidebar-slide-nav .sidebar-slide-userProfile {
+  cursor: pointer;
+} */
 
-.sidebar-slide-nav .sidebar-slide-extra_buttons {
+/* .sidebar-slide-nav .sidebar-slide-extra_buttons {
   justify-content: flex-end;
   display: flex;
-}
+} */
 
 .sidebar-slide-nav ul {
   width: 100%;
@@ -58,12 +59,12 @@
 }
 
 .sidebar-slide-nav ul li:active {
-  border-left: 5px solid white;
+  border-right: 5px solid white;
 }
 
 .sidebar-slide-nav ul li:hover,
 .sidebar-slide-nav .close:hover,
-.sidebar-slide-nav #create-channel-button:hover{
+.sidebar-slide-nav #create-channel-button:hover {
   color: var(--icons-hover);
   /* background-color: rgba(0, 0, 0, 0.692); */
   font-weight: bolder;
@@ -90,5 +91,3 @@
   font-family: sans-serif;
   overflow-x: hidden;
 }
-
-

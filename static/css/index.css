@@ -29,9 +29,6 @@
 }
 
 
-
-
-
 .inside-body {
   margin: 50px;
 }
@@ -39,7 +36,7 @@
 body,
 #listrow {
   background-color: #ffffff;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .main-div {
@@ -78,10 +75,6 @@ body,
 
 /* SIDEBAR */
 
-/* heading */
-.sidebar-head {
-  color: rgb(0, 0, 0);
-}
 /* channel Button */
 .channel-btn {
   border: none;
@@ -90,15 +83,10 @@ body,
 }
 
 /* channel_list */
+
 .hashtag {
-  left: -13px;
-  height: 92%;
+  height: 95%;
   /* background-color: rgb(102, 16, 124); */
-  background-color: #f9f9f9;
-  top: 70px;
-  width: 100%;
-  padding: 30px !important;
-  position: absolute;
 }
 
 .hashtag,
@@ -125,7 +113,7 @@ body,
 
 .sidebar-head {
   color: solid rgb(190, 50, 255);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   border-bottom: 2px solid;
 }
 

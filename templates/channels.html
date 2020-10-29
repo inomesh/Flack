@@ -12,7 +12,8 @@
 {% block body %}
 
 
-    <div class="row container-fluid">
+    <div class="row container-fluid no-gutters justify-content-center align-items-center">
+
         <div class="card-deck">
          <!-- <div class="col-2">
 
@@ -43,6 +44,7 @@
                 <div class="col">
                      <button onclick="joinChannel()" class="btn btn-outline-primary font-weight-bold float-right">Join</button>
                 </div>
+
             </div> -->
             
         <!-- </div>   -->
@@ -87,10 +89,10 @@
                         //list of channels fetching from localStorage
         for (let i = 0; i < channelName.length; i++) {
             
-                    //Tag creation
+                //Tag creation
 
                 var colDiv = document.createElement('div')
-                colDiv.classList    =  'col-md-3  col-sm-6 bg-white my-3 channelCard'  
+                colDiv.classList    =  'col-12 col-md-6 col-lg-4 col-xl-3 bg-white my-3 h-100 w-100 channelCard'  
 
                 var div = document.createElement('div')
                 div.classList    =  'card bg-white' 
@@ -104,7 +106,7 @@
 
                     // card body
                 var div2 = document.createElement('div')
-                div2.classList = 'card-body'
+                div2.classList = 'card-body w-100 h-25 overflow-auto'
 
                     // card-title
                 var h5 = document.createElement('h5')

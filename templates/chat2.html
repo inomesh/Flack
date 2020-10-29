@@ -15,120 +15,52 @@
 {%endblock%} {%block title%} chat app {% endblock %} {% block body %}
 
  <!-- Pre Loader  -->
-
-<div class="preloader">
-
-  <style media="screen and (min-width:768px)">
-    .preloader {
-      position: fixed;
-      z-index: 20000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url(../static/images/texture.png);
-      background-size: cover;
-      font-family: cursive;
-    }
-
-    .preloader.hidden {
-      animation: fadeOut 2s;
-      animation-fill-mode: forwards;
-    }
-
-    .note{
-      margin-top: 20%;
-    }
-
-    .spinner {
-      /* display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10%;  */
-      
-      left: 50%;
-      top: 50%;
-      position: absolute;
-      background-color: white;
-      padding: 10px;
-      border-radius: 30px;
-    }
-
-    @keyframes fadeOut {
-      100% {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-  </style>
-
-  <style media="screen and (max-width:500px)">
-    .preloader {
-      position: fixed;
-      z-index: 20000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url(../static/images/texture.png);
-      background-size: cover;
-      font-family: cursive;
-    }
-
-    .preloader.hidden {
-      animation: fadeOut 2s;
-      animation-fill-mode: forwards;
-    }
-
-    .note{
-      margin-top: 20%;
-    }
-
-    .spinner {
-      /* display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10%;  */
-      
-      left: 50%;
-      top: 50%;
-      position: absolute;
-      background-color: white;
-      padding: 10px;
-      border-radius: 30px;
-    }
-
-    @keyframes fadeOut {
-      100% {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-  </style>
+  <div class="preloader position-fixed w-100 h-100 d-flex align-items-center justify-content-center hidden">
   
-  <section
-    class="text-center text-dark font-weight-bolder note"
-    style="/*margin-top: 50%;*/"
-  >
-    <h1 class="welcome">
-      <img
-        class="body-image"
-        src="../static/images/wavingHandEmoji.png"
-        alt="slack_logo"
-        style="width: 60px; vertical-align: bottom"
-      />
-      Welcome!
-    </h1>
-    <h5 class="welcome_para">Flack is a messaging app for teams</h5>
-  </section>
 
-  <section class="spinner">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+    <style>
+      .preloader {
+        background: url(../static/images/texture.png) !important;
+        background-size: cover;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .preloader.hidden {
+        animation: fadeOut 2s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeOut {
+        100% {
+          display: none;
+        }
+      }
+    </style>
+
+    
+    <div class="row d-flex justify-content-center align-items-center no-gutters hidden">
+    
+      <section class="col-12 text-center text-dark font-weight-bolder note mb-2 ">
+        <h1 class="welcome">
+          <img class="body-image" src="../static/images/wavingHandEmoji.png" alt="slack_logo" style="width: 60px; vertical-align: bottom">
+          Welcome!
+        </h1>
+        <h5 class="welcome_para">Flack is a messaging app for teams</h5>
+      </section>
+    
+      <section class="col-12 spinner d-flex justify-content-center mt-2">
+        <div role="status" class="spinner-border shadow-lg bg-white">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </section>
+
+
     </div>
-  </section>
-</div>
 
+  </div>
+
+
+  
 <!-- main -->
 <div class="row" hidden>
   <!--SIDEBAR     channel-btn-->
@@ -286,14 +218,15 @@
   <!--MAIN BODY STARTS-->
 
   <div class="col-md-9 main container-fluid">
+
     <div class="head" hidden>
       <div class="row">
         <!-- channel Name -->
-        <div class="col-md-3 head-3">
+        <div class="col-4 col-md-5 col-lg-3 head-3">
           <h3 class="head-h3" id="channelName">#Channel</h3>
         </div>
 
-        <div class="col-md-9 head-9">
+        <div class="col-8 col-md-7 col-lg-9 head-9">
           <!-- Channel Joined users -->
           <span class="float-left d-flex align-middle">
             <i class="fas fa-2x fa-users p-1"></i>
@@ -391,11 +324,7 @@
       </div>
     </div>
 
-    <div
-      class="body bg-white"
-      style="
-      vertical-align: middle;
-      background: url(../static/images/texture.png) no-repeat center center;
+    <div class="body bg-white" style="vertical-align: middle;background: url(../static/images/texture.png) no-repeat center center;
       height: 100%;
       background-size: cover;
       "
@@ -432,19 +361,23 @@
     </div>
 
     <!-- Submit button-->
+        
     <div class="btm" id="btm" hidden>
       <form id="form">
-        <input
-          id="input"
-          placeholder="type your message here"
-          autocomplete="off"
-          type="text"
-        />
-        <button class="submit btn" id="submit_button" type="submit">
-          <i class="fas fa-paper-plane"></i>
-        </button>
+        <div class="row no-gutters">
+          <div class="col-10 d-flex justify-content-end align-items-center">
+            <input id="input" placeholder="type your message here" autocomplete="off" type="text"/>
+          </div>
+          <div class="col-2 justify-content-start d-flex align-items-center">
+            <button class="submit btn" id="submit_button" type="submit">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
       </form>
     </div>
+
+
   </div>
 </div>
 
@@ -740,10 +673,10 @@
        window.history.pushState(null,'chat','/chat')
   
         // nav effect
-        let top = document.querySelector(".sticky-top");
+        let top = document.querySelector(".nav-div");
   
         let nav = document.querySelector("nav");
-        nav.style = `visibility:hidden; opacity:0;`;
+        nav.style = `display:none;`; //visibility:hidden; opacity:0;
   
         top.innerHTML = document.querySelector(".head").innerHTML;
   
@@ -751,7 +684,7 @@
   
         // toggeling visibility
         document.querySelector(".head").style = `visibility:hidden; opacity:0;`;
-        top.classList.add("head");
+        top.classList.add("head");              //visibility:hidden; opacity:0;
   
         // backButton click
         backButtonFunction();
@@ -797,7 +730,7 @@
   async function mobileAppend() {
     await updateSidebarList();
 
-    // let top = document.querySelector(".sticky-top");
+    // let top = document.querySelector(".nav-div");
 
     // let nav = document.querySelector('nav')
     // nav.style = `visibility:hidden; opacity:0;`;
@@ -813,7 +746,7 @@
   }
 
   function backButtonFunction() {
-    let nav = document.querySelector(".sticky-top");
+    let nav = document.querySelector(".nav-div");
 
     // backArrowIcon
     let arrowIcon = document.createElement("i");
@@ -877,7 +810,7 @@
 
   async function backToNav(){
 
-      let nav = document.querySelector(".sticky-top");
+      let nav = document.querySelector(".nav-div");
 
       document.querySelector(".hashtag").style = `z-index:1;`;
 
