@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow: hidden !important;
+}
+
 .main {
   width: 1200px;
   width: 100%;

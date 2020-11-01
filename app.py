@@ -7,7 +7,7 @@ from hash import *              #
 from RegEx import *             # Custom made
 from full import *              #
 from channelCrud import *       #
-from flask import Flask, jsonify, render_template, request, url_for, redirect, session
+from flask import Flask, jsonify, render_template, request, url_for, redirect, session, send_from_directory
 from flask_socketio import SocketIO, emit
 from datetime import timedelta
 
@@ -183,3 +183,8 @@ def video():
     redirect_to=url_for('static', filename='Slack_main.mp4')
 
 #----------------------------------------------------------------------------------------------------------------------    
+
+# url for service worker 
+@app.route('/service-worker.js')
+def serviceWorker():
+    return send_from_directory(os.path.join(app.root_path,'static/js'),filename='service-worker.js',as_attachment=True)
