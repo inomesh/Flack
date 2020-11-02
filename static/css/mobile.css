@@ -2,20 +2,16 @@
   --icon-color: rgba(0, 0, 0);
 }
 
-
 /* scrollbar */
-*{
+* {
   scrollbar-width: 10px !important;
   scrollbar-color: #4e1d4e #f1f1f1 !important;
-
 }
 
 /* width */
 ::-webkit-scrollbar {
   width: 5px !important;
 }
-
-
 
 body {
   overflow: hidden;
@@ -116,7 +112,8 @@ body {
   margin: 2px;
   display: table;
   clear: both;
-  background-color: #005a83e6;
+  background-color: #642364e6;
+  color: white;
 }
 
 /* misselenious */
@@ -128,8 +125,12 @@ hr {
 .hashtag,
 .sidebar-ulist,
 .sidebar-list {
-  border-bottom: 1px solid black;
-  border-block-width: thin;
+  border-top: unset;
+  border-left: unset;
+  border-right: unset;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  color: var(--theme-text);
+  background-color: var(--theme-background);
 }
 
 .hashtag {
@@ -138,6 +139,8 @@ hr {
   /* top: 10%; */
   height: 100%;
   position: fixed;
+  color: var(--theme-text);
+  background-color: var(--theme-background);
 }
 
 .head-h3 {
@@ -163,7 +166,7 @@ hr {
 #inChatSearch {
   width: 100%;
   z-index: 1;
-  transition:all ease 0.6s;
+  transition: all ease 0.6s;
   position: fixed;
   top: 0;
   left: 0;

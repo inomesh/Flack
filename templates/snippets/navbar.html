@@ -1,0 +1,45 @@
+<div class="fixed-top nav-div mb-2" style="width: 100vw !important;">
+    <nav class="navbar navbar-light navbar-expand-sm bg-white text-dark">
+        
+        <a class="navbar-brand font-weight-bold ml-2" href="/"> F L A C K </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+          <ul class="navbar-nav ml-auto mr-2">
+            
+            <li class="nav-item">
+              <a class="nav-link active" href="/"><i class="fas fa-home"></i> Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="/allchannels"><i class="fab fa-slack"></i> Public Channels</a>
+            </li>
+
+            {% if username %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="/chat"><i class="fas fa-user-friends"></i> Chat </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link active" id="signOut" href="/logout"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+                </li>
+
+            {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active" href="/signup"><i class="fas fa-user-plus"></i> Sign up</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link active" href="/login"><i class="fas fa-sign-in-alt"></i> Sign in</a>
+                </li>
+
+            {% endif %}
+          </ul>
+        </div>
+
+    </nav>
+</div>

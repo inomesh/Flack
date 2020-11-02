@@ -188,3 +188,9 @@ def video():
 @app.route('/service-worker.js')
 def serviceWorker():
     return send_from_directory(os.path.join(app.root_path,'static/js'),filename='service-worker.js',as_attachment=True)
+
+
+# offline page
+@app.route('/offline.html')
+def offline():
+    return render_template('offline.html')

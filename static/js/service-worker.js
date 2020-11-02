@@ -3,6 +3,8 @@ const urlsToCache = [
     '/',
     '/allchannels',
     '/static/css/homepage.css',
+    '/login',
+    '/chat',
     '/static/css/index.css',
     '/static/css/mobile.css',
     '/static/css/chat.css',
@@ -12,6 +14,7 @@ const urlsToCache = [
     '/static/js/localStorage.js',
     '/static/js/main.js',
     '/static/js/socket.js',
+    '/offline.html',
 ]
 
 self.addEventListener('install', function(event){
@@ -29,48 +32,29 @@ self.addEventListener('install', function(event){
 });
 
 
-// self.addEventListener('activate',event => {
+self.addEventListener('activate',event => {
 
-//     event.waitUntil()
-
-// })
-
-
-
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          // Cache hit - return response
-          if (response) {
-            return response;
-          }
-  
-          return fetch(event.request).then(
-            function(response) {
-              // Check if we received a valid response
-              if(!response || response.status !== 200 || response.type !== 'basic') {
-                return response;
-              }
-  
-              // IMPORTANT: Clone the response. A response is a stream
-              // and because we want the browser to consume the response
-              // as well as the cache consuming the response, we need
-              // to clone it so we have two streams.
-              let responseToCache = response.clone();
-  
-              caches.open(CACHE_NAME)
-                .then(function(cache) {
-                  cache.put(event.request, responseToCache);
-                });
-  
-              return response;
-            }
-          );
-        })
-      );
-  });
+    event.waitUntil(
+      caches.keys().then( keyList => {
+        return Promise.all(keyList.map( key => {
+          if (key !== CACHE_NAME) return caches.delete(key);
+        }))
+      })
+    )
+    return self.clients.claim();
+});
 
 
+self.addEventListener('fetch', event => {
 
+  event.respondWith(
 
+    caches.match(event.request)
+    .then( response => {
+      return response || fetch(event.request)
+    })
+    .catch( ()=>{
+      return caches.match('/offline.html')
+    })
+  )
+})
