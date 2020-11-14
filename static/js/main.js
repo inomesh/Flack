@@ -3,7 +3,6 @@
 
 if (!('serviceWorker' in navigator)){
     console.log("service worker not supported");
-    // return 
 };
 
 window.addEventListener('load',()=>{

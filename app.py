@@ -3,6 +3,7 @@ import os
 import requests
 import re
 import bcrypt
+from werkzeug import debug
 from hash import *              #
 from RegEx import *             # Custom made
 from full import *              #
@@ -10,6 +11,11 @@ from channelCrud import *       #
 from flask import Flask, jsonify, render_template, request, url_for, redirect, session, send_from_directory
 from flask_socketio import SocketIO, emit
 from datetime import timedelta
+import eventlet
+
+eventlet.monkey_patch()
+
+#---------------------------------------------------------------------------------------------------
 
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = 'lucifer123'
@@ -43,7 +49,7 @@ def login():
 
     if request.method == 'GET':
         if 'username' and 'password' in session:
-            return redirect(url_for('chat'))
+            return redirect(url_for('chat'), 307)
         else:
             return render_template('login.html')
 
@@ -122,7 +128,6 @@ def appendChannel(obj):
 
 
 
-
 #route for updating new user, joined an existing channel into the channels.csv
 @socketio.on('update new user')
 def updateNewUserToCsv(obj):
@@ -134,8 +139,6 @@ def updateNewUserToCsv(obj):
             # emit('new user Updated',True, broadcast = True)
             # not emitting because here we only want to run a function, and didn't want to
             # apply another function on it. 
-
-
 
 
 #----------------------------------------------------------------------------------------------------------------------    
@@ -187,10 +190,14 @@ def video():
 # url for service worker 
 @app.route('/service-worker.js')
 def serviceWorker():
-    return send_from_directory(os.path.join(app.root_path,'static/js'),filename='service-worker.js',as_attachment=True)
+    return send_from_directory(os.path.join(app.root_path,'static/js'),filename='service-worker.js')
 
 
 # offline page
 @app.route('/offline.html')
 def offline():
     return render_template('offline.html')
+
+
+if __name__ == '__main__':
+    socketio.run(app, debug=True)

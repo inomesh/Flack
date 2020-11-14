@@ -1,5 +1,4 @@
-virtual
-Procfile
-runtime.txt
+virtual/
+.vscode/
 temp.txt
 sidebarSnippet.html

@@ -2,13 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
   //socket starts from here
 
   var socket = io.connect(
-    location.protocol + "//" + document.domain + ":" + location.port
+    location.protocol + "//" + document.domain + ":" + location.port,
+    {
+      reconnectionAttempts: 1,
+      transports: ['websocket']//,'polling'],
+    }
   );
+
 
   // sending the object to flask server
   socket.on("connect", () => {
     // Form submitting
     document.querySelector("#form").onsubmit = () => {
+      
       const input = document.querySelector("#input").value;
 
       // checking for empty message if yes then do nothing otherwise, send the message to the server
