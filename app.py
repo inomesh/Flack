@@ -199,5 +199,5 @@ def offline():
     return render_template('offline.html')
 
 
-if __name__ == '__main__':
-    socketio.run(app, debug=True)
+# if __name__ == '__main__':
+#     socketio.run(app, debug=True)
