@@ -25,4 +25,17 @@ main focus here is to store all the data Locally and not in any database. just f
 
 > History API
 
-### I want to say Thank You to all of the developers who developed these liberaries and make it possible for developers like me to learn and bulld it.
+### Initial Installation Instructions
+
+```
+step 1: Pull the repository in your system
+step 2: Install Python
+step 3: Run the following command in console,
+> pip install -r requirements.txt
+It'll automatically install all the dependencies in your system
+step 4: run the command in console
+> flask run
+step 5: enjoy:)
+```
+
+### I want to say Thank You to all of the developers who developed these liberaries and made it possible for developers like me to learn and bulld something with it.
